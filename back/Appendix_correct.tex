@@ -1,0 +1,154 @@
+\chapter{《泛函分析讲义》勘误}
+    \section{拓扑向量简介}
+    \correct[20]{\[
+        B\left(x, \frac{1}{k}\right)=\prod_{n\emphasize{<}k} B_{n}\left(x_{n}, \frac{n}{k}\right) \times \prod_{n \emphasize{\geqslant} k} E_{n}, \quad \forall k \in \mathbb{N}^{*}
+        \]}{\[
+            B\left(x, \frac{1}{k}\right)=\prod_{n\emphasize{\leqslant}k} B_{n}\left(x_{n}, \frac{n}{k}\right) \times \prod_{n \emphasize{>} k} E_{n}, \quad \forall k \in \mathbb{N}^{*}
+            \]
+            
+            \begin{remark}
+                $d_n \leqslant 1$,且由于开球的定义中是$<$,所以要全集必须半径严格大于1
+            \end{remark}}
+    % \section{完备度量空间}
+    \section{赋范空间和连续线性映射}
+    \correct[38]{(b) 任取 $F \subset E$, 令 $F_{\varepsilon}=\set{\emphasize{\varepsilon}}{d_{F}(x) \leqslant \varepsilon}$. 证明
+    \[
+    h(A, B)=\inf \set{\varepsilon \geqslant 0}{A \subset \emphasize{A}_{\varepsilon}, B \subset \emphasize{B}_{\varepsilon}}
+    \]}{(b) 任取 $F \subset E$, 令 $F_{\varepsilon}=\set{\emphasize{x}}{d_{F}(x) \leqslant \varepsilon}$. 证明
+    \[
+    h(A, B)=\inf\set{\varepsilon \geqslant 0}{A \subset \emphasize{B}_{\varepsilon}, B \subset \emphasize{A}_{\varepsilon}}
+    \]}
+    \section{Hilbert空间}
+    \correct[69]{(2) 设 $y \in \emphasize{H}$, 则 $y=P_{C}(x) \Longleftrightarrow \operatorname{Re}\langle x-y, z-y\rangle \leqslant 0, \forall z \in C$.}{(2) 设 $y \in \emphasize{C}$, 则 $y=P_{C}(x) \Longleftrightarrow \operatorname{Re}\langle x-y, z-y\rangle \leqslant 0, \forall z \in C$.
+    \begin{remark}
+        多个角度来看这个更正:
+        \begin{enumerate}
+            \item 这个定理本质上是投影的另一种刻画, 既然我们要研究投影, 那么这个$y$肯定就必须在“投影面”, \ie $C$上取值, 否则即使$\operatorname{Re}\langle x-y, z-y\rangle \leqslant 0, \forall z \in C$成立了, $y$不在$C$里面的话, 还谈什么$y=P_C(x)$呢?
+            \item 从证明来看: 
+                \begin{proof}(P71的原证明)
+
+                    $\Longleftarrow$ 任取 $z \in C$, 由于 $\operatorname{Re}\langle x-y, z-y\rangle \leqslant 0$, 我们有
+                    \[
+                        \begin{aligned}
+                        \|x-z\|^{2} &=\|x-y-(z-y)\|^{2} \\
+                        &=\|x-y\|^{2}+\|z-y\|^{2}-2 \operatorname{Re}\langle x-y, z-y\rangle \\
+                        & \geqslant\|x-y\|^{2} .
+                        \end{aligned}
+                    \]
+                    由于 $z$ 是任意选取的, 故可得 $y=P_{C}(x)$.
+                \end{proof}
+                
+                \begin{proof}[证明的补充]
+                    \begin{step}
+                        \item 由$\|x-z\|^2\geqslant \|x-y\|^2$知$\|x-z\| \geqslant\|x-y\|, \forall z\in C$, 因此\[
+                            d(x,C)=\inf_{z\in C}\|x-z\| \geqslant \|x-y\|.\]
+                        \item 另一方面, $\emphasize{y \in C} \so \|x-y\| \geqslant d(x,C)$, 进而有$\|x-y\|=d(x,C)$, 而由投影的唯一性知$y=P_C(x)$.\qedhere
+                    \end{step}
+                \end{proof}
+                由上述的证明补充看到, 只有$y\in C$最后才有另一边的不等式.
+        \end{enumerate}
+    \end{remark}
+    }
+    \correct[70]{$(2) \Longrightarrow$. 这里 $y=P_{C}(x), z$ 为 $C$ 中任意一点, 设 $z^{\prime}=\lambda y+(1-\lambda) z, 0<\lambda<1$. 由 $C$ 的凸性知 $z^{\prime} \in \emphasize{\mathbb{C}}$. 因而}{$(2) \Longrightarrow$. 这里 $y=P_{C}(x), z$ 为 $C$ 中任意一点, 设 $z^{\prime}=\lambda y+(1-\lambda) z, 0<\lambda<1$. 由 $C$ 的凸性知 $z^{\prime} \in \emphasize{C}$. 因而
+    \begin{remark}
+        课本误把子集的$C$打成了复数域的$\C$.
+    \end{remark}
+    }
+    \correct[84]{
+        7. 设 $\left(x_{n}\right)$ 是 Hilbert 空间 $H$ 中的有界序列. 证明存在 $\left(x_{n}\right)$ 的子序列 $\left(x_{n_{k}}\right)$, 使 得对任意 $y \in H$, 有 $\lim \limits_{k}\left\langle y, x_{n_{k}}\right\rangle=\langle y, x\rangle$.
+    }{
+        7. 设 $\left(x_{n}\right)$ 是 Hilbert 空间 $H$ 中的有界序列. 证明存在 $\left(x_{n}\right)$ 的子序列 $\left(x_{n_{k}}\right)$\emphasize{及$x \in H$}, 使 得对任意 $y \in H$, 有 $\lim \limits_{k}\left\langle y, x_{n_{k}}\right\rangle=\langle y, x\rangle$.
+    }
+    
+    % \section{连续函数空间}
+    \section{Baire定理及其应用}
+    \correct[112]{
+        \textbf{引理 6.1.8} 设 $E$ 是 \emphasize{Hausdorff 拓扑空间}, $(F, \delta)$ 是度量空间, 则对一个映 射 $f: E \rightarrow F$, 其连续点集 $\operatorname{Cont}(f)$ 是一个 $\mathcal{G}_{\delta}$ 集.
+    }{
+        \textbf{引理 6.1.8} 设 $E$ 是 \emphasize{拓扑空间}, $(F, \delta)$ 是度量空间, 则对一个映 射 $f: E \rightarrow F$, 其连续点集 $\operatorname{Cont}(f)$ 是一个 $\mathcal{G}_{\delta}$ 集.
+
+        \begin{remark}
+            证明过程中个人觉得并不需要Hausdorff拓扑的条件（读者可自证）(晚点码上证明), 但是我们研究拓扑空间的时候还是希望空间能具有一些好的性质, 所以引理中会加上, 但是可能从严格意义上来说是不需要的.
+        \end{remark}
+    }
+    \correct[115-L4]{不失一般性,我们假设$t\neq 0$. 则上式\emphasize{分可}为$t > 0$ 和$t < 0 $两种情况讨论．}{
+        不失一般性,我们假设$t\neq 0$. 则上式\emphasize{可分}为$t > 0$ 和$t < 0 $两种情况讨论．
+    }
+    \section{拓扑向量空间}
+    \correct[143]{
+        \begin{enumerate}[start=3]
+            \item 设 $E$ 是拓扑向量空间, $f$ 是 $E$ 到 $F$ 的线性泛函 ( $f$ 不恒为 0). 并假设 $H=$ $f^{-1}(0)$ 是闭集. 本题的目的是证明在该假设下 $f$ 是连续的.
+                \begin{enumerate}[label=(\alph*)]
+                    \item 证明: 存在元素 $a \in E$, 使得 $f(a)=1$.
+                    \item 证明: $E \backslash f^{-1}(1)$ 是\emphasize{不含有}原点的开集.
+                    \item 设 $V$ 是包含于 $E \backslash f^{-1}(1)$ 的原点处的平衡邻域. 证明: $|f|$ 在 $V$ 上被 1 严 格控制, 进而导出 $f$ 连续.
+                \end{enumerate}
+        \end{enumerate}
+    }{
+        \begin{enumerate}[start=3]
+            \item 设 $E$ 是拓扑向量空间, $f$ 是 $E$ 到 $F$ 的线性泛函 ( $f$ 不恒为 0). 并假设 $H=$ $f^{-1}(0)$ 是闭集. 本题的目的是证明在该假设下 $f$ 是连续的.
+                \begin{enumerate}[label=(\alph*)]
+                    \item 证明: 存在元素 $a \in E$, 使得 $f(a)=1$.
+                    \item 证明: $E \backslash f^{-1}(1)$ 是\emphasize{含有}原点的开集.
+                    \item 设 $V$ 是包含于 $E \backslash f^{-1}(1)$ 的原点处的平衡邻域. 证明: $|f|$ 在 $V$ 上被 1 严 格控制, 进而导出 $f$ 连续.
+                \end{enumerate}
+        \end{enumerate}
+    }
+    \section{Hahn-Banach定理, 弱拓扑和弱*拓扑}
+    \correct[153]{
+        \textbf{推论 8.1.7} 设 $E$ 是拓扑向量空间, $F$ 是 $E$ 的向量子空间. 并设 $p: E \rightarrow \emphasize{\K}$ 是连续的半范数, $f: F \rightarrow \mathbb{K}$ 是线性泛函且在 $F$ 上满足 $|f| \leqslant p$. 那么存在 $f$ 的 连续线性延拓 $\tilde{f}: E \rightarrow \mathbb{K}$, 使得 $\left.\widetilde{f}\right|_{F}=f$ 且在 $E$ 上 $|\widetilde{f}| \leqslant p$.
+    }{
+        \textbf{推论 8.1.7} 设 $E$ 是拓扑向量空间, $F$ 是 $E$ 的向量子空间. 并设 $p: E \rightarrow \emphasize{\R}$ 是连续的半范数, $f: F \rightarrow \mathbb{K}$ 是线性泛函且在 $F$ 上满足 $|f| \leqslant p$. 那么存在 $f$ 的 连续线性延拓 $\tilde{f}: E \rightarrow \mathbb{K}$, 使得 $\left.\widetilde{f}\right|_{F}=f$ 且在 $E$ 上 $|\widetilde{f}| \leqslant p$.
+        \begin{remark}
+            写$\K$也没错, 毕竟还是包含了$\R$的, 但是半范数本身是取非负实值的, 写$\R$会好点.
+        \end{remark}
+    }
+
+    \correct[154]{
+        \textbf{推论 8.1.14} 设 $E$ 是赋范空间, $x_{0} \in E, \emphasize{x_{0} \neq 0}$, 则存在 $f \in E^{*}$, 使得 $f\left(x_{0}\right)=\left\|x_{0}\right\|$ 且 $\emphasize{\|f\| \leqslant 1}$.
+    }{
+        \textbf{推论 8.1.14} 设 $E$ 是赋范空间, $x_{0} \in E, \emphasize{x_{0} \neq 0}$, 则存在 $f \in E^{*}$, 使得 $f\left(x_{0}\right)=\left\|x_{0}\right\|$ 且 $\emphasize{\|f\|= 1}$.
+
+        或
+
+        \textbf{推论 8.1.14} 设 $E$ 是赋范空间, $x_{0} \in E$, 则存在 $f \in E^{*}$, 使得 $f\left(x_{0}\right)=\left\|x_{0}\right\|$ 且 $\emphasize{\|f\| \leqslant 1}$.
+
+        \begin{remark}
+            （命题的表述严格上说也没有问题, 此处“勘误”是为了定理条件结论叙述的严谨）
+
+            $x_0 \neq 0$能够推出延拓前的$\tilde{f}$的范数等于1, 因为得到了$\|\tilde{f}\| \leqslant1$与$\tilde{f}(x_0)=x_0$, 如果要说明$\|\tilde{f}\|=1$的话, 只有$\|x_0\| \neq 0$才能做分母得到反方向的不等式, 否则只能得到$\|\tilde{f}\| \leqslant1$, 保范延拓得到的$f$满足$\|f\|=\|\tilde{f}\|\leqslant 1$.
+        \end{remark}
+    }
+    \correct[155]{
+        由此可知, 线性映射 $x \mapsto B(x, \cdot)$ 是 \emphasize{$E$ 到 $E^{* *}$} 的\emphasize{等距同构}映射. 在此意义下, 我们可以将 $E$ 等距嵌人到 $E^{* *}$, 记作 $E \hookrightarrow E^{* *}$. 这是泛函分析中非常关键的一个结论.
+    }{
+        由此可知, 线性映射 $x \mapsto B(x, \cdot)$ 是 \emphasize{$E$ 到 $E^{* *}$ 某个子空间}的\emphasize{等距同构}映射. 在此意义下, 我们可以将 $E$ 等距嵌人到 $E^{* *}$, 记作 $E \hookrightarrow E^{* *}$. 这是泛函分析中非常关键的一个结论.
+
+        或
+
+        由此可知, 线性映射 $x \mapsto B(x, \cdot)$ 是 \emphasize{$E$ 到 $E^{* *}$ }的\emphasize{等距}映射. 在此意义下, 我们可以将 $E$ 等距嵌人到 $E^{* *}$, 记作 $E \hookrightarrow E^{* *}$. 这是泛函分析中非常关键的一个结论.
+
+        \begin{remark}
+            如果记\begin{align*}
+                \varphi : E &\to E^{**}\\
+                x &\mapsto B(x,\cdot)
+            \end{align*}
+            那么$E$到$\varphi(E)$就是等距同构（上述的“某个子空间”就是$\varphi(E)$）
+        \end{remark}
+    }
+    % \section{Banach空间的对偶理论}
+    % \section{紧算子}
+    
+    
+    
+    % \correct[111]{\mathtextbf{定理 6.1.7} 设 $E$ 是\emphasize{Baire空间}, $(F, \delta)$ 是度量空间. 并设映射序列 $\left(f_{n}\right)_{n} \subset$ $C(E, F)$ 逐点收敛到函数 $f$. 那么 $f$ 的所有连续点构成的集合 $\operatorname{Cont}(f)$  \emphasize{是 $E$ 中稠密的 $\mathcal{G}_{\delta}$ 集}.
+    % }{
+        % \mathtextbf{定理 6.1.7} 设 $E$ 是\emphasize{Baire空间且是Hausdorff空间}, $(F, \delta)$ 是度量空间. 并设映射序列 $\left(f_{n}\right)_{n} \subset$ $C(E, F)$ 逐点收敛到函数 $f$. 那么 $f$ 的所有连续点构成的集合 $\operatorname{Cont}(f)$ \emphasize{是 $E$ 中稠密的 $\mathcal{G}_{\delta}$ 集}.
+
+        % \mathtextbf{定理 6.1.7} 设 $E$ 是\emphasize{Baire空间}, $(F, \delta)$ 是度量空间. 并设映射序列 $\left(f_{n}\right)_{n} \subset$ $C(E, F)$ 逐点收敛到函数 $f$. 那么 $f$ 的所有连续点构成的集合 $\operatorname{Cont}(f)$ \emphasize{在 $E$ 中稠密}.
+
+        % （解释:“Baire空间”推出“稠密”,“Hausdorff空间”推出“是一个$\mathcal{G}_{\delta}$ 集”）
+    % }
+    
+    
+    

@@ -1,0 +1,184 @@
+\chapter{补充内容}
+\section{$L^{p}$ Spaces for $0<p<1$}
+下面内容来自Matt Rosenzweig:
+\subsection{Complete Quasi-Normed Space}
+\begin{lemma}
+If $p \in(0,1)$ and $a, b \geq 0$, then
+\[
+    (a+b)^{p} \leq a^{p}+b^{p}
+\]
+with equality if and only if either a or $b$ is zero.
+\end{lemma}
+\begin{proof}
+    Define a function $f(t):=(1+t)^{p}-1-t^{p}$ for $t \geq 0 .$ Then $f^{\prime}(t)=p(1+t)^{p-1}-p t^{p-1}<0$ for all $t \in(0, \infty)$. Since $f(0)=0$, it follows that $f(t)<0$ on $\left(0, \infty\right.$. If $a, b \neq 0$, then substituting $t=\frac{a}{b}$
+    \[
+        \left(1+\frac{a}{b}\right)^{p}-1-\left(\frac{a}{b}\right)^{p}<0 \Longleftrightarrow\left(\frac{a+b}{b}\right)^{p}-1-\left(\frac{a}{b}\right)^{p}<0 \Longleftrightarrow(a+b)^{p}-\left(a^{p}+b^{p}\right)<0
+    \]
+    The equality criterion is obvious from the fact that $f$ is strictly decreasing on $(0, \infty)$.
+    Recall that a pair $(X,\|\cdot\|)$, consiting of a (real or complex) vector space $X$ and a function $\|\cdot\|: X \rightarrow \mathbb{R}^{\geq 0}$ satisfying $\|\lambda x\|=|\lambda|\|x\|$, is a quasinormed space, if there exists $K \geq 1$ such that
+    \[
+        \|x+y\| \leq K(\|x\|+\|y\|) \quad \forall x, y \in X \qedhere
+    \]
+\end{proof}
+
+\begin{proposition}
+    For $0<p<\infty,\left(L^{p}(X, \mu),\|\cdot\|_{L^{p}}\right)$ is a complete quasinormed space.
+\end{proposition}
+\begin{proof}
+    We can define a distance function on $L^{p}(X, \mu)$ by
+    \[
+        d(f, g):=\|f-g\|_{L^{p}}^{p}=\int_{X}|f-g|^{p} d \mu
+    \]
+    The only metric axiom which isn't obvious is the triangle inequality. Applying the preceding lemma, for all $f, g, h \in L^{p}(X, \mu)$
+    \[
+        d(f, g)+d(g, h)=\int_{X}\left(|f-g|^{p}+|g-h|^{p}\right) d \mu \geq \int_{X}(|f-g|+|g-h|)^{p} d \mu \geq \int_{X}|f-h|^{p} d \mu=d(f, h)
+    \]
+    Since $\left\|f_{n}-f_{m}\right\|_{L^{p}} \rightarrow 0, n, m \rightarrow \infty \Longleftrightarrow d\left(f_{n}, f_{m}\right) \rightarrow 0, n, m \rightarrow \infty$ by the continuity of the maps $x \mapsto x^{p}$ and $x \mapsto x^{\frac{1}{p}}$, to show that $d$ is a complete metric, it suffices to show that given a sequence $\left(f_{n}\right)_{n=1}^{\infty}$
+    \[
+        \left\|f_{n}-f_{m}\right\|_{L^{p}}^{p} \rightarrow 0, n, m \rightarrow \infty \Rightarrow \exists f \in L^{p},\left\|f_{n}-f\right\|_{L^{p}}^{p} \rightarrow 0, n \rightarrow \infty
+    \]
+    Let $\left(f_{n}\right)_{n=1}^{\infty}$ be such a sequence. Then we can construct a subsequence $\left(f_{n_{k}}\right)_{k \in \mathbb{N}}$ such that $\left\|f_{n_{k}}-f_{n_{k+1}}\right\|_{L^{p}}^{p} \leq \frac{1}{2^{k}}$. Define
+    \[
+        f=f_{n_{1}}+\sum_{k=1}^{\infty}\left(f_{n_{k+1}}-f_{n_{k}}\right)
+    \]
+    Since
+    \[
+        \left\|\sum_{k=1}^{N}\left(f_{n_{k+1}}-f_{n_{k}}\right)\right\|_{L^{p}}^{p} \leq \sum_{k=1}^{N}\left\|f_{n_{k+1}}-f_{n_{k}}\right\|_{L^{p}}^{p} \leq \sum_{k=1}^{N} \frac{1}{2^{k}} \leq 1 \forall N \in \mathbb{N}
+    \]
+    it follows from the monotone convergence theorem, $\left|f_{n_{1}}\right|+\sum_{k=1}^{\infty}\left|f_{n_{k+1}}-f_{n_{k}}\right| \in L^{p}(X, \mu) .$ Hence, by the Lebesgue dominated convergence theorem, $f \in L^{p}(X, \mu)$.
+    \[
+    f_{1}+\sum_{k=1}^{N}\left(f_{n_{k+1}}-f_{n_{k}}\right)=f_{n_{N+1}} \Rightarrow \lim _{k \rightarrow \infty} f_{n_{k}}=f
+    \]
+    Hence, $\left(f_{n}\right)_{n=1}^{\infty}$ is Cauchy with a convergent subsequence and therefore $\left\|f_{n}-f\right\|_{L^{p}}^{p} \rightarrow 0$, as $n \rightarrow \infty$
+\end{proof}
+\subsection{Inequalities}
+\begin{proposition}[Reverse Hölder's]
+    Let $q \in(0,1) .$ For $r<0$ and $g>0 \mu-a . e .$, define $\|g\|_{L^{r}}:=\left\|g^{-1}\right\|_{L^{|r|}}^{-1}$. Then for $f \geq 0$ and $g>0 \mu-$ a.e., we have that
+    \[
+        \|f g\|_{L^{1}} \geq\|f\|_{L^{q}}\|g\|_{L^{q^{\prime}}}
+    \]
+    where $\frac{1}{q}+\frac{1}{q^{\prime}}=1$
+\end{proposition}
+\begin{proof}
+    If $f g \notin L^{1}(X, \mu)$ (i.e. $\|f g\|_{L^{1}}=\infty$ ) or $g^{-1} \notin L^{q^{\prime}}(X, \mu)$, then the inequality is trivial. So assume otherwise. Since $q \in(0,1)$ and $1=\frac{1}{q}+\frac{1}{q^{\prime}}$, we have that $q^{\prime}<0$ and
+    \[
+        \frac{1}{q}=\frac{1}{1}+\frac{1}{\left|q^{\prime}\right|}
+    \]
+    By Hölder's inequality applied to $f g$ and $g^{-1} \in L^{\left|q^{\prime}\right|}$,
+    \[
+        \|f\|_{L^{q}}=\left\|f g g^{-1}\right\|_{L^{q}} \leq\|f g\|_{L^{1}}\left\|g^{-1}\right\|_{L^{\prime q^{\prime}} \mid} \Rightarrow\|f\|_{L^{q}}\|g\|_{L^{q^{\prime}}}=\|f\|_{L^{q}}\left\|g^{-1}\right\|_{L^{\left|q^{\prime}\right|}} \leq\|f g\|_{L^{1}}\qedhere
+    \]
+\end{proof}
+
+\begin{proposition}[Reverse Minkowski's]
+    Let $f_{1}, \cdots, f_{N} \in L^{p}(X, \mu)$, where $0<p<1$ Then
+    \[
+        \sum_{j=1}^{N}\left\|f_{j}\right\|_{L^{p}} \leq\left\|\sum_{j=1}^{N}\left|f_{j}\right|\right\|_{L^{p}}
+    \]
+\end{proposition}
+\begin{proof}
+    By induction it suffices to consider the case $N=2 .$ If $\left\|\left|f_{1}\right|+\left|f_{2}\right|\right\|_{L^{p}}=\infty$, then the stated inequality is trivially true, so assume otherwise. Furthermore, if either $f_{1}$ or $f_{2}$ are zero $\mu-. a . e$, then the inequality is also trivial, so assume otherwise. By the reverse Hölder's inequality,
+    \[
+        \begin{aligned}
+        \left\|\left|f_{1}\right|+\left|f_{2}\right|\right\|_{L^{p}}^{p}=\int_{X}\left\|f_{1}|+| f_{2}\right\|^{p} d x &=\int_{X}\left|f_{1}\right|\left\|f_{1}|+| f_{2}\right\|^{p-1} d x+\int_{X}\left|f_{2}\right|\left\|f_{1}|+| f_{2}\right\|^{p-1} d x \\
+        & \geq\left\|f_{1}\right\|_{L^{p}}\left\|\left(\left|f_{1}\right|+\left|f_{2}\right|\right)^{p-1}\right\|_{L^{\frac{p}{p-1}}}+\left\|f_{2}\right\|_{L^{p}}\left\|\left(\left|f_{1}\right|+\left|f_{2}\right|\right)^{p-1}\right\|_{L^{\frac{p}{p-1}}} \\
+        &=\left(\left\|f_{1}\right\|_{L^{p}}+\left\|f_{2}\right\|_{L^{p}}\right)\left\|\left|f_{1}\right|+\left|f_{2}\right|\right\|_{L^{p}}^{p-1}
+        \end{aligned}
+    \]
+    Dividing both sides by $\left\|f_{1}+f_{2}\right\|_{L^{p}}^{p-1}$ yields the stated inequality. 
+\end{proof}
+The preceding proposition shows that $\left(L^{p}(X, \mu),\|\cdot\|_{L^{p}}\right)$ is not a normed space when $0<p<\infty$.
+
+\begin{lemma}
+    Suppose $1 \leq \theta<\infty$. Then for $a_{1}, \cdots, a_{N} \in \mathbb{R}^{\geq 0}$,
+    \[
+        \left(\sum_{j=1}^{N} a_{j}\right)^{\theta} \leq N^{\theta-1} \sum_{j=1}^{N} a_{j}^{\theta}
+    \]
+\end{lemma}
+\begin{proof}
+    Since $\theta \geq 1$, the function $f(x)=x^{\theta}$ is convex. Hence,
+    \[
+        \left(\sum_{j=1}^{N} a_{j}\right)^{\theta}=f\left(\frac{\sum_{j=1}^{N} N a_{j}}{N}\right) \leq \frac{1}{N} \sum_{j=1}^{N} f\left(N a_{j}\right)=N^{\theta-1} \sum_{j=1}^{N} a_{j}^{\theta} \qedhere
+    \]
+\end{proof}
+
+\begin{proposition}
+    For $0<p<1$,
+    \[
+        \left\|\sum_{j=1}^{N} f_{j}\right\|_{L^{p}} \leq N^{\frac{1-p}{p}} \sum_{j=1}^{N}\left\|f_{j}\right\|_{L^{p}}
+    \]
+    Furthermore, $N^{\frac{1-p}{p}}$ is the best possible constant.
+\end{proposition}
+\begin{proof}
+    If $\left\|f_{j}\right\|_{L^{p}}=\infty$ for some $j$, then the inequality trivially holds, so assume otherwise. Since $\frac{1}{p}>1$, by the preceding lemma,
+    \[
+        \left\|\sum_{j=1}^{N} f_{j}\right\|_{L^{p}}=\left(\int_{X}\left|\sum_{j=1}^{N} f_{j}\right|^{p} d x\right)^{\frac{1}{p}} \leq\left(\sum_{j=1}^{N} \int_{X}\left|f_{j}\right|^{p} d x\right)^{\frac{1}{p}} \leq N^{\frac{1}{p}-1} \sum_{j=1}^{N}\left(\int_{X}\left|f_{j}\right|^{p} d x\right)^{\frac{1}{p}}=N^{\frac{1-p}{p}} \sum_{j=1}^{N}\left\|f_{j}\right\|_{L^{p}}
+    \]
+    To see that $N^{\frac{1-p}{p}}$ is the best possible constant, let $E$ be a measurable set such that $\mu(E)=\alpha<\infty$, and set $E_{j}:=E$ and $f_{j}:=\mathbf{1}_{E}$ for $1 \leq j \leq N$. Then
+    \[
+        \left\|\sum_{j=1}^{N} f_{j}\right\|_{L^{p}}=\left(\sum_{j=1}^{N} \mu\left(E_{j}\right)\right)^{\frac{1}{p}}=(N \alpha)^{\frac{1}{p}}=N^{\frac{1-p}{p}}\left(N \alpha^{\frac{1}{p}}\right)=N^{\frac{1-p}{p}} \sum_{j=1}^{N} \mu\left(E_{j}\right)^{\frac{1}{p}}=N^{\frac{1-p}{p}} \sum_{j=1}^{N}\left\|f_{j}\right\|_{L^{p}}
+    \]
+\end{proof}
+\subsection{Day's theorem}
+\begin{lemma}
+    Let $(X, \mathcal{A}, \mu)$ be a measure space with the property that given any $f \in L^{p}(X, \mu)$ for $p \in(0,1)$, the functional
+    \[
+        \mathcal{A} \rightarrow \mathbb{R}, E \mapsto \int_{E}|f|^{p} d \mu
+    \]
+    assumes all values between 0 and $\|f\|_{L^{p}}^{p}$. Then $L^{p}(X, \mu)$, with $0<p<1$, contains no convex open sets, other than $\emptyset$ and $L^{p}(X, \mu)$
+\end{lemma}
+
+\begin{proof}
+    Let $\Omega$ be a nonempty convex open neighborhood of the origin in $L^{p}(X)$ and $f \in L^{p}(X)$ be arbitrary. Since $\Omega$ is open, there exists a ball $B_{\delta}$ about the origin contained in $\Omega .$ Choose $n \in \mathbb{Z}^{\geq 1}$ such that $\frac{\|f\|_{L^{p}}^{p}}{n^{1-p}} \leq \delta$ (i.e. $\left.n f \in B_{n \delta}\right)$. Note that we can choose such a $n$ precisely because $p \in(0,1)$. Using the intermediate value hypothesis for the measure space, there exists a measurable set $E_{1}$ such that
+    \[
+        \int_{E_{1}}|f|^{p} d \mu=\frac{1}{n} \int_{X}|f|^{p} d \mu=\frac{\|f\|_{L^{p}}^{p}}{n}
+    \]
+    Repeating the argument for $f_{1}=f \mathbf{1}_{E_{1}^{c}}$ and apply induction, we obtain a partition $\left\{E_{1}, \cdots, E_{n}\right\}$ of $X$ into disjoint measurable subsets such that $\int_{E_{j}}|f|^{p}=\frac{\|f\|_{L^{p}}^{p}}{n} \forall j=1, \cdots, n .$ Define $h_{j}:=n f \mathbf{1}_{E_{j}} .$ Then by our choice of $n$,
+    \[
+        \int_{X}\left|h_{j}\right|^{p} d \mu=\int_{E_{j}} n^{p}|f|^{p} d \mu=\frac{1}{n^{1-p}} \int_{X}|f|^{p} d \mu \leq \delta
+    \]
+    Hence, $h_{j} \in B_{\delta} \subset \Omega \forall j=1, \cdots, n$. By convexity,
+    \[
+        f=\frac{h_{1}+\cdots+h_{n}}{n} \in \Omega
+    \]
+    Since $f \in L^{p}(X, \mu)$ was arbitrary, we obtain that $\Omega=L^{p}(X, \mu)$
+\end{proof}
+\begin{corollary}
+    With $(X, \mathcal{A}, \mu)$ as above, the natural topology for $L^{p}(X, \mu)$, with $0<p<1$, is not locally convex.
+\end{corollary}
+
+The following result, originally proven by M.M. Day, shows that the Hahn-Banach theorem fails for $L^{p}(X, \mu)$, when $0<p<1$. Specifically, the Hahn-Banach theorem may fail when we only assume the underlying space is quasi-normed.
+
+\begin{theorem}[M.M. Day]
+    Let $p \in(0,1)$ and let $T: L^{p}(X, \mu) \rightarrow Y$ be a continuous linear mapping of $L^{p}(X, \mu)$ into a locally convex $T_{0}$ space $Y$ (i.e. singletons are closed). Then $T$ is the zero map. In particular, $L^{p}(X, \mu)^{*}=\{0\}$
+\end{theorem}
+
+\begin{proof}
+    Let $T$ be such a map, and let $\mathcal{B}$ be a convex local base for $Y$ at the origin. Let $W \in \mathcal{B}$. Then $T^{-1}(W)$ is a nonempty open convex subset of $L^{p}(X, \mu)$, hence by the preceding lemma, $T^{-1}(W)=L^{p}(X, \mu)$. Hence, $T\left(L^{p}(X, \mu)\right) \subset W$ for all $W \in \mathcal{B} .$ I claim that $\bigcap_{W \in \mathcal{B}} W=\{0\} .$ Assume the contrary, and let $x \neq 0$ be in the intersection. Since singletons are closed in $Y, Y \backslash\{x\}$ is an open neighborhood of $0 .$ Hence, $\bigcap_{W \in \mathcal{B}} W \subset(Y \backslash\{x\})$, which is a contradiction. We conclude that $T\left(L^{p}(X, \mu)\right)=\{0\} \Longleftrightarrow T=0$.
+\end{proof}
+\subsection{Non-Normability}
+One might ask if $L^{p}(X, \mu), 0<p<1$, is normable for an arbitrary measure space $(X, \mathcal{A}, \mu)$. The following example shows that it is not, even for a nice measure space.
+
+\begin{proposition}
+    Let $\left(f_{n}\right)_{n=1}^{\infty}$ be a sequence in $L^{p}([0,1], \mathcal{L}, \lambda)$, where $\mathcal{L}$ is the Lebesgue $\sigma$-algebra and $\lambda$ is the Lebesgue measure on $[0,1] .$ Then there does not exist a norm $\|\cdot\|$ on $L^{p}([0,1])$ such that for any sequence $\left(f_{n}\right)_{n \in \mathbb{N}} \subset L^{p}([0,1]), f_{n} \rightarrow 0$ in $L^{p} \Rightarrow\left\|f_{n}\right\| \rightarrow 0, n \rightarrow \infty$
+\end{proposition}
+
+\begin{proof}
+    Suppose such a norm $\|\cdot\|$ exists. I claim that there exists a positive constant $C<\infty$ such that $\|f\| \leq$ $C\|f\|_{L^{p}} \forall f \in L^{p}([0,1]) .$ Indeed, the map $L^{p}([0,1]) \rightarrow \mathbb{R}, f \mapsto\|f\|$ is evidently continuous. Hence, there exists $\delta>0$ such that $\|f\|_{L^{p}}<\delta \Rightarrow\|f\| \leq 1$. Then $\forall f \in L^{p}([0,1]), \frac{\alpha \delta f}{\|f\|_{L^{p}}} \in B_{\delta}$, where $0<|\alpha|<1 .$ Hence,
+    \[
+        \left\|\frac{\alpha \delta f}{\|f\|_{L^{p}}}\right\| \leq 1 \Rightarrow\|f\| \leq \frac{1}{\alpha \delta}\|f\|_{L^{p}}
+    \]
+    Letting $\alpha \rightarrow 1$, we see that the inequality holds for $C=\frac{1}{\delta} .$ Choose $C=\inf \left\{K:\|f\| \leq K\|f\|_{L^{p}} \forall f \in L^{p}([0,1])\right\}$ (Note that we do not exclude the possibility that $C=0$ ). By the intermediate value theorem, there exists $c \in(0,1)$ such that
+    \[
+        \int_{0}^{c}|f|^{p} d \lambda=\int_{c}^{1}|f|^{p} d \lambda=\frac{1}{2} \int_{0}^{1}|f|^{p} d \lambda
+    \]
+    Set $g=f \chi_{[0, c]}$ and $h=f \chi_{(c, 1]} .$ Then $f=g+h$ and $\|g\|_{L^{p}}=\|h\|_{L^{p}}=2^{-\frac{1}{p}}\|f\|_{L^{p}} .$ By the triangle inequality,
+    \[
+        \|f\| \leq\|g\|+\|h\| \leq C\left(\|g\|_{L^{p}}+\|h\|_{L^{p}}\right)=\frac{C}{2^{\frac{1}{p}-1}}\|f\|_{L^{p}}
+    \]
+    Since $p \in(0,1), \frac{C}{2^{\frac{1}{p}-1}} \leq C \Rightarrow C=0 \Rightarrow\|f\|=0 ,\forall f \in L^{p}(X, \mu)$, which contradicts that $\|\cdot\|$ is a norm.
+\end{proof}
+
+\begin{remark}
+    In fact, the non-normability of $L^{p}([0,1])$, when $0<p<1$, follows from M.M. Day's thoerem. If $L^{p}([0,1])$ were normable, then the Hahn-Banach theorem would hold, contradicting that $L^{p}([0,1])^{*}=\{0\}$. So we have the more general assertion that given any measure space $(X, \mathcal{A}, \mu)$ which satisfies the hypotheses of Day's theorem, $L^{p}(X, \mu)$ is non-normable.
+\end{remark}

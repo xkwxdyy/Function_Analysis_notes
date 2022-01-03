@@ -1,0 +1,2454 @@
+\section{武汉大学2021-2022上半学年研究生《泛函分析》练习题}
+
+\subsection{额外的13道题}
+\begin{enumerate}
+  \item 设 $X$ 是一个度量空间, 但它不是完全有界的.
+    \begin{enumerate}
+      \item 证明: 存在 $\varepsilon>0$ 及序列 $\left(x_{n}\right)_{n \geq 1} \subset X$, 使得当 $n \neq  m$, 有 $B\left(x_{n}, \varepsilon\right) \cap B\left(x_{m}, \varepsilon\right)=\emptyset$.
+      \item 证明: 对每个 $n \geq 1$, 存在连续函数 $f_{n}: X \rightarrow[0,1]$, 使得 $f_{n}\left(x_{n}\right)=1$, 且当 $x \notin B\left(x_{n}, \frac{\varepsilon}{2}\right)$ 时, 有 $f_{n}(x)=0$.
+      \item 证明 $X$ 上一定存在连续的无界函数 (提示: 考虑函数 $f=\sum_{n \geq 1} n f_{n}$ ).
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 因 $X$ 不是预紧的, 故存在 $r>0$, 使得 $X$ 不存在有限的 $r$-网.
+        任取 $x_1\in X$, $B(x_1,r)$ 不能覆盖 $X$, 故可取 $x_2\notin B(x_1,r)$.
+        由于 $B(x_1,r)\cup B(x_2,r)$ 不能覆盖 $X$, 故可取 $x_3\notin B(x_1,r)\cup B(x_2,r)$.
+        依次进行, 可取出 $X$ 中的一个序列 $(x_n)_{n\geq 1}$, 满足当 $m\neq n$ 时, $d(x_m,x_n)>r$.
+        取 $\varepsilon=\frac{r}{2}$, 则当 $m\neq n$ 时, 有 $B(x_m,\varepsilon)\cap B(x_n,\varepsilon)=\emptyset$.
+    
+        \item 对每个 $n\geq 1$, 令
+        \[f_n(x)=\frac{d(x,B^c(x_n,\frac{\varepsilon}{2}))}{d(x,x_n)+d(x,B^c(x,\frac{\varepsilon}{2}))}.\]
+        由度量的连续性知 $f_n$ 为连续函数且 $f_n$ 满足所给要求.
+    
+        \item 任取 $k\geq 1$, 有 $f(x_k)=\sum_{n\geq 1}nf_n(x_k)=k$, 故 $f$ 无界.
+        下证 $f$ 连续. 
+        
+        若存在某 $N\geq 1$, 使得 $y\in B(x_N,\varepsilon)$, 则当 $x\in B(x_N,\varepsilon)$ 时,
+        对任意 $n\neq N$, 有 $x\notin B(x_n,\frac{\varepsilon}{2})$, 故
+        \[f(x)=\sum_{n\geq 1}nf_n(x)=Nf_N(x).\]
+        所以 $f$ 在球 $B(x_N,\varepsilon)$ 上的连续, 当然在 $y$ 处连续.
+    
+        若 $y\notin\bigcup_{n=1}^{\infty} B(x_n,\varepsilon)$, 则 $f(y)=0$.
+        由于 $B(y,\frac{\varepsilon}{2})$ 与任意 $B(x_n,\frac{\varepsilon}{2})$ 不相交,
+        故对任意 $x\in B(y,\frac{\varepsilon}{2})$, 有 $f(x)=0$, 所以 $f$ 在 $y$ 处连续.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $(M, d)$ 是紧度量空间, $C(M, \mathbb{C})$ 表示 $M$ 上的连续函数全体. $\mathcal{H}$ 是 $C(M, \mathbb{C})$ 中 的等度连续族. 那么 $\mathcal{H}$ 在 $C(M)$ 上逐点有界等价于一致有界.
+    \begin{answer}
+      只需证明必要性.
+      任取 $x\in M$, 由于 $\mathcal{H}$ 为等度连续族, 故对 $\forall\varepsilon>0$,
+      存在 $\delta_x>0$, 当 $y\in B(x,\delta_x)$ 时, 有
+      \[|f(x)-f(y)|<\varepsilon,\quad\forall f\in\mathcal{H}.\]
+      因 $M=\bigcup_{x\in M}B(x,\delta_x)$ 且 $M$ 紧, 故存在有限子覆盖
+      \[M=\bigcup_{i=1}^n B(x_i,\delta_{x_i}).\]
+      由于 $\mathcal{H}$ 逐点收敛, 故存在常数 $G_{x_i}>0$ ($1\leq i\leq n$),
+      使得 $|f(x_i)|\leq G_{x_i}$, $\forall f\in\mathcal{H}$.
+      令 $G=\max_{1\leq i\leq n}G_{x_i}$.
+
+      任取 $x\in M$, 存在某 $x_k$, 使得 $x\in B(x_k,\delta_{x_k})$, 故
+      \[|f(x)|\leq |f(x)-f(x_k)|+|f(x_k)|<\varepsilon+G,\quad\forall f\in\mathcal{H}.\]
+      因此 $\mathcal{H}$ 在 $M$ 上一致有界.
+    \end{answer}
+  \item 设 $E$ 是拓扑空间, $(F, d)$ 完备的度量空间, 而函数列 $\left(f_{n}\right)_{n \geq 1} \subset C(E, F)$ 等度连续. 证明以下两个命题等价:
+    \begin{enumerate}
+      \item $\left(f_{n}\right)$ 逐点收敛.
+      \item $\left(f_{n}\right)$ 在 $E$ 的某个稠密的子集 $D$ 上逐点收敛. 若 $E$ 还是紧的, 则以上命题还与下面的命题等价.
+      \item $\left(f_{n}\right)$ 一致收敛.
+    \end{enumerate}
+    \begin{answer}
+      只需证明 (b) $\Rightarrow$ (a).
+      设 $(f_n)_{n\geq 1}$ 在 $D$ 上逐点收敛于函数 $f$. 任取 $x\in E$,
+      由于 $(f_n)_{n\geq 1}$ 等度连续, 故对 $\forall\varepsilon>0$,
+      存在 $V_x\in\mathcal{N}(x)$, 使得当 $y\in V_x$ 时, 有
+      \[d(f_n(x),f_n(y))<\varepsilon,\quad\forall f_n.\]
+      由于 $D$ 在 $E$ 中稠密, 故 $V_x\cap D\neq\emptyset$,
+      取 $x'\in V_x\cap D$, 则
+      \[f(f_n(x),f_n(x'))<\varepsilon,\quad\forall f_n.\]
+      又 $(f_n(x'))_{n\geq 1}$ 收敛于 $f(x')$, 故 $(f_n(x'))_{n\geq 1}$ 为 Cauchy 列,
+      故对上述 $\varepsilon>0$, 存在 $N$, 当 $m,n>N$ 时,
+      \[d(f_m(x'),f_n(x'))<\varepsilon.\]
+      从而
+      \begin{align*}
+          d(f_m(x),f_n(x))
+          \leq{} & d(f_m(x),f_m(x'))+d(f_m(x'),f_n(x')) \\
+                  & +d(f_n(x'),f_n(x))<3\varepsilon.
+      \end{align*}
+      因此 $(f_n(x))_{n\geq 1}$ 为完备度量空间 $F$ 中的 Cauchy 列, 必收敛.
+      这样就证明了 $(f_n)_{n\geq 1}$ 在 $E$ 上逐点收敛.
+
+      当 $E$ 为紧拓扑空间时, 结论直接见定理 5.1.4.
+    \end{answer}
+  \item 证明
+    \begin{enumerate}
+      \item $\ell_{\infty}$ 完备.
+      \item $c$ 是 $\ell_{\infty}$ 的闭子空间, 从而也是 $c$ 完备的.
+      \item $c^{*}=\ell_{1}$.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 任取 $\ell_{\infty}$ 中的 Cauchy 列 $(x^{(n)})_{n\geq 1}$,
+        即对 $\forall\varepsilon>0$, 存在 $N$, 当 $m,n>N$ 时, 有
+        \[\|x^{(m)}-x^{(n)}\|_{\infty}=\sup_{k\geq 1}|x^{(m)}_k-x^{(n)}_k|<\varepsilon.\]
+        故对每个 $k\geq 1$, 都有 $|x^{(m)}_k-x^{(n)}_k|<\varepsilon$,
+        因此 $(x^{(n)}_k)_{n\geq 1}$ 为 $\K$ 中的 Cauchy 列, 必收敛, 记为 $x^{(n)}_k\to x_k$.
+        令 $x=(x_k)\in\ell_{\infty}$, 则
+        \[\|x^{(n)}-x\|_{\infty}=\sup_{k\geq 1}|x^{(n)}_k-x_k|\to 0\quad n\to\infty.\]
+        故 $x^{(n)}\to x$, $\ell_{\infty}$ 完备.
+    
+        \item 首先 $c_0$ 关于加法和数乘封闭, 因此 $c_0$ 为 $\ell_{\infty}$
+        的子空间. 下证 $c_0$ 为闭集, 任取 $c_0$ 中的收敛列 $(x^{(n)})_{n\geq 1}$,
+        设 $x^{(n)}\to x$, 即
+        \[\lim_{n\to\infty}\|x^{(n)}-x\|_{\infty}=\lim_{n\to\infty}\sup_{k\geq 1}|x^{(n)}_k-x_k|=0.\]
+        故对任意 $\varepsilon>0$, 存在 $N$, 当 $n>N$ 时, $|x^{(n)}_k-x_k|<\varepsilon$, 从而
+        \[|x_k|\leq|x^{(n)}_k-x_k|+|x^{(n)}_k|<\varepsilon+|x^{(n)}_k|\to\varepsilon\quad k\to\infty.\]
+        由 $\varepsilon$ 的任意性即得 $x\in c_0$.
+    
+        另法: $f:\ell_{\infty}\to\R$, $x\mapsto\limsup_{n\to\infty}|x_n|$
+        为连续泛函且 $c_0=f^{-1}(\{0\})$, 故 $c_0$ 为闭集.
+    
+        \item 考虑映射
+        \begin{align*}
+            T: \ell_1 & \longrightarrow c_0^* \\
+                    x & \longmapsto T_x,\;T_x(y)=\sum_{n=1}^{\infty}x_ny_n, y\in c_0.
+        \end{align*}
+        下面我们证明 $T$ 为从 $\ell_1$ 到 $c_0^*$ 的等距同构映射.
+    
+        对任意 $y^{(1)},y^{(2)}\in c_0$ 和 $\lambda\in\K$, 有
+        \[T_x(\lambda y^{(1)}+y^{(2)})=\sum_{n=1}^{\infty}x_n(\lambda y^{(1)}_n+y^{(2)}_n)=\lambda T_x(y^{(1)})+T_x(y^{(2)}).\]
+        故 $T_x$ 为线性的.
+    
+        对任意 $y\in c_0$, 有
+        \[|T_x(y)|=\biggl|\sum_{n=1}^{\infty} x_ny_n\biggr|\leq\|y\|_{\infty}\sum_{n=1}^{\infty}|x_n|=\|x\|_{\ell_1}\|y\|_{\infty}.\]
+        故 $T_x$ 为有界的.
+    
+        由上述结论知 $T_x\in c_0^*$ 且 $\|T_x\|\leq\|x\|_{\ell_1}$. 下证 $\|T_x\|=\|x\|_{\ell_1}$,
+        因 $\|x\|_{\ell_1}=\sum_{n=1}^{\infty}|x_n|<\infty$, 故对任意 $\varepsilon>0$, 存在 $N$,
+        使得 $\sum_{n=N+1}^{\infty}|x_n|<\varepsilon$. 取 $y=(y_n)_{n\geq 1}\in c_0$ 为
+        \[\begin{cases}
+            y_n=\sgn x_n, & n\leq N \\
+            y_n=0, & n>N
+        \end{cases}\]
+        则
+        \begin{align*}
+            \frac{|T_x(y)|}{\|y\|_{\infty}}
+            & =\left|\sum_{n=1}^{\infty}x_ny_n\right|=\left|\sum_{n=1}^N x_n\sgn x_n\right| \\
+            & =\sum_{n=1}^N |x_n|=\sum_{n=1}^N |x_n|+\varepsilon-\varepsilon \\
+            & >\sum_{n=1}^N |x_n|+\sum_{n=N+1}^{\infty} |x_n|-\varepsilon=\|x\|_{\ell_1}-\varepsilon. 
+        \end{align*}
+        由 $\varepsilon$ 的任意性即得 $\|T_x\|\geq \|x\|_{\ell_1}$, 于是 $\|T_x\|=\|x\|_{\ell_1}$.
+    
+        最后证明 $T$ 为双射. 记 $(e_n)_{n\geq 1}$ 为 $\ell_{\infty}$
+        中的标准基. 首先, 任取 $u\in c_0^*$, 存在常数 $C\geq 0$, 使得对任意 $y=(y_n)_{n\geq 1}\in c_0$, 有
+        \[|u(y)|=\left|u\biggl(\sum_{n=1}^{\infty}y_ne_n\biggr)\right|=\left|\sum_{n=1}^{\infty}u(e_n)y_n\right|\leq C\|y\|_{\infty}.\]
+        任意取定 $N\in\Z_+$, 令 $y=(y_n)_{n\geq 1}$ 为
+        \[\begin{cases}
+            y_n=\sgn u(e_n), & n\leq N \\
+            y_n=0,           & n>N
+        \end{cases}\]
+        则
+        \[|u(y)|=\sum_{n=1}^N |u(e_n)|\leq C.\]
+        由 $N$ 的任意性即得 $\sum_{n=1}^{\infty}|u(e_n)|\leq C$.
+        取 $x=(u(e_n))_{n\geq 1}$, 则 $x\in\ell_1$ 且 $T_x(y)=\sum_{n=1}^{\infty}u(e_n)y_n=u(y)$,
+        因此 $T$ 为满射. 其次, 因为
+        \[\ker(T)=\{x\in\ell_1\mid T_x(y)=\sum_{n=1}^{\infty}x_ny_n=0,\forall y\in c_0\}=0,\]
+        故 $T$ 为单射, 从而为双射.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $1 \leq p<\infty, p \neq  2 . C([0,1])$ 上的范数 $\|\cdot\|_{p}$ 约定为:
+  \[
+    \forall f \in C([0,1]), \quad\|f\|_{p}=\left(\int_{0}^{1}|f(t)|^{p} d t\right)^{\frac{1}{p}} .
+  \]
+  证明范数 $\|\cdot\|_{p}$ 不能被内积诱导 (提示: 选取特殊函数, 用平等四边形公式).
+    \begin{answer}
+      选取
+      \[f(x)=\begin{cases}
+          0, & 0\leq x\leq\frac{1}{2} \\
+          x-\frac{1}{2}, & \frac{1}{2}<x\leq 1
+      \end{cases},\quad
+      g(x)=\begin{cases}
+          -x+\frac{1}{2}, & 0\leq x\leq\frac{1}{2} \\
+          0, & \frac{1}{2}<x\leq 1
+      \end{cases}\]
+      则
+      \[\|f\|_p^2=\biggl(\int_{\frac{1}{2}}^1 (x-\frac{1}{2})^p\diff x\biggr)^{\frac{2}{p}}=\biggl(\frac{1}{(p+1)2^{p+1}}\biggr)^{\frac{2}{p}}.\]
+      \[\|g\|_p^2=\biggl(\int_0^{\frac{1}{2}} (-x+\frac{1}{2})^p\diff x\biggr)^{\frac{2}{p}}=\biggl(\frac{1}{(p+1)2^{p+1}}\biggr)^{\frac{2}{p}}.\]
+      \[\|f+g\|_p^2=\biggl(\int_0^{\frac{1}{2}}(-x+\frac{1}{2})^p\diff x+\int_{\frac{1}{2}}^1 (x-\frac{1}{2})^p\diff x\biggr)^{\frac{2}{p}}=\biggl(\frac{1}{(p+1)2^p}\biggr)^{\frac{2}{p}}.\]
+      \[\|f-g\|_p^2=\biggl(\int_0^1 |x-\frac{1}{2}|^p\diff x\biggr)^{\frac{2}{p}}=\biggl(\frac{1}{(p+1)2^p}\biggr)^{\frac{2}{p}}.\]
+      令 $\|f+g\|_p^2+\|f-g\|_p^2=2(\|f\|_p^2+\|g\|_p^2)$, 得
+      \[2\biggl(\frac{1}{(p+1)2^p}\biggr)^{\frac{2}{p}}=4\biggl(\frac{1}{(p+1)2^{p+1}}\biggr)^{\frac{2}{p}}\Rightarrow p=2,\]
+      因此当 $p\neq 2$ 时, 平行四边形公式不成立, 故此时范数不能由内积诱导.
+    \end{answer}
+  \item 设序列 $a=\left(a_{n}\right)_{n \in \mathbb{Z}} \in \ell_{1}(\mathbb{Z})$. 定义算子 $\ell_{2}(\mathbb{Z})$ 上的算子 $T$ :
+  \[
+    T(b)=\left(\sum_{m=-\infty}^{\infty} b_{n-m} a_{m}\right)_{n \in \mathbb{Z}}, \quad \forall b=\left(b_{n}\right)_{n \in \mathbb{Z}} \in \ell_{2} .
+  \]证明 $T$ 是 $\ell_{2}$ 上的连续线性算子, 且有 $\|T\| \leq\|a\|_{\ell_{1}}$.
+    \begin{answer}
+      任取 $b^{(1)},b^{(2)}\in\ell_2$ 和 $\lambda\in\K$, 有
+      \[T(\lambda b^{(1)}+b^{(2)})=\lambda T(b^{(1)})+T^{(2)}.\]
+      故 $T$ 为线性算子. 下证 $T$ 有界, 对任意 $b\in\ell_2$, 有
+      \begin{align*}
+          \|T(b)\|^2
+          & =\sum_{n=-\infty}^{\infty}\left|\sum_{m=-\infty}^{\infty}b_{n-m}a_m\right|^2 \leq\sum_{n=-\infty}^{\infty}\biggl(\sum_{m=-\infty}^{\infty}|b_{n-m}a_m|\biggr)^2 \\
+          & =\sum_{n=-\infty}^{\infty}\biggl(\sum_{m=-\infty}^{\infty}|b_{n-m}|\cdot|a_m|^{\frac{1}{2}}\cdot|a_m|^{\frac{1}{2}}\biggr)^2 \\
+          & \leq\sum_{n=-\infty}^{\infty}\biggl(\sum_{m=-\infty}^{\infty}|b_{n-m}|^2|a_m|\biggr)\sum_{m=-\infty}^{\infty}|a_m| \\
+          & =\sum_{m=-\infty}^{\infty}\biggl(\sum_{n=-\infty}^{\infty}|b_{n-m}|^2|a_m|\biggr)\sum_{m=-\infty}^{\infty}|a_m| \\
+          & =\biggl(\sum_{m=-\infty}^{\infty}|a_m|\biggr)^2\sum_{n=-\infty}^{\infty}|b_n|^2=\|a\|_{\ell_1}^2\|b\|_{\ell_2}^2.
+      \end{align*}
+      因此 $T$ 为有界算子且 $\|T\|\leq\|a\|_{\ell_1}$.
+    \end{answer}
+  \item  设 $H=L^{2}(0,1)$. 证明
+  \[
+    K:=\left\{f \in H: f(x)=0, \text { 对几乎处处的 } 0 \leq x \leq \frac{1}{2}\right\}
+  \]
+  是 $H$ 的闭子空间.
+    \begin{answer}
+      任取 $K$ 中序列 $(f_n)_{n\geq 1}$, 设 $(f_n)_{n\geq 1}$ 收敛于 $f$, 下证 $f\in K$. 因
+      \[\lim_{n\to\infty}\int_0^1 (f_n(x)-f(x))^2\diff x=0.\]
+      故
+      \[\lim_{n\to\infty}\int_0^{\frac{1}{2}} (f_n(x)-f(x))^2\diff x=0.\]
+      对每个 $f_n$, 存在零测集 $A_n$, 使得在 $[0,\frac{1}{2}]\setminus A_n$ 上, $f_n=0$.
+      令 $A=\bigcup_{n=1}^{\infty}$, 则 $A$ 仍为零测集且在 $[0,\frac{1}{2}]\setminus A$
+      上, $f_n=0(\forall n\geq 1)$. 故
+      \[\lim_{n\to\infty}\int_{[0,\frac{1}{2}]\setminus A}(f_n(x)-f(x))^2\diff x=\int_{[0,\frac{1}{2}]\setminus A}f(x)^2\diff x=0,\]
+      从而在 $[0,\frac{1}{2}]$ 上 $f=0,\almosteverywhere\Rightarrow f\in K$.
+      因此 $K$ 为 $H$ 的闭子空间.
+    \end{answer}
+  \item 设 $H$ 是一个 Hilbert 空间, $(x, y) \mapsto a(x, y)$ 是一个共轭双线性泛函. 并且存在常数 $M>0$, 使得
+  \[
+    |a(x, y)| \leq M\|x\|\|y\|, \quad \forall x, y \in H .
+  \]
+  那么存在唯一的 $u \in \mathcal{B}(H)$, 使得
+  \[
+    a(x, y)=\langle x, u(y)\rangle \quad \forall x, y \in H,
+  \]
+  而且
+  \[
+    \|u\|=\sup _{(x, y) \in H \times H ; x \neq  0,} \frac{|a(x, y)|}{\|x\|\|y\|} .
+  \]
+  我们称 $u$ 为共轭双线性泛函 $a$ 诱导的算子.
+    \begin{answer}
+      任意固定 $y$, 则 $x\mapsto a(x,y)$ 为 $H$ 上的线性泛函, 再由 $|a(x,y)|\leq M\|y\|\cdot\|x\|$
+      知 $x\mapsto a(x,y)$ 为 $H$ 上的有界线性泛函, 故由 Riesz 表示定理知存在唯一的 $\tilde{y}\in H$, 使得
+      \[a(x,y)=\innerp{x}{\tilde{y}}.\]
+      记 $\tilde{y}=u(y)$, 则 $u$ 为 $H$ 到 $H$ 的映射, 由 $\tilde{y}$ 的唯一性知 $u$ 也是唯一确定的, 且有
+      \[a(x,y)=\innerp{x}{u(y)}.\]
+
+      下证 $u\in\mathcal{B}(H)$, 即 $u$ 为 $H$ 上的有界线性算子.
+
+      $u$ 是线性的: 对任意 $x,y_1,y_2\in H$ 和 $\lambda\in\K$, 有
+      \begin{align*}
+          & \innerp{x}{u(\lambda y_1+y_2)-\lambda u(y_1)-u(y_2)} \\
+          ={}& \innerp{x}{u(\lambda y_1+y_2)}-\conjugate{\lambda}\innerp{x}{u(y_1)}-\innerp{x}{u(y_2)} \\
+          ={}& a(x,\lambda y_1+y_2)-\conjugate{\lambda}a(x,y_1)-a(x,y_2)=0.
+      \end{align*}
+      故 $u(\lambda y_1+y_2)=\lambda u(y_1)+u(y_2)$, 线性性得证.
+
+      $u$ 是有界的: 因 $|a(x,y)|=|\innerp{x}{u(y)}|\leq M\|x\|\|y\|$.
+      特别地, 取 $x=u(y)$, 则 $\|u(y)\|^2\leq \|u(y)\|\cdot\|y\|$,
+      即 $\|u(y)\|\leq M\|y\|$, 有界性得证.
+
+      最后, 由 Cauchy-Schwarz 不等式得
+      \begin{align*}
+          \sup_{\substack{(x,y)\in H\times H \\ x\neq 0,y\neq 0}}\frac{|a(x,y)|}{\|x\|\|y\|}
+          & =\sup_{\substack{(x,y)\in H\times H \\ x\neq 0,y\neq 0}}\frac{|\innerp{x}{u(y)}|}{\|x\|\|y\|}=\sup_{\substack{(x,y)\in H\times H \\ x\neq 0,y\neq 0}}\frac{\|x\|\|u(y)\|}{\|x\|\|y\|} \\
+          & =\sup_{y\in H,y\neq 0}\frac{\|u(y)\|}{\|y\|}=\|u\|.\qedhere
+      \end{align*}
+    \end{answer}
+  \item 考虑由序列构成的空间
+  \[
+  H=\left\{\left(c_{j}\right)_{j \geq 0}: \sum_{j=0}^{\infty}\left(1+j^{2}\right)\left|c_{j}\right|^{2}<\infty, c_{j} \in \mathbb{C}\right\},
+  \]
+  并在 $H$ 上约定内积 $\langle\cdot, \cdot\rangle$ :
+  \[
+  \langle x, y\rangle=\sum_{j=0}^{\infty}\left(1+j^{2}\right) x_{j} \overline{y_{j}}, \quad \forall x=\left(x_{j}\right), y=\left(y_{j}\right) \in H .
+  \]
+    \begin{enumerate}
+      \item 证明 $(H,\langle\cdot, \cdot\rangle)$ 是一个 Hilbert 空间.
+      \item 证明 $H$ 是 $\ell_{2}$ 的真子空间.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 任取 $H$ 中一 Cauchy 序列 $(x^{(n)})_{n\geq 1}$, 即对 $\forall\varepsilon>0$,
+        存在 $N$, 当 $m,n>N$ 时,
+        \[\|x^{(m)}-x^{(n)}\|^2=\sum_{j=0}^{\infty}(1+j^2)\bigl|x^{(m)}_j-x^{(n)}_j\bigr|^2<\varepsilon.\]
+        故对每个 $j\geq 0$, 都有 $|x^{(m)}_j-x^{(n)}_j|^2<\varepsilon$, 于是 $(x^{(n)}_j)_{n\geq 1}$
+        为 $\C$ 中 Cauchy 列, 设 $x^{(n)}_j\to x_j$ 并令 $x=(x_j)_{j\geq 0}$, 则
+        \[\lim_{n\to\infty}\|x^{(n)}-x\|^2=\lim_{n\to\infty}\sum_{j=0}^{\infty}(1+j^2)|x^{(n)}_j-x_j|^2=0.\]
+        故 $x^{(n)}\to x$, 从而 $H$ 为 Hilbert 空间.
+    
+        \item  取 $x=(x_n)_{n\geq 0}$ 为 $x_0=0$, $x_n=\frac{1}{n},n\geq 1$. 则 $x\in\ell_2$ 但
+        $x\notin H$, 故 $H$ 为 $\ell_2$ 的真子空间.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $E=C([0,1]), F=C^{\prime}([0,1])$, 在它们上面都取上确界范数. 令
+  \[
+    T(f)(x)=\int_{0}^{x} f(t) d t, \quad \forall f \in C([0,1]) .
+  \]
+    \begin{enumerate}
+      \item 证明 $T \in \mathcal{B}(E, F)$, 并计算 $\|T\|$;
+      \item 验证 $T(E)=\{g \in F: g(0)=0\}$, 并证明 $T$ 是单射;
+      \item 求出 $T$ 的逆算子 $T^{-1}: T(E) \rightarrow E$ 的具体形式, 并证明 $T^{-1}$ 不是有界的 (提示: 构造反例);
+      \item 由以上结果，导出 $T（E）$ 不是完备的.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 因为对任意的 $f,g\in C([0,1])$ 和 $\lambda\in\R$, 有
+        \[T(\lambda f+g)(x)=\int_0^x \lambda f(t)+g(t)\diff t=\lambda T(f)(x)+T(g)(x).\]
+        且
+        \[\|T(f)\|_{\infty}=\sup_{0\leq x\leq 1}\left|\int_0^x f(t)\diff t\right|\leq\int_0^1 |f(t)|\diff t\leq\|f\|_{\infty}.\]
+        故 $T\in\mathcal{B}(E,F)$ 且 $\|T\|\leq 1$. 取 $f\equiv 1$, 则 $\|f\|_{\infty}=1$,
+        $T(f)(x)=\int_0^x 1\diff t=x\Rightarrow\|T(f)\|_{\infty}=1$, 因此 $\|T\|=1$.
+    
+        \item 当 $f(x)$ 连续时, $\int_0^x f(t)\diff t$ 连续可微.
+        故 $T(f)\in C'([0,1])$ 且 $T(f)(0)=\int_0^0 f(t)\diff t=0$.
+    
+        任取 $g\in C'([0,1])$ 满足 $g(0)=0$, 有
+        \[T(g')(x)=\int_0^x g'(t)\diff t=g(x).\]
+        故 $T(E)=\{g\in F\mid g(0)=0\}$. 又因
+        \[\ker(T)=\{f\in E\mid \int_0^x f(t)\diff t=0, \forall 0\leq x\leq 1\}=0.\]
+        故 $T$ 为单射, 于是 $T$ 为从 $E$ 到 $T(E)$ 的双射.
+    
+        \item 对任意 $g\in T(E)$, $T^{-1}(g)=g'$. 下证 $T^{-1}$ 不是有界的:
+        假设 $T^{-1}$ 有界, 则存在常数 $C\geq 0$, 使得对任意 $g\in T(E)$, 有
+        \[\|g'\|_{\infty}\leq C\|g\|_{\infty}.\]
+        取 $\alpha>C$, 令 $g(x)=x^{\alpha}$, 则 $\|g\|_{\infty}=1$, 但
+        \[\|g'\|_{\infty}=\sup_{0\leq x\leq 1}|\alpha x^{\alpha-1}|=\alpha>C.\]
+        与假设矛盾.
+    
+        \item 假设 $T(E)$ 完备, 则 $T$ 为 Banach 空间之间的连续线性双射, 由教材推论 6.3.3
+        知 $T^{-1}$ 连续, 这与在 (c) 得到的结论相矛盾, 因此 $T(E)$ 不完备.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $E$ 和 $F$ 都是 Banach 空间, $T$ 和 $T_{n}(n \geq 1)$ 都是 $E$ 到 $F$ 的连续线性双射 ( 一映射). 对任意 $y \in F$, 记 $T x \models y, x \in E$ 及 $T x_{n}=y, x_{n} \in E, n \geq 1$.
+    \begin{enumerate}
+      \item 证明: 若 $x_{n} \rightarrow x$, 则存在常数 $C>0$, 使得 $\sup _{n \geq 1}\left\|T_{n}^{-1}\right\| \leq C$, 且 $\left\|T^{-1}\right\| \leq \liminf\limits_{n \rightarrow \infty}\left\|T_{n}^{-1}\right\| .$
+      \item 反过来, 假设存在常数 $C>0$, 使得 $\sup _{n \geq 1}\left\|T_{n}^{-1}\right\| \leq C$, 并设对任意 $x \in E$, 有 $\left\|T_{n} x-T x\right\| \rightarrow 0$. 证明 $x_{n} \rightarrow x$.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 对任意 $y\in F$, 由定义知 $x_n=T_n^{-1}(y)$, $x=T^{-1}(y)$.
+        因 $x_n\to x$, 故 $T_n^{-1}(y)\to T^{-1}(y)$, 于是 $\sup_{n\geq 1}\|T_n^{-1}(y)\|<\infty$,
+        由 Banach-Steinhaus 定理知 $\sup_{n\geq 1}\|T_n^{-1}\|<\infty$,
+        即存在常数 $C$, 使得 $\sup_{n\geq 1}\|T_n^{-1}\|\leq C$.
+    
+        对任意 $y\in F$, 有
+        \[\|T^{-1}(y)\|=\lim_{n\to\infty}\|T_n^{-1}(y)\|\leq\varliminf\|T_n^{-1}\|\|y\|,\]
+        故 $\|T^{-1}\|\leq\varliminf\|T_n^{-1}\|$.
+    
+        \item 即证 $T_n^{-1}(y)\to T^{-1}(y)$, 因为
+        \begin{align*}
+            \|T_n^{-1}(y)-T^{-1}(y)\|
+            &=\|(T_n^{-1}-T^{-1})(y)\|=\|T_n^{-1}(T_n-T)T^{-1}(y)\| \\
+            &=\|T_n^{-1}(T_n-T)(x)\|=\|T_n^{-1}(T_nx-Tx)\| \\
+            &\leq\sup_{n\geq 1}\|T_n^{-1}\|\cdot\|T_nx-Tx\|\to 0,
+        \end{align*}
+        所以即得 $x_n\to x$.
+      \end{enumerate}
+    \end{answer}
+  \item $C(X)$ 表示集合 $X$ 上所有连续的复函数构成的向量空间. 任取 $f \in C(X)$, 对任 意 $r>0$, 定义 $C(X)$ 中的“开球”如下:
+  \[
+    B(f, r)=\left\{g \in C(X): \sup _{x \in X}|g(x)-f(x)|<r\right\} .
+  \]
+  并定义 $\tau_{u}$ 为 $C(X)$ 上的集族, $\tau_{u}$ 中的任一元素可表示成以上开球的并集 (也含有空集).
+    \begin{enumerate}
+      \item 验证 $\tau_{u}$ 为 $C(X)$ 上的拓扑, 并且 $(B(f, r))_{r>0}$ 是 $f$ 的邻域基.
+      \item 证明: $C(X)$ 中的序列 $\left(f_{n}\right)$ 依拓扑 $\tau_{u}$ 收敛等价于 $\left(f_{n}\right)$ 在 $X$ 上一致收敛.
+      \item 用例子说明当 $X$ 非紧时, 向量空间 $C(X)$ 依拓扑 $\tau_{u}$ 不能成为拓扑向量空间. (提示: 设 $X=(0,1), f(x)=\frac{1}{x}$, 说明数乘运算关于这里的拓扑不连续.)
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 由 $\tau_{u}$ 的构造, 我们仅需验证: 任取两个开球 $B\left(f_{1}, r_{1}\right)$ 和 $B\left(f_{2}, r_{2}\right)$,
+        $B(f_{1}, r_1)\cap B(f_{2},r_{2})$ 也在 $\tau_{u}$ 中. 
+        若 $B\left(f_{1}, r_{1}\right) \cap B\left(f_{2}, r_{2}\right)=\emptyset$, 则结论成立, 
+        故考虑 $B\left(f_{1}, r_{1}\right) \cap B\left(f_{2}, r_{2}\right) \neq\emptyset$. 
+        任取 $f \in B\left(f_{1}, r_{1}\right) \cap B\left(f_{2}, r_{2}\right)$, 我们设
+        \[
+        r=\min \left\{r_{1}-\sup _{x \in X}\left|f(x)-f_{1}(x)\right|, r_{2}-\sup _{x \in X}\left|f(x)-f_{2}(x)\right|\right\}
+        \]
+        那么, 对任意 $g\in B(f, r)$, 有
+        \[
+        \sup _{x \in X}\left|g(x)-f_{1}(x)\right| \leq \sup _{x \in X}|g(x)-f(x)|+\sup _{x \in X}\left|f(x)-f_{1}(x)\right| \leq r_{1}
+        \]
+        即得 $g \in B\left(f_{1}, r_{1}\right)$, 则有 $B(f, r) \subset B\left(f_{1}, r_{1}\right)$. 
+        同理, 也有 $B(f, r) \subset B\left(f_{1}, r_{1}\right)$. 并且 $(B(f, r))_{r>0}$ 是 $f$ 的邻域基是显然的.
+    
+        \item $\left(f_{n}\right)$ 依拓扑 $\tau_{u}$ 收敛于 $f$ 等价于命题: 
+        任取 $r>0$, 存在 $N>0$, 当 $n>N$ 时, 有 $f_{n} \in B(f,r)$. 
+        而 $f_{n}\in B(f, r)$ 等价于 $\sup_{x \in X}\left|f_{n}(x)-f(x)\right|<r$, 这正是一致收敛的定义. 故依拓扑收敛等价于一致收敛.
+        $f_1,f_2\in\mathbb{C}^{X}, f_1\neq f_2$. 则存在 $x \in X$, 
+        使得 $f_1(x)\neq f_2(x)$. 记 $r=\left|f_{1}(x)-f_{2}(x)\right|$. 
+        那么 $B\left(f_{1}, \frac{r}{2}\right) \cap B\left(f_{2}, \frac{r}{2}\right)=\emptyset$. 
+        这说明 $\left(\rho_{x}\right)_{x \in X}$ 是一个 Hausdorff 拓扑.
+    
+        \item 如提示, 考察 $X=(0,1), f(x)=\frac{1}{x}$. 当考虑数乘运算 $kf$, 
+        令 $k\neq 0$ 且 $k \rightarrow 0$ 时, $kf$ 不在任意一个 $B(f, r)$ 中, 
+        故该拓扑关于数乘运算不连续. 因此 $C(X)$ 依拓扑 $\tau_{u}$ 不能成为拓扑向量空间.
+      \end{enumerate}
+    \end{answer}
+  \item 考虑实 Banach 空间 $\ell_{\infty}$, 并设 $\alpha=(1,-1,1,-1, \ldots)$. 证明存在 $\ell_{\infty}$ 上的连续线 性泛函 $f$ 满足下面的性质:
+    \begin{enumerate}
+      \item $f(\alpha)=0$.
+      \item 若序列 $x=\left(x_{n}\right)_{n \geq 1}$ 的极限存在, 则 $f(x)=\lim _{n \rightarrow \infty} x_{n}$.
+      \item $\liminf _{n \rightarrow \infty} x_{n} \leq f(x) \leq \lim \sup _{n \rightarrow \infty} x_{n}, \forall x=\left(x_{n}\right)_{n \geq 1} \in \ell_{\infty}$.
+    \end{enumerate}
+    \begin{answer}
+      考虑集合
+      \[F=\{x\in\ell_{\infty}\mid \lim_{n\to\infty}x_{2n-1}\text{\ 和\ }\lim_{n\to\infty}x_{2n}\text{\ 存在}\}.\]
+      容易验证 $F$ 为 $\ell_{\infty}$ 的向量子空间.
+
+      令 $p:\ell_{\infty}\to\R$, $p(x)=\limsup_{n\to\infty}x_n$.
+      对任意 $t\geq 0$, 有 $p(tx)=tp(x)$; 任取 $x,y\in\ell_{\infty}$,
+      有 $p(x+y)=\lim_{n\to\infty}(x_n+y_n)\leq p(x)+p(y)$,
+      故 $p$ 为 $\ell_{\infty}$ 上的次线性泛函.
+
+      定义 $\varphi: F\to\R$ 为 $\varphi(x)=\frac{1}{2}\lim_{n\to\infty}(x_{2n-1}+x_{2n})$,
+      则 $\varphi$ 为 $F$ 上的线性泛函, 且
+      \[|\varphi(x)|=\frac{1}{2}\left|\lim_{n\to\infty}(x_{2n-1}+x_{2n})\right|\leq\|x\|_{\infty}.\]
+      故 $\varphi\in F^*$ 且 $\|\varphi\|\leq 1$.
+
+      因在 $F$ 上, $\varphi(x)=\frac{1}{2}\lim_{n\to\infty}(x_{2n-1}+x_{2n})\leq\limsup_{n\to\infty}x_n=p(x)$,
+      故存在 $\ell_{\infty}$ 上的连续线性泛函 $f$, 使得 $f|_F=\varphi$ 且 $f(x)\leq p(x),x\in\ell_{\infty}$. 因此
+
+        \begin{enumerate}
+          \item 由 $\lim_{n\to\infty}a_{2n-1}=-1$ 和 $\lim_{n\to\infty}a_{2n}=1$ 知 $f(a)=0$.
+
+          \item 若序列 $x=(x_n)_{n\geq 1}$ 的极限存在, 则 $x\in F$ 且
+          \[f(x)=\frac{1}{2}\lim_{n\to\infty}(x_{2n-1}+x_{2n})=\lim_{n\to\infty}x_n.\]
+    
+          \item 由于在 $\ell_{\infty}$ 上 $f\leq p$, 故对任意 $x\in\ell_{\infty}$, 有
+          \[f(-x)\leq p(-x)=\limsup_{n\to\infty}(-x_n)=-\liminf_{n\to\infty}x_n,\]
+          从而 $f(x)\geq\liminf_{n\to\infty}x_n$.
+        \end{enumerate}
+    \end{answer}
+\end{enumerate}
+
+
+
+\subsection{第2章习题}
+\begin{enumerate}
+  \item 完备性不是一个拓扑概念, 我们用两个例子说明这一点.
+    \begin{enumerate}
+      \item 设有函数 $\phi(x)=\frac{x}{1+|x|}$, $x\in\R$, 并定义
+      \[d(x,y)=|\phi(x)-\phi(y)|,\quad x,y\in\R.\]
+      证明由此定义的 $d$ 是 $\R$ 上的距离并和 $\R$ 上通常意义下的拓扑一致, 但 $d$ 不完备.
+    
+      \item 更一般地, 设 $O$ 是完备度量空间 $(E,d)$ 上的开子集, 且 $O\neq E$.
+      映射 $\phi:O\to E\times\R$ 定义为
+      \[\phi(x)=\left(x,\frac{1}{d(x,O^c)}\right):=(x,\rho(x)),\quad\forall x\in O.\]
+      证明 $\phi$ 是从 $O$ 到 $E\times\R$ 的一个闭子集上的同胚. 并由此导出 $O$ 上存在一个完备的距离,
+      由其所诱导的拓扑和 $d$ 在 $O$ 上所诱导的拓扑一致 (注意, $(O,d_O)$ 一般并不完备).
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 易知$\phi (x)$是严格单调递增函数且$-1<\phi(x)<1,|\phi '(x)|\leq 1$
+        \begin{itemize}
+        \item $d(x,y)\geq 0$且$d(x,y)=0$ 当且仅当 $x=y$
+        \item $d(x,y)=|\phi(x)-\phi(y)|=|\phi(y)-\phi(x)|=d(y,x)$
+        \item $d(x,y)=|\phi(x)-\phi(y)|\leq |\phi(x)-\phi(z)|+|\phi(y)-\phi(z)|=d(x,z)+d(y,z)$
+        \end{itemize}
+        因此, $d$ 是一个距离.
+    
+        下证两拓扑一致(距离越小,拓扑越小,下面第一个包含关系的推导是自然的), 
+        记 $\tau$ 为自然拓扑, $\tau_d$ 为由 $d$ 诱导的拓扑. 一方面,
+        \begin{align*}
+            U\in\tau_d
+            & \Leftrightarrow\forall x\in U,\exists r>0,s.t.\{y\mid|\phi(x)-\phi(y)|<r\}\subset U\\
+            & \Rightarrow\forall x\in U,\exists r>0,s.t.\{y\mid|x-y|<r\}\subset U\\
+            & \Rightarrow U\in\tau.
+        \end{align*}
+        另一方面,
+        \begin{align*}
+        U\in\tau
+        & \Leftrightarrow\forall x\in U,\exists r>0,s.t.\{y\mid |y-x|<r\}\subset U\\
+        & \Rightarrow\forall x\in U,\text{取\ }s=\min\{\phi(x)-\phi(x-r),\phi(x+r)-\phi(x)\},\text{则\ }\{y\mid |\phi(y)-\phi(x)|<s\}\subset U\\
+        & \Rightarrow U\in\tau_d.
+        \end{align*}
+        综合两个方向知 $\tau=\tau_d$.
+    
+        最后证明 $d$ 不完备. 取集列 $\{A_n\}_{n=1}^{\infty}(A_n=[n,+\infty))$, 则
+        \[\diam A_n=\sup_{x,y\in A_n}|\phi(x)-\phi(y)|=1-\frac{n}{n+1}=\frac{1}{n+1}\to 0\quad(n\to +\infty)\]
+        但 $\bigcap\limits_{n\geq 1}A_n=\emptyset$, 由完备性的等价推论知 $d$ 不完备.
+    
+        \item 由于
+        \begin{itemize}
+        \item $\phi$ 是连续的一一对应. $\phi_1=\id_O:x\mapsto x$ 是连续的, 且$\phi_2=\rho(x):x\mapsto\frac{1}{d(x,O^C)}$是连续的,
+              故 $\phi$ 连续, 由 $\phi_1$ 是一一对应知 $\phi$ 是一一对应.
+        \item $\phi(O)$是闭集. 只需证明$\phi(O)$完备,
+              任取 $\phi(O)$ 中的 Cauchy 序列 $\{(x_n,\rho_n)\}$,
+              设其在 $E\times\mathbb{R}$ 中收敛到 $(x,\rho)$,
+              由Cauchy序列的有界性知存在 $M>0$, 使得 $0\leq\rho_n<M$, 且 $x\in\closure{O}$, 则 $x\in O$ 或者 $x\in\partial O$.
+              若 $x\in\partial O$, 则 $d(x,O^C)=0$, 故存在 $n_o$, 使得 $d(x_{n_0},O^C)<\frac{1}{M}\Rightarrow\rho_{n_0}>M$,矛盾.
+              所以 $x\in O$, 因此 $(x,\rho)\in\phi(O)$, 故 $\phi(O)$ 完备.
+        \item $\phi^{-1}$连续. 由$(x_n,\rho_n)\rightarrow (x,\rho)$显然得到$x_n\rightarrow x$,故$\phi^{-1}$连续
+        \end{itemize}
+        综上得知, $\phi$是从$O$到$E\times R$上的闭子集的同胚.
+    
+        记$E\times\mathbb{R}$上的度量为$\delta$,定义$d^*$为$d^*(x_1,x_2)=\delta(\phi(x_1),\phi(x_2))$,
+        容易验证$d^*$是$O$上的一个完备的距离,记$d^*$诱导的拓扑为$\tau^*$,$d$诱导的拓扑为$\tau$,则:
+        由$d(x,y)\leq d^*(x,y)=\max\{d(x,y),|\rho(x)-\rho(y)|\}$知$\tau\subset\tau^*$,又:
+        另一个方向待完善.
+      \end{enumerate}
+    \end{answer}
+  \item 证明度量空间 $(E,d)$ 是完备的充分必要条件是: 
+  对 $E$ 中任意序列 $(x_n)$, 若对任一个 $n\geq 1$ 有 $d(x_n,x_{n+1})\leq 2^{-n}$, 则序列 $(x_n)$ 收敛.
+    \begin{answer}[]
+      [$\forall\varepsilon>0$, 取 $N=[1-\log_2\varepsilon]$, 对于任意 $m,n>N$ 有
+      \[d(x_m,x_n)\leq \frac{1}{2^n}+\frac{1}{2^{n+1}}+\cdots+\frac{1}{2^{m-1}}=\frac{1}{2^{n-1}}-\frac{1}{2^{m-1}}<\varepsilon,\]
+      所以 $(x_n)$ 是 Cauchy 序列, 因 $(E,d)$ 完备, 故 $(x_n)$ 在 $E$ 中收敛.]
+    
+      任取 $(E,d)$ 中的 Cauchy 序列 $(x_n)_{n\geq 1}$.
+      对于 $\varepsilon_1=\frac{1}{2}$, 存在 $N_1$, 使得对于 $\forall m,n\geq N_1$
+      有 $d(x_m,x_n)<\frac{1}{2}$;
+      对于 $\varepsilon_2=\frac{1}{2^2}$, 存在 $N_2>N_1$, 使得对于 $\forall m,n\geq N_2$
+      有 $d(x_m,x_n)<\frac{1}{2^2}$;
+      依次进行下去可得 $(x_n)_{n\geq 1}$ 的子列 $(x_{N_k})_{k\geq 1}$
+      且此子列满足对于任意 $k\geq 1$ 有 $d(x_{N_k},x_{N_{k+1}})<2^{-k}$.
+      由假设条件知 $(x_{N_k})_{k\geq 1}$ 收敛, 因此 $(x_n)_{n\geq 1}$ 也收敛,
+      由此证明 $(E,d)$ 完备.
+    \end{answer}
+  % \item 设 $(E,d)$ 是度量空间, $(x_n)$ 是 $E$ 中的  Cauchy 序列, 并有 $A\subset E$.
+  % 假设 $A$ 的闭包 $\overline{A}$ 在 $E$ 中完备并且 $\lim_{n\to\infty}d(x_n,A)=0$.
+  % 证明 $(x_n)$ 在 $E$ 中收敛.
+  %   \begin{answer}
+  %     先证明 $\lim_{n\to\infty}d(x_n,\overline{A})=0$. 任取 $x\in A,y\in\overline{A}$, 有
+  %     \begin{equation*}
+  %         d(x_n,y)\leq d(x_n,x)+d(x,y),
+  %     \end{equation*}
+  %     上述不等式关于 $x\in A$ 取下确界得
+  %     \[d(x_n,y)\leq d(x_n,A)+\inf_{x\in A}d(x,y)=d(x_n,A),\]
+  %     上述不等式再关于 $y\in\overline{A}$ 取下确界得
+  %     \[d(x_n,\overline{A})\leq d(x_n,A).\]
+  %     令 $n\to\infty$ 即得 $\lim_{n\to\infty}d(x_n,\bar{A})=0$.
+
+  %     令 $(y_n)_{n\geq 1}$ 为 $\overline{A}$ 中满足 $d(x_n,y_n)=d(x_n,\overline{A})$ 的序列, 
+  %     由 $\lim\limits_{n\to\infty}d(x_n,y_n)=0$ 及 $(x_n)_{n\geq 1}$ 是 Cauchy 序列有
+  %     \[\forall\varepsilon>0,\exists N>0,\forall m,n>N,d(x_n,y_n)<\varepsilon/3,d(x_n,x_m)<\varepsilon/3.\]
+  %     故
+  %     \[d(y_n,y_m)\leq d(y_n,x_n)+d(x_n,x_m)+d(x_m,y_m)<\varepsilon.\]
+  %     从而 $(y_n)_{n\geq 1}$ 是 Cauchy 序列, 由 $\overline{A}$ 的完备性知 $(y_n)_{n\geq 1}$ 收敛, 记为 $y_n\to y$, 故
+  %     \[\forall\varepsilon>0,\exists M>0,\forall n>M,d(y_n,y)<\varepsilon/2,d(x_n,y_n)<\varepsilon/2.\]
+  %     因此 $d(x_n,y)\leq d(x_n,y_n)+d(y_n,y)<\varepsilon$, 从而说明 $x_n\to y$.
+  %   \end{answer}
+  % \item 设 $(E,d)$ 是度量空间, $\alpha>0$. 假设 $A\subset E$ 满足对任意 $x,y\in A$
+  % 且 $x\neq y$, 必有 $d(x,y)\geq\alpha$. 证明 $A$ 是完备的.
+  %   \begin{answer}
+  %     任取 $A$ 中的 Cauchy 序列 $(x_n)_{n\geq 1}$, 由定义知对于题给常数 $\alpha$, 
+  %   $\exists N>0$, 使得对于 $\forall m,n>N$, 有 $d(x_m,x_n)<\alpha$, 结合条件知
+  %   $\forall m,n>N,x_m=x_n$, 因此序列$(x_n)_{n\geq 1}$收敛, 故 $A$ 完备.
+  %   \end{answer}
+  \item 设 $(E,d)$ 是度量空间且 $A\subset E$. 假设 $A$ 中任一 Cauchy 序列在 $E$ 中收敛,
+  证明 $A$ 的闭包 $\overline{A}$ 是完备的.
+    \begin{answer}
+      任取 $\closure{A}$ 中的 Cauchy 序列 $(x_n)_{n\geq 1}$.
+      对于 $\forall\varepsilon>0$, 存在序列 $(y_n)_{n\geq 1}\subset A$ 使得对于 $\forall n\geq 1$ 有
+      \[d(x_n,y_n)<\frac{\varepsilon}{3}.\]
+      因为 $(x_n)_{n\geq 1}$是 Cauchy 序列, 所以对于上述 $\varepsilon>0$,
+      存在 $N\geq 1$, 使得对于 $\forall m,n\geq N$ 有
+      \[d(x_m,x_n)<\frac{\varepsilon}{3},\]
+      于是
+      \[d(y_m,y_n)\leq d(y_m,x_m)+d(x_m,x_n)+d(x_n,y_n)<\varepsilon,\]
+      所以 $(y_n)_{n\geq 1}$ 是 $A$ 中的 Cauchy 序列, 由题目条件知 $y_n\to y\in\closure{A}$,
+      于是对于上述 $\varepsilon>0$, 存在 $M\geq 1$, 使得当 $n\geq M$ 时 $d(y_n,y)<\frac{2}{3}\varepsilon$,
+      从而 $d(x_n,y)<d(x_n,y_n)+d(y_n,y)<\frac{\varepsilon}{3}+\frac{2}{3}\varepsilon=\varepsilon$.
+      所以$x_n\to y\in\closure{A}$, 由完备性定义知 $\closure{A}$ 完备.
+    \end{answer}
+  \item 设 $(E,d)$ 是度量空间, 而 $(x_n)$ 是 $E$ 中发散的 Cauchy 序列. 证明
+    \begin{enumerate}
+        \item 任取 $x\in E$, 序列 $(d(x,x_n))$ 收敛于一个正数, 记为 $g(x)$.
+        \item 函数 $x\mapsto\frac{1}{g(x)}$ 是从 $E$ 到 $\R$ 的连续函数.
+        \item 上面的函数无界.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 由 $(x_n)_{n\geq 1}$ 是 Cauchy 序列和三角不等式得
+        \[|d(x,x_m)-d(x,x_n)|\leq d(x_m,x_n)\to 0,\quad m,n\to\infty,\]
+        故序列 $(d(x,x_n))_{n\geq 1}$ 是 $\R$ 中的 Cauchy 序列, 
+        由 $\R$ 的完备性知 $(d(x,x_n))_{n\geq 1}$ 收敛, 记收敛值为 $g(x)$.
+    
+        显然 $g(x)\geq 0$, 若 $g(x)=0$, 则 $\lim_{n\to\infty}d(x,x_n)=0$, 
+        故 $x_n\to x$, 与 $(x_n)_{n\geq 1}$ 发散相矛盾, 因此 $g(x)>0$.
+    
+        \item 只需证明 $g(x)$ 连续即可. 任意取定 $x_0\in E$, 则
+        \begin{align*}
+            |g(x)-g(x_0)| & =|\lim_{n\to\infty}d(x,x_n)-\lim_{n\to\infty}d(x_0,x_n)| \\
+                        & =\bigl|\lim_{n\to\infty}\bigl(d(x,x_n)-d(x_0,x_n)\bigr)\bigr| \\
+                        & \leq\lim_{n\to\infty}d(x,x_0) \\
+                        & =d(x,x_0),
+        \end{align*}
+        上述不等式表明 $g(x)$ 为连续函数.
+    
+        \item 假设 $\frac{1}{g(x)}$ 有界, 即存在 $M>0$,
+        使得 $\frac{1}{g(x)}<M\Rightarrow g(x)>\frac{1}{M}(\forall x\in E)$.
+        因为 $(x_n)_{n\geq 1}$ 是 Cauchy 序列, 
+        所以存在 $N\geq 1$, 当 $\forall n>N$ 时, $d(x_n,x_N)<\frac{1}{M}$,
+        故 $g(x_N)=\lim_{n\to\infty}d(x_n,x_N)\leq\frac{1}{M}$, 矛盾, 因此 $\frac{1}{g(x)}$ 无界.
+      \end{enumerate}
+    \end{answer}
+  % \item 设 $(E,d)$ 和 $(F,\delta)$ 都是度量空间, $f:(E,d)\to (F,\delta)$
+  % 是一致连续的双射并且逆映射 $f^{-1}$ 也是一致连续的.
+  % 证明对任意 $A\subset E$, $f(A)$ 完备当且仅当 $A$ 完备.
+  %   \begin{answer}[switch][假设 $A$ 完备, 要证明$f(A)$完备.
+  %   任取 $f(A)$ 中的 Cauchy 序列 $(y_n)_{n\geq 1}$, 记 $f^{-1}(y_n)=x_n $, 
+  %   从而得到 $A$ 中的序列 $(x_n)_{n\geq 1}$, 由 $f^{-1}$ 一致连续知
+  %   对于 $\forall\varepsilon>0$, 存在 $\theta>0$, 使得当 $\delta(y_m,y_n)<\theta$ 时,
+  %   有 $d(x_m,x_n)<\varepsilon$.
+  %   对于上述的 $\theta>0$, 存在 $N\geq 1$, 当 $m,n>N$ 时,
+  %   $\delta(y_m,y_n)<\theta$, 此时 $d(x_m,x_n)<\varepsilon$.
+  %   从而 $(x_n)_{n\geq 1}$ 是 $A$ 中的 Cauchy 序列, 
+  %   由 $A$ 完备知 $(x_n)_{n\geq 1}$ 收敛, 记 $x_n\to x\in A$,
+  %   故 $y_n=f(x_n)\to f(x)\in f(A)$, 因此$f(A)$是完备的.]
+
+  %   由 $f$ 的一致连续性可证, 证法同充分性.
+  %   \end{answer}
+  % \item 设 $f:\R ^n\to\R $ 是一致连续函数. 证明存在两个非负常数 $a$ 和 $b$, 使得
+  % \[|f(x)|\leq a\|x\|+b,\]
+  % 这里 $\|x\|$ 是 $x$ 的欧氏范数.
+  %   \begin{answer}
+  %     为强调自变量为 $\R ^n$ 中向量, 下面记 $x\in\R ^n$ 为 $\vec{x}$.
+
+
+  %     因为 $f(\vec{x})$ 一致连续, 所以对于任意 $\varepsilon>0$, 存在 $\delta>0$,
+  %     使得当 $\|\vec{x}-\vec{y}\|<\delta$ 时, 有 $|f(\vec{x})-f(\vec{y})|<\varepsilon$.
+
+  %     固定 $\varepsilon$ 和 $\delta$, 取定某 $0<\delta'<\delta$.
+  %     则对于任意 $\vec{x}\in\R ^n$, 可将其表为
+  %     \[\vec{x}=\delta' \frac{\vec{x}}{\|\vec{x}\|}\cdot N+\vec{x}_0,\quad\|\vec{x}_0\|<\delta',\]
+  %     其中 $N= \frac{\|\vec{x}-\vec{x}_0\|}{\delta'}$. 可以将 $f(\vec{x})$ 进行如下和式分解:
+  %     \[f(\vec{x})=\sum_{k=1}^N\left[f\biggl(\delta' \frac{\vec{x}}{\|\vec{x}\|}k+\vec{x}_0\biggr)-f\biggl(\delta' \frac{\vec{x}}{\|\vec{x}\|}(k-1)+\vec{x}_0\biggr)\right]+f(\vec{x}_0),\]
+  %     并且注意到 $\|\vec{x}_0\|=\|\vec{x}_0-\vec{0}\|<\delta'<\delta$, 所以 $|f(\vec{x}_0)-f(\vec{0})|<\varepsilon$, 
+  %     即 $f(\vec{0})-\varepsilon<f(\vec{x}_0)<f(\vec{0})+\varepsilon$, 记 $M=\max\{|f(\vec{0})-\varepsilon|,|f(\vec{0})+\varepsilon|\}$.
+  %     从而
+  %     \begin{align*}
+  %         |f(\vec{x})|
+  %         &\leq\sum_{k=1}^N \left\lvert f\biggl(\delta' \frac{\vec{x}}{\|\vec{x}\|}k+\vec{x}_0\biggr)-f\biggl(\delta' \frac{\vec{x}}{\|\vec{x}\|}(k-1)+\vec{x}_0\biggr)\right\rvert+|f(\vec{x}_0)| \\
+  %         &\leq N\cdot\varepsilon+M \\
+  %         &= \frac{\|\vec{x}-\vec{x}_0\|}{\delta'}\cdot\varepsilon+M \\
+  %         &\leq \frac{\|\vec{x}\|+\|\vec{x}_0\|}{\delta'}\cdot\varepsilon+M \\
+  %         &< \frac{\varepsilon}{\delta'}\|\vec{x}\|+(M+\varepsilon).
+  %     \end{align*}
+  %     记 $a= \frac{\varepsilon}{\delta'}$ 且 $b=M+\varepsilon$, 则上述不等式表明
+  %     \[|f(\vec{x})|\leq a\|\vec{x}\|+b.\qedhere\]
+  %   \end{answer}
+  % \item 设 $f:E\to F$ 是两个度量空间之间的连续映射, 并设 $f$ 在 $E$ 的每个有界子集上一致连续.
+
+  %   \begin{enumerate}
+  %     \item 证明若 $(x_n)_{n\geq 1}$ 是 $E$ 中的 Cauchy 序列, 则 $(f(x_n))_{n\geq 1}$ 也是 $F$ 中的 Cauchy 序列.
+
+  %     \item 设 $E$ 在度量空间 $E'$ 中稠密并且 $F$ 是完备的, 证明 $f$ 可以唯一地拓展成从 $E'$ 到 $F$ 的连续映射.
+  %   \end{enumerate}
+  %   \begin{answer}
+  %     \begin{enumerate}
+  %       \item 因为 $(x_n)_{n\geq 1}$ 是 Cauchy 序列, 所以 $(x_n)_{n\geq 1}$ 为有界序列.
+  %       又 $f$ 在 $E$ 的有界子集上一致连续且一致连续映射将 Cauchy 序列映为 Cauchy 序列,
+  %       故 $(f(x_n))_{n\geq 1}$ 是 $F$ 中的 Cauchy 序列.
+    
+  %       \item 记 $E$ 上的度量为 $d$, $F$ 上的度量为 $\delta$.
+    
+  %       首先构造 $f$ 的一个扩展映射.
+  %       由于 $E$ 在 $E'$ 中稠密, 故对于 $\forall x\in E'$,
+  %       存在 $(x_n)_{n\geq 1}\subset E$ 使得 $(x_n)_{n\geq 1}$ 收敛于 $x$.
+  %       显然 $(x_n)_{n\geq 1}$ 为 Cauchy 序列, 故由 (a) 知 $(f(x_n))_{n\geq 1}$
+  %       为 $F$ 中的 Cauchy 序列, 又因 $F$ 完备, 故存在 $y\in F$,
+  %       使得 $(f(x_n))_{n\geq 1}$ 收敛于 $y$. 定义 $\tilde{f}(x)=y$.
+  %       由于 $E$ 中收敛于 $x$ 的序列不唯一, 故需证明这一定义不依赖 $(x_n)_{n\geq 1}$ 的选择.
+  %       设 $(x_n')_{n\geq 1}$ 也收敛于 $x$, 相应地, 定义 $y'=\tilde{f}(x_n')$.
+  %       由于 $(x_n)_{n\geq 1}$ 和 $(x_n')_{n\geq 1}$ 都收敛于 $x$,
+  %       故存在 $r>0$ 使得 $(x_n)_{n\geq 1}\subset B(x,r)$ 且 $(x_n')_{n\geq 1}\subset B(x,r)$.
+  %       由于 $f$ 在有界集 $B(x,r)$ 上一致连续,
+  %       故对于 $\forall\varepsilon>0$, 存在 $\eta>0$, 使得当 $d(x_n,x_n')<\eta$ 时,
+  %       有 $\delta(f(x_n),f(x_n'))<\varepsilon$.
+  %       对于上述 $\eta>0$, 存在 $N$, 当 $n>N$ 时, 有 $d(x_n,x_n')<\eta$,
+  %       因此 $\lim_{n\to\infty}\delta(f(x_n),f(x_n'))=0$.
+  %       由度量的连续性即得 $\delta(y,y')=0$, 故 $y=y'$.
+  %       显然 $\tilde{f}|_E=f$, 故 $\tilde{f}$ 为 $f$ 的一个扩展.
+  %     \end{enumerate}
+  %   \end{answer}
+  \item 构造一个反例说明: 在不动点定理中, 如果我们将映射 $f$ 满足的条件减弱为
+  \[d(f(x),f(y))<d(x,y),\quad\forall x,y\in E\text{\ 且\ }x\neq y,\]
+  则结论不成立.
+    \begin{answer}
+      取函数 $f(x)=(x^2+1)^{1/2}$, 不妨设 $x>y$, 则由下面推导过程:
+      \begin{align*}
+          \sqrt{x^2+1}-\sqrt{y^2+1}<x-y
+          &\Leftarrow 2-2\sqrt{x^2+1}\sqrt{y^2+1}<-2xy\\
+          &\Leftarrow 1+xy<\sqrt{x^2+1}\sqrt{y^2+1}\\
+          &\Leftarrow 1+x^2y^2+2xy<x^2y^2+x^2+y^2+1\\
+          &\Leftarrow 0<(x-y)^2,
+      \end{align*}
+      可知 $f(x)$ 满足题给条件, 显然 $f(x)$ 没有不动点.
+    \end{answer}
+  % \item 设 $(E,d)$ 是一个完备的度量空间, $f$ 是其上的映射, 并满足 $f^n=f\circ\cdots\circ f$
+  % ($n$ 次幂) 是压缩映射. 证明 $f$ 有唯一的不动点, 并给出例子说明 $f$ 可以不连续.
+  %   \begin{answer}
+  %     因为 $f^n$ 是压缩映射, 所以 $f^n$ 存在唯一的不动点 $x_0\in E$, 即
+  %     $f^n(x_0)=x_0$. 那么就有
+  %     \[f^n(f(x_0))=f(f^n(x_0))=f(x_0).\]
+  %     这说明 $f(x_0)$ 也是 $f^n$ 的不动点, 而由不动点的唯一性知 $f(x_0)=x_0$, 即 $x_0$ 为 $f$ 的不动点.
+
+  %     下证 $f$ 的不动点唯一, 假设 $f$ 存在另一个不动点 $y_0$, 即 $f(y_0)=y_0$, 则
+  %     由归纳法可推出 $f^n(y_0)=y_0$. 由 $f^n$ 的不动点的唯一性知 $y_0=x_0$.
+      
+  %     综上可知, $f$的不动点存在且唯一.
+  %   \end{answer}
+  \item 记区间 $I=(0,\infty)$ 上通常的拓扑为 $\tau$.
+
+    \begin{enumerate}
+      \item 证明 $\tau$ 可由如下完备的距离 $d$ 诱导:
+      \[d(x,y)=|\log x-\log y|.\]
+    
+      \item 设函数 $f\in C^1(I)$ 满足对某个 $\lambda<1$, 任取 $x\in I$, 都有
+      $x|f'(x)|\leq\lambda f(x)$. 证明 $f$ 在 $I$ 上存在唯一的不动点.
+    \end{enumerate}
+    \begin{answer}
+      将距离 $d$ 诱导的拓扑记为 $\tau _d$.
+      \[\begin{split}U\in\tau&\Leftrightarrow\forall x\in U,\exists r>0,s.t.\{y>0\mid|y-x|<r\}\subset U\\&\Rightarrow\forall x\in U,\exists r^{*}=\ln\left( \frac{r}{x}+1\right)>0,s.t.\{y>0\mid|\textrm{log}y-\textrm{log}x|<r^{*}\}\subset U\\&\Rightarrow U\in\tau _d\end{split}\]
+      \[\begin{split}U\in\tau_d&\Leftrightarrow\forall x\in U,\exists r>0,s.t.\{y>0\mid|\textrm{log}y-\textrm{log}x|<r\}\subset U\\&\Rightarrow\forall x\in U,\exists r^{*}=x(1-e^{-r})>0,s.t.\{y>0\mid|y-x|<r^{*}\}\subset U\\&\Rightarrow U\in\tau\end{split}\]\\
+      因而$\tau$可由距离$d$诱导,下面证明距离$d$是完备的:
+
+      任取$(I,d)$中的Cauchy序列$(x_n)_{n\geq 1}$,记$y_n=\log x_n\in\mathbb{R}$,则
+      \[\forall\varepsilon >0,\exists N,\forall m,n>N,|\log x_m-\log x_n|<\varepsilon\]
+      也即
+      \[\forall\varepsilon >0,\exists N,\forall m,n>N,|y_m-y_n|<\varepsilon\]
+      故$(y_n)_{n\geq 1}$是$(\mathbb{R},d_{\mathbb{R}})$中的Cauchy序列($d_{\mathbb{R}}$表示自然距离),由$(\mathbb{R},d_{\mathbb{R}})$的完备性知\[\exists y\in\mathbb{R},s.t.y_n\rightarrow y\]
+      令$x=e^y\in I$,则有$d(x_n,x)=|\log x_n-\log x|=|y_n-y|\rightarrow 0$,从而说明$(I,d)$完备.
+
+      \item 首先, 应该声明 $f$ 恒大于零, 否则, 取 $f\equiv 0$, 此时 $f$ 满足题目条件
+      但是显然 $f$ 没有不动点.
+      在度量空间 $(I,d)$ 中, $f$ 的导数为:
+      \begin{align*}
+          \forall x_0\in I,f^{(1)}(x_0)
+          & =\lim_{x\to x_0} \frac{d(f(x),f(x_0))}{d(x,x_0)}=\lim_{x\to x_0} \frac{|\log f(x)-\log f(x_0)|}{|\log x-\log x_0|}\\
+          & =\lim_{x\to x_0} \frac{\left| \frac{\log f(x)-\log f(x_0)}{x-x_0}\right|}{\left| \frac{\log x-\log x_0}{x-x_0}\right|}= \frac{x_0|f^{\prime}(x_0)|}{f(x_0)}.
+      \end{align*}
+      结合题目条件 $x|f^{\prime}(x)|\leq\lambda f(x)$
+      知对 $\forall x\in I$, 有 $|f^{(1)}(x)|\leq\lambda<1$, 
+      这表明 $f$ 在度量空间 $(I,d)$ 中为压缩映射.
+      又因为 $(I,d)$ 是完备度量空间, 因此 $f$ 在 $I$ 上存在唯一的不动点.
+    \end{answer}
+  % \item 设 $E$ 是可数集, 其元素记为 $a_1,a_2,\cdots$. 定义
+  % \[d(a_p,a_p)=0\text{\ 且当\ }p\neq q\text{\ 时},\; d(a_p,a_q)=10+ \frac{1}{p}+ \frac{1}{q}.\]
+
+  %   \begin{enumerate}
+  %     \item 证明 $d$ 是 $E$ 上的距离并且 $E$ 成为一个完备的度量空间.
+
+  %     \item 设 $f:E\to E$ 定义为 $f(a_p)=a_{p+1}$. 证明当 $p\neq q$ 时, 有
+  %     \[d(f(a_p),f(a_q))<d(a_p,a_q),\]
+  %     但是 $f$ 没有不定点.
+  %   \end{enumerate}
+  %   \begin{answer}
+  %     \begin{enumerate}
+  %       \item 由 $d$ 的定义容易验证其满足正定性、对称性以及三角不等式, 因此 $d$ 是 $E$ 上的距离.
+  %       并且对任意 $p\neq q$, 有 $d(a_p,a_q)>10$,由第四题结论, 可知 $(E,d)$ 是完备度量空间.
+  
+  %       \item 当 $p\neq q$ 时, $d(f(a_p),f(a_q))=d(a_{p+1},a_{q+1})=10+ \frac{1}{p+1}+ \frac{1}{q+1}<d(a_p,a_q)$.
+  %       假设 $f$ 存在不动点 $a_k$, 则 $f(a_k)=a_k=a_{k+1}$,
+  %       因此 $d(a_k,a_{k+1})=0$, 矛盾, 故 $f$ 没有不动点.
+  %     \end{enumerate}
+  %   \end{answer}
+  % \item 本习题的目的是给不动点定理一个新的证明方法.
+  % 设 $(E,d)$ 是非空的完备度量空间, $f:E\to E$ 是压缩映射. 任取 $R\geq 0$, 设
+  % \[A_R=\{x\in E\mid d(x,f(x))\leq R\}.\]
+  %   \begin{enumerate}
+  %       \item 证明 $f(A_R)\subset A_{\lambda R}$.
+  %       \item 证明当 $R>0$ 时, $A_R$ 是 $E$ 中的非空闭子集.
+  %       \item 证明任取 $x,y\in A_R$, 有 $d(x,y)\leq 2R+d(f(x),f(y))$. 并由此导出
+  %             \[\diam(A_R)\leq 2R/(1-\lambda).\]
+  %       \item 证明 $A_0$ 非空.
+  %   \end{enumerate}
+  %   \begin{answer}
+  %     \begin{enumerate}
+  %       \item 任取 $y\in f(A_R)$, 存在 $x\in A_R$, 使得 $y=f(x)$, 则
+  %       \[d(y,f(y))=d(f(x),f(f(x)))\leq\lambda d(x,f(x))\leq\lambda R,\]
+  %       故 $y\in  A_{\lambda R}$, 因此 $f(A_R)\subset A_{\lambda R}$.
+    
+  %       \item 先证明 $A_R$ 非空. 取定某 $x_0\in E$, 若 $x_0=f(x_0)$, 则 $x_0\in A_R$;
+  %       若 $x_0\neq f(x_0)$, 则 $d(x_0,f(x_0))>0$, 取正整数 $N\geq\log_{\lambda} \frac{R}{d(x_0,f(x_0))}$.
+  %       通过 $x_{n+1}=f(x_n)$ ($n\geq 0$) 构造序列 $(x_n)_{n\geq 0}$, 则
+  %       \[d(x_1,f(x_1))=d(f(x_0),f(f(x_0)))\leq\lambda d(x_0,f(x_0)),\]
+  %       \[d(x_2,f(x_2))=d(f(x_1),f(f(x_1)))\leq\lambda^2 d(x_0,f(x_0)),\]
+  %       由归纳法可得
+  %       \[d(x_n,f(x_n))\leq\lambda^n d(x_0,f(x_0)).\]
+  %       当 $n\geq N$ 时, 有 $d(x_n,f(x_n))\leq R$, 因此 $A_R$ 非空.
+    
+  %       再证明 $A_R$ 为闭集. 任取 $A_R$ 中的收敛序列 $(x_n)_{n\geq 1}$,
+  %       记其收敛值为 $x$. 则对任意 $n\geq 1$ 有 $d(x_n,f(x_n))\leq R$,
+  %       令 $n\to\infty$, 由度量的连续性以及 $f$ 的连续性得 $d(x,f(x))\leq R$,
+  %       即得 $x\in A_R$, 因此 $A_R$ 为闭集.
+    
+  %       \item 任取 $x,y\in A_R$, 由度量的三角不等式得
+  %       \begin{align*}
+  %           d(x,y)
+  %           &\leq d(x,f(x))+d(f(x),f(y))+d(f(y),y) \\
+  %           &\leq 2R+d(f(x),f(y)).
+  %       \end{align*}
+  %       于是 $d(x,y)\leq 2R+\lambda d(x,y)$, 即 $d(x,y)\leq 2R/(1-\lambda)$.
+  %       关于 $x,y\in A_R$ 取上确界即得 $\diam(A_R)\leq 2R/(1-\lambda)$.
+    
+  %       \item 取 $R_n= \frac{1}{n}$, 则 $(A_{R_n})_{n\geq 1}$ 为单调下降的非空闭集列且
+  %       $\lim\limits_{n\to\infty}\diam(A_{R_n})=0$, 由\textbf{定理 2.2.6} 知 $A_0=\bigcap\limits_{n\geq 1}A_{R_n}$
+  %       为单点集.
+  %     \end{enumerate}
+  %   \end{answer}
+  % \item 设 $(E,d)$ 是完备度量空间, $f$ 和 $g$ 是 $E$ 上两个可交换的压缩映射 (即 $f\circ g=g\circ f$).
+  % 证明 $f$ 和 $g$ 有唯一的、共同的不动点.
+  %   \begin{answer}
+  %     因 $f$ 是压缩映射, 故 $f$ 有唯一的不动点 $x$, 即 $f(x)=x$.
+  %     因为 $f\circ g=g\circ f$, 所以
+  %     \[f\circ g(x)=\textcolor{red}{f(g(x))}=g\circ f(x)=\textcolor{red}{g(x)},\]
+  %     从而 $g(x)$ 也是 $f$ 的不动点, 而由不动点唯一性知 $g(x)=x$,
+  %     这说明 $x$ 也为 $g$ 的不动点.
+  %   \end{answer}
+  % \item 本习题的目的是把上一习题的结论推广到更一般的情形, 在某种意义上说是非交换
+  % 的压缩映射不动点定理. 设 $(E,d)$ 是完备的度量空间.
+  %   定义联系于集合 $A\subset E$ 的距离函数 $d_A$ 如下:
+  %   \[d_A(x):=d(x,A)=\inf\{d(x,a)\mid a\in A\}.\]
+  %   并设 $\mathcal{C}$ 表示 $E$ 的所有紧子集构成的集族.
+  %   对任意的 $A,B\in\mathcal{C}$, 定义
+  %   \[h(A,B)=\sup_{x\in E}|d_A(x)-d_B(x)|.\]
+  %   \begin{enumerate}
+  %       \item 证明 $h$ 是 $\mathcal{C}$ 上的一个距离.
+  %       \item 任取 $F\subset E$, 令 $F_{\varepsilon}=\{x\in E\mid d_F(x)\leq\varepsilon\}$. 证明
+  %             \[h(A,B)=\inf\{\varepsilon\geq 0\mid A\subset B_{\varepsilon}, B\subset A_{\varepsilon}\}.\]
+  %       \item 证明 $(\mathcal{C},h)$ 完备.
+  %       \item 现在令 $f_1,\cdots,f_n$ 是 $E$ 上的 $n$ 个压缩映射.
+  %             定义 $(\mathcal{C},h)$ 上的映射 $T$ 为
+  %             \[T(A)=\bigcup_{k=1}^n f_k(A),\quad A\in\mathcal{C}.\]
+  %             证明 $T$ 是压缩映射. 并由此导出存在唯一的一个紧子集 $K$,
+  %             使得 $T(K)=K$.
+  %   \end{enumerate}
+  %   \begin{answer}
+  %     \begin{enumerate}
+  %       \item 由 Housdorff 空间的紧子集是闭集知 $\mathcal{C}$里面的任意元素都是闭集,
+  %       当 $h(A,B)=0$ 时, 我们有
+  %       \[\forall x\in E,d_A(x)=d_B(x).\]
+  %       故当 $x\in A$ 时, 有 $d_B(x)=d_A(x)=0\Rightarrow x\in B\Rightarrow A\subset B$, 
+  %       同理可得 $B\subset A$, 因此 $h(A,B)=0\Rightarrow A=B$.
+  %       又显然 $A=B\Rightarrow h(A,B)=0$, 因此$h(A,B)=0\Leftrightarrow A=B$,
+  %       故 $h$ 满足正定性, 并且容易验证 $d$ 满足对称性和三角不等式,
+  %       所以 $h$ 是 $\mathcal{C}$ 上的一个距离(实际上, $h$称为Housdorff度量).
+    
+  %       \item 记 $Q=\{\varepsilon\geq 0\mid A\subset B_\varepsilon, B\subset A_\varepsilon\}$.
+    
+  %       任取 $\varepsilon\in Q$, 下面用反证法证明 $\varepsilon\geq h(A,B)$.
+    
+  %       假设 $\varepsilon <h(A,B)=\sup_{x\in E}|d_A(x)-d_B(x)|$,
+  %       则存在 $x\in E$, 使得 $|d_A(x)-d_B(x)|>\varepsilon$,
+  %       不妨设 $d_A(x)-d_B(x)>\varepsilon$,
+  %       由 $A,B$ 为闭集知存在 $a\in A$ 和 $b\in B$, 使得 $d_A(x)=d(a,x),d_B(x)=d(b,x)$,
+  %       且存在 $a'\in A$, 使得 $d_A(b)=d(a',b)\leq\varepsilon$,
+  %       因此
+  %       \begin{align*}
+  %           d(x,b)+\varepsilon 
+  %           &=d_B(x)+\varepsilon <d_A(x)=d(x,a) \\
+  %           &\leq d(x,a')\leq d(x,b)+d(b,a')\leq d(x,b)+\varepsilon.
+  %       \end{align*}
+  %       矛盾, 故 $\varepsilon\geq h(A,B)$.
+    
+  %       任取 $r>h(A,B)$,下证 $r$ 不是集合 $Q$ 的下界.
+  %       事实上, 存在 $s$, 使得 $r>s>h(A,B)$,故 $\forall x\in E,|d_A(x)-d_B(x)|<s$,
+  %       因此 $\forall x\in A,d_B(x)<s$ 且 $\forall x\in B,d_A(x)<s$,
+  %       从而 $A\subset B_s,B\subset A_s$, 这说明 $s\in Q$, 从而 $r$ 不是集合 $Q$ 的下界.
+    
+  %       综合两点知 $h(A,B)=\inf Q=\inf\{\varepsilon\geq 0\mid A\subset B_{\varepsilon}, B\subset A_{\varepsilon}\}$.
+    
+  %       \item 任取 $\mathcal{C}$ 中的 Cauchy 序列 $(A_n)_{n\geq 1}$,
+  %       即 $\forall\varepsilon >0,\exists N>0,s.t.\forall m,n>N_1,h(A_m,A_n)<\varepsilon /2$.
+    
+  %       定义集合 $A$ 为:
+  %       \[A=\{x\mid\text{存在序列\ }(x_k) s.t. x_k\in A_k\text{\ 且\ }x_k\rightarrow x\}.\]
+  %       $\forall x\in A,\exists (x_k)(x_k\in A_k),s.t.x_k\rightarrow x$故$\exists N_2>0,\forall k>N_2,d(x_k,x)<\varepsilon /2$\\
+  %       若$k>max\{N_1,N_2\}$,则$h(A_k,A_n)<\varepsilon /2$,故$\exists y\in A_n,s.t.d(x_k,y)<\varepsilon /2$,故$d(y,x)\leq d(x_k,y)+d(x_k,x)<\varepsilon\Rightarrow x\in (A_n)_\varepsilon\Rightarrow A\subset (A_n)_\varepsilon$\\
+  %       另一方面,$\forall y\in A_n$,选取一列整数$n=k_1<k_2<\cdots$使得\[h(A_{k_j},A_m)<2^{-j}\varepsilon (\forall m\geq k_j)\]
+  %       然后我们如下定义序列$(y_k)_{k\geq 1}(y_k\in A_k)$:
+  %       $k<n$时,$y_k$任意选取,选择$y_n=y$,如果$y_{k_j}$已经选择了,且$k_j<k\leq k_{j+1}$,
+  %       选择$y_k\in A_k,s.t.d(y_{k_j},y_k)<2^{-j}\varepsilon$,则$(y_k)_{k\geq 1}$是Cauchy序列,
+  %       故$y_k\rightarrow x\in A$
+  %       由
+  %       \[d(y,x)=\lim_{k\to\infty}d(y,y_k)=\lim_{j\to\infty}d(y,y_{k_j})\leq\lim_{j\to\infty}(2^{-1}\varepsilon +\cdots +2^{-j+1}\varepsilon)=\varepsilon\]
+  %       知$ y\in (A)_\varepsilon\Rightarrow A_n\subset (A)_\varepsilon$,
+  %       所以$h(A,A_n)<\varepsilon$,这就证明了$A_n\xrightarrow{h}A$
+        
+  %       下面还需证明$A$是紧的,为此,需要证明$A$是闭集且完全有界:
+    
+  %         \begin{enumerate}
+  %           \item 假设$x\in\bar{A}$,则$\forall n\geq 1,\exists y_n\in A,s.t.d(x,y_n)<2^{-n}$,
+  %           又因为$\forall n\geq 1,\exists z_n\in A_n,s.t.d(z_n,y_n)\leq h(A_n,A)$,
+  %           故\[d(z_n,x)\leq d(z_n,y_n)+d(x,y_n)<h(A_n,A)+2^{-n}\rightarrow 0\]
+  %           所以$z_n\rightarrow x$,故$x\in A$,因而$A$是闭集.
+        
+  %           \item $\forall\varepsilon >0,\exists n\geq 1,s.t.h(A_n,A)<\varepsilon/3$,
+  %           由于$A_n$紧,故$A_n$存在有限的$\varepsilon/3$网,
+  %           即存在$\{y_1,y_2,\cdots,y_m\}\subset A_n,s.t.A_n\subset\bigcup_{i=1}^mB(y_i,\varepsilon/3),\forall y_i,\exists x_i\in A,s.t.d(x_i,y_i)<\varepsilon/3$,
+  %           我们断言$\{x_1,x_2,\cdots,x_m\}$构成了$A$的一个有限$\varepsilon$网
+  %           (反证法:假设$\exists x_0\in A,s.t.d(x_0,x_i)\geq\varepsilon(\forall i=1,2,\cdots,m)$,
+  %           设$x_0$与$A_n$中的$y_0$距离最近,且$y_0$所在的开球球心为$y_i$,
+  %           则$d(x_0,x_i)\leq d(x_0,y_0)+d(y_0,y_i)+d(y_i,x_i)<\varepsilon$,矛盾)因此$A$是完全有界的.
+  %         \end{enumerate}
+    
+  %       \item 将$\{f_i\}$的压缩系数分别记为$\lambda_1,\cdots,\lambda_n$,
+  %       令$\lambda=\max\{\lambda_1,\cdots,\lambda_n\}$,下面证明$T$是以$\lambda$为压缩系数的压缩映射,
+  %       即证:$\forall A,B\in C,h(T(A),T(B))\leq\lambda h(A,B)$
+    
+  %       任取$r>h(A,B),\forall x\in T(A),\exists 1\leq i\leq n,a\in A,s.t.x=f_i(a)$,
+  %       因为$h(A,B)<r$,所以$\exists b\in B,s.t.d(a,b)<r$,令$y=f_i(b)\in T(B)$,
+  %       我们有\[d(x,y)=d(f_i(a),f_i(b))\leq\lambda_i d(a,b)<\lambda r\]
+  %       所以\[d(x,T(B))<\lambda r\Rightarrow\sup_{x\in T(A)}d(x,T(B))\leq\lambda r\]
+  %       同理可得
+  %       \[\sup_{y\in T(B)}d(y,T(A))\leq\lambda r\]
+  %       因此$h(T(A),T(B))\leq\lambda r$,令$r\to h(A,B)$,即得$h(T(A),T(B))\leq\lambda h(A,B)$,从而说明$T$是压缩映射.
+  %     \end{enumerate}
+  %   \end{answer}
+\end{enumerate}
+
+
+
+\subsection{第3章习题}
+\begin{enumerate}
+  \item 设 $C([0,1],\\R)$ 表示 $[0,1]$ 上的所有连续实函数构成的空间. 定义
+  \[\|f\|_{\infty}=\sup_{0\leq x\leq 1}|f(t)|\quad\text{且}\quad \|f\|_1=\int_0^1|f(t)|\diff t\]
+    \begin{enumerate}
+        \item 证明 $\|\cdot\|_{\infty}$ 和 $\|\cdot\|_1$ 都是 $C([0,1],\\R)$ 上的范数.
+        \item 证明 $C([0,1],\\R)$ 关于范数 $\|\cdot\|_{\infty}$ 是完备的.
+        \item 证明 $C([0,1],\\R)$ 关于范数 $\|\cdot\|_1$ 不完备.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 由\begin{itemize}
+          \item $\|f\|_{\infty}=\sup\limits_{0\leq t\leq 1}|f(t)|\geq 0$, 且$\|f\|_{\infty}=0$当且仅当$f\equiv 0$
+          \item $\|\lambda f\|_{\infty}=\sup\limits_{0\leq t\leq 1}|\lambda f(t)|=|\lambda|\sup\limits_{0\leq t\leq 1}|f(t)|=|\lambda|\cdot\|f\|_{\infty}$
+          \item $\|f+g\|_{\infty}=\sup\limits_{0\leq t\leq 1}|f(t)+g(t)|\leq \sup\limits_{0\leq t\leq 1}(|f(t)|+|g(t)|)=\|f\|_{\infty}+\|g\|_{\infty}$
+          \end{itemize}
+          和
+          \begin{itemize}
+          \item $\|f\|_1=\int_0^1|f(t)|\diff t\geq 0$ 且 $\|f\|_1=0$ 当且仅当 $f\equiv 0$
+          \item $\|\lambda f\|_1=\int_0^1 |\lambda f(t)|\diff t=|\lambda|\cdot\|f\|_1$
+          \item $\|f+g\|_1=\int_0^1 |f(t)+g(t)|\diff t\leq\int_0^1|f(t)|\diff t+\int_0^1|g(t)|\diff t=\|f\|_1+\|g\|_1$
+          \end{itemize}
+          知 $\|\cdot\|_{\infty}$ 和 $\|\cdot\|_1$ 都是 $C([0,1],\\R)$ 上的范数.
+          
+          \item 任取 $C([0,1],\\R)$ 中的 Cauchy 序列 $(f_n)_{n\geq 1}$, 
+          即对于 $\forall\epsilon>0$, 存在$N>0$, 对于 $\forall m,n>N$, 有
+          \[\|f_m-f_n\|_{\infty}=\max_{0\leq x\leq 1}|f_m(x)-f_n(x)|<\epsilon,\]
+          所以对任意 $t\in[0,1]$, 序列 $(f_n(t))_{n\geq 1}$ 为 Cauchy 序列, 其必收敛. 令
+          \[f(t)=\lim_{n\to\infty}f_n(t).\]
+          这样就定义了一个 $[0,1]$ 上的实值函数. 
+          
+          下面证明 $f$ 是连续函数且 $\|f_n-f\|_{\infty}\to 0$ (即 $(f_n)_{n\geq 1}$ 一致收敛到$f$). 
+          而我们只需要证明 $(f_n)_{n\geq 1}$ 一致收敛到 $f$ 即可,
+          事实上, 由一致收敛级数的连续性定理可知, 如果 $(f_n)_{n\geq 1}$ 一致收敛到 $f$, 则
+          $f$ 必为连续函数.
+          
+          任意给定 $\varepsilon>0$, 存在 $N=N(\varepsilon)>0$, 
+          使得对于 $\forall m,n>N$ 和 $\forall t\in[0,1]$ 都有 
+          \[|f_m(t)-f_n(t)|<\varepsilon.\]
+          任意固定 $n>N$ 并令 $m\to\infty$ 可得对于 $\forall n>N$ 和 $\forall t\in[0,1]$ 有
+          \[|f_n(t)-f(t)|<\varepsilon.\]
+          所以 $(f_n)_{n\geq 1}$ 一致收敛到 $f$.
+          
+          \item 我们只需寻找范数 $\|\cdot\|_1$ 意义下的柯西列使其不收敛即可. 定义折线段:
+          \[f_n(x)=\begin{cases}
+          0, & 0\leq x\leq\frac{1}{2}-\frac{1}{n} \\
+          n\left(x-\frac{1}{2}+\frac{1}{n}\right), & \frac{1}{2}-\frac{1}{n}\leq x\leq\frac{1}{2} \\
+          1, & \frac{1}{2}\leq x\leq 1.
+          \end{cases}\]
+          则
+          \[\|f_m-f_n\|_1=\int_0^1|f_m(x)-f_n(x)|\diff x=\frac{1}{2}\left\lvert\frac{1}{m}-\frac{1}{n}\right\rvert\to 0(m,n\to\infty)\]
+          故 $(f_n)_{n\geq 1}$ 是 Cauchy 序列, 但是其没有极限.
+      \end{enumerate}
+    \end{answer}
+    \begin{remark}
+      证明度量空间的完备性基本都是转化为基本的完备空间(如($\\R,d_{\\R}$))来考虑.
+    \end{remark}
+  \item 设 $E$ 是 $\R $ 上所有的实系数多项式构成的向量空间. 对任意 $P\in E$, 定义
+  \[\|P\|_{\infty}=\max_{x\in[0,1]}|P(x)|.\]
+    \begin{enumerate}
+    \item 证明 $\|\cdot\|_{\infty}$ 是 $E$ 上的范数.
+    \item 任取一个 $a\in\R $ 定义线性映射 $L_a:E\to\R $ 满足 $L_a(P)=P(a)$. 证明 $L_a$ 连续当且仅当 $a\in[0,1]$, 并且给出该连续线性映射的范数.
+    \item 设 $a<b$ 并定义 $L_{a,b}:E\to\R $ 满足
+    \[L_{a,b}(P)=\int_a^bP(x)\diff x.\]
+    给出 $a,b$ 的范围, 使其成为 $L_{a,b}$ 连续的充分必要条件, 然后确定 $L_{a,b}$ 的范数.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 由
+        \begin{itemize}
+            \item $\|P\|_\infty =0\Leftrightarrow\max\limits_{x\in [0,1]}|P(x)|=0\Leftrightarrow P(x)=0(\forall x\in [0,1])\Leftrightarrow P=0$
+            \item $\|\lambda P\|_\infty =\max_{x\in [0,1]}|\lambda P(x)|=|\lambda |\max_{x\in [0,1]}|P(x)|=|\lambda|\|P\|_{\infty}$
+            \item $\|P+Q\|_{\infty}=\max\limits_{x\in [0,1]}|(P+Q)(x)|\leq\max\limits_{x\in [0,1]}(|P(x)|+|Q(x)|)=\|P\|_{\infty}+\|Q\|_{\infty}$
+        \end{itemize}
+        知 $\|\cdot\|_{\infty}$ 是 $E$ 上的范数.
+  
+        \item \equivalent[switch]{
+        当 $a\in [0,1]$ 时, 对于任意 $P\in E$, 有
+        \[|L_a(P)|=|P(a)|\leq\max_{0\leq x\leq 1}|P(x)|=\|P\|_{\infty},\]
+        故 $L_a$ 为连续线性映射.}
+        {(直接法) 由 $L_a$ 为连续线性映射知, 存在常数 $C\geq 0$, 使得
+        对于 $\forall P\in E$, 有
+        \[|L_a(P)|=|P(a)|\leq C\|P\|_{\infty}=C\max_{0\leq x\leq 1}|P(x)|.\]
+        取 $P(x)=x^{2n}$, 则 $a^{2n}\leq C$, 故 $-1\leq a\leq 1$.
+        再取 $P(x)=(1-x)^{2n}$, 则 $(1-a)^{2n}\leq C$, 故 $0\leq a\leq 2$.
+        因此 $0\leq a\leq 1$.
+  
+        综上得证: $L_a$ 连续 $\Leftrightarrow a\in [0,1]$, 且
+        \[\|L_a\|=\sup\limits_{p\in E,P\neq 0} \frac{|P(a)|}{\max_{0\leq x\leq 1}|P(x)|}=1(P\equiv 1\;\text{时可取到最大值}).\]}
+  
+        \item $L_{a,b}$连续的充要条件是$0\leq a<b\leq 1$, 理由如下:
+  
+        \equivalent{
+        当 $0\leq a<b\leq 1$时, 对于任意 $P\in E$, 有
+        \begin{align*}
+            |L_{a,b}(P)|
+            &=\left\lvert\int_a^b P(x)\diff x\right\rvert\leq\int_a^b |P(x)|\diff x \\
+            &\leq\int_0^1 |P(x)|\diff x\leq\max_{0\leq x\leq 1}|P(x)|=\|P\|_{\infty}.
+        \end{align*}
+        故 $L_{a,b}$ 为连续线性映射且 $\|L_{a,b}\|\leq 1$.}  
+        {
+        先给出一个结论($\star$):
+        设 $b>1$ 且 $a<b$, 则数列 $\left( \frac{b^n-a^n}{n}\right)_{n\geq 1}$
+        必有子列为正无穷大量.
+        事实上, 当 $1<a<b$ 时, 由 Stolz 定理可得该数列为正无穷大量;
+        当 $-1\leq a\leq 1$ 时, 该数列显然为正无穷大量;
+        当 $a<-1$ 时, 子列 $\left( \frac{b^{2n+1}-a^{2n+1}}{2n+1}\right)_{n\geq 1}$
+        为正无穷大量.
+  
+        因为$L_{a,b}$连续, 所以存在常数 $C\geq 0$ 使得对于任意 $P\in E$, 有
+        \[|L_{a,b}(P)|=\left\lvert\int_a^b P(x)\diff x\right\rvert\leq C\max_{0\leq x\leq 1}|P(x)|.\]
+  
+        取 $P(x)=x^n$, 则 $\left\lvert \frac{b^{n+1}-a^{n+1}}{n+1}\right\rvert\leq C$, 
+        即数列 $\left( \frac{b^{n+1}-a^{n+1}}{n+1}\right)_{n\geq 1}$ 有界.
+        假设 $b>1$, 则由上述结论 ($\star$) 知 $\left( \frac{b^{n+1}-a^{n+1}}{n+1}\right)_{n\geq 1}$
+        存在子列为正无穷大量, 矛盾, 因此 $b\leq 1$.
+  
+        再取 $P(x)=(1-x)^n$, 则 $\left\lvert \frac{(1-a)^{n+1}-(1-b)^{n+1}}{n+1}\right\rvert\leq C$, 
+        同理可知 $1-a\leq 1$, 即 $a\geq 0$. 从而当 $L_{a,b}$ 连续时, 有 $0\leq a<b\leq 1$.
+  
+        综上得知 $L_{a,b}$ 连续 $\Leftrightarrow 0\leq a<b\leq 1$, 且
+        \[\|L_{a,b}\|=\sup\limits_{P\in E,P\neq 0} \frac{|\int_a^bP(x)\diff x|}{\max_{0\leq x\leq 1}|P(x)|}=b-a(P\equiv 1\;\text{时可取到最大值}).\qedhere\]}
+      \end{enumerate}
+    \end{answer}
+  \item 设 $(E,\|\cdot\|_{\infty})$ 是习题 2 中定义的赋范空间. 
+  设 $E_0$ 是 $E$ 中没有常数项的多项式构成的向量子空间(即多项式 $P\in E_0$ 等价于 $P(0)=0$).
+    \begin{enumerate}
+      \item 证明 $N(P)=\|P'\|_{\infty}$ 定义了 $E_0$ 上的一个范数, 并且对任意 $P\in E_0$, 有 $\|P\|_{\infty}\leq N(P)$.
+      \item 证明 $L(P)=\int_0^1 \frac{P(x)}{x}\diff x$ 定义了 $E_0$ 关于 $N$ 的连续线性泛函, 并求它的范数.
+      \item 上面定义的 $L$ 是否关于范数 $\|\cdot\|_{\infty}$ 连续?
+      \item 范数 $\|\cdot\|_{\infty}$ 和 $N$ 在 $E_0$ 上是否等价?
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 由
+        \begin{itemize}
+        \item $N(P)=\|P'\|_{\infty}=\max\limits_{0\leq x\leq 1}|P'(x)|\geq 0$ 且 $N(P)=0$ 当且仅当 $P\equiv 0$
+        \item $N(\lambda P)=\max_{0\leq x\leq 1}|\lambda P'(x)|=|\lambda|\max_{0\leq x\leq 1}|P'(x)|=|\lambda|N(P)$
+        \item $N(P+Q)=\max\limits_{0\leq x\leq 1}|P'(x)+Q'(x)|\leq\max\limits_{0\leq x\leq 1}(|P'(x)|+|Q'(x)|)=N(P)+N(Q)$
+        \end{itemize}
+        知 $N(\cdot)$ 是 $E_0$ 上的范数.
+        
+        由中值定理知: $P(x)-P(0)=P(x)=xP'(\theta),\forall x\in (0,1],\exists\theta\in (0,x)$. 故
+        \[|P(x)|\leq |P'(\theta)|\Rightarrow\max_{0\leq x\leq 1}|P(x)|\leq\max_{0\leq x\leq 1}|P'(x)|\Rightarrow \|P\|_{\infty}\leq N(P).\]
+        
+        \item 由
+        \begin{align*}
+            L(\lambda P+Q)
+            & =\int_0^1 \frac{\lambda P(x)+Q(x)}{x}\diff x \\
+            & =\lambda\int_0^1 \frac{P(x)}{x}\diff x+\int_0^1 \frac{Q(x)}{x}\diff x=\lambda L(P)+L(Q)
+        \end{align*}
+        知 $L$ 是线性映射. 又因为
+        \begin{align*}
+        |L(P)|
+        &=\left|\int_0^1 \frac{P(x)}{x}\diff x\right|\leq\int_0^1\left| \frac{P(x)}{x}\right|\diff x\leq\left\| \frac{P(x)}{x}\right\|_{\infty}\\
+        &=\left\lvert \frac{P(x_0)}{x_0}\right\rvert\quad(\exists x_0\in [0,1])\\
+        &=\left\lvert \frac{P(x_0)-P(0)}{x_0-0}\right\rvert=|P'(\theta)|\leq\|P'\|_{\infty}=N(P),
+        \end{align*}
+        即 $|L(P)|\leq N(P)$.
+        故 $L$ 是 $E_0$ 关于 $N$ 的连续线性泛函, 且 $\|L\|=1$.
+        
+        \item 对于 $\forall C>0$, 取 $M> \frac{3}{2}C- \frac{1}{2}$, 令 $\delta=e^{-M}\in (0,1)$,取
+        \[f(x)=\begin{cases}
+         \frac{1}{\delta}, & 0\leq x\leq\delta\\ 
+         \frac{1}{x}, & \delta\leq x\leq 1.
+        \end{cases}\]
+        由 Weierstrass 多项式逼近定理知, 存在多项式函数 $p_n(x)\in P_n$ 使得
+        \[\lim\limits_{n\to\infty}\max\limits_{0\leq x\leq 1}|p_n(x)-f(x)|=0.\]
+        故 $\exists N$, 使得对于 $\forall n>N$, 
+        有 $- \frac{1}{2}<p_n(x)-f(x)< \frac{1}{2}$, 记 $q_n(x)=xp_n(x)\in E_0$, 则:
+        \[|L(q_n)|=\left\lvert\int_0^1p_n(x)dx\right\rvert>\int_0^1\left(f(x)- \frac{1}{2}\right)dx= \frac{1}{2}+M.\]
+        而
+        \[\|q_n\|_{\infty}<\|x(f(x)+ \frac{1}{2})\|_{\infty}=\max_{0\leq x\leq 1}\left\lvert x(f(x)+ \frac{1}{2})\right\rvert= \frac{3}{2}.\]
+        所以 $|L(q_n)|>C\|q_n\|_{\infty}$, 故 $L$ 关于范数 $\|\cdot\|_{\infty}$ 不连续.
+        
+        \item $\|\cdot\|_{\infty}$ 与 $N$ 在 $E_0$ 上不等价.
+        反证法证明: 
+        假设存在常数 $C_1 $和 $C_2$ 使得对于 $\forall P\in E_0$ 
+        有 $C_1N(p)\leq\|p\|_{\infty}\leq C_2N(p)$. 取$n> \frac{1}{C_1}$ 且$p(x)=x^n$, 则
+        \[N(p)=\max_{0\leq x\leq 1}|nx^{n-1}|=n> \frac{1}{C_1}= \frac{1}{C_1}\|p\|_{\infty}.\]
+        矛盾, 证毕.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $E$ 是由 $[0,1]$ 上所有连续函数构成的向量空间. 
+  定义 $E$ 上的两个范数分别为 $\displaystyle\|f\|_1=\int_0^1|f(x)|\diff x$ 和 $\displaystyle N(f)=\int_0^1x|f(x)|\diff x$.
+    \begin{enumerate}
+      \item 验证 $N$ 的确是 $E$ 上的范数并且 $N\leq\|\cdot\|_1$.
+      \item 设函数 $f_n(x)=n-n^2x$, 若 $x\leq \frac{1}{n}$; $f_n(x)=0$, 其它. 
+            证明函数列 $(f_n)_{n\geq 1}$ 在 $(E,N)$ 上收敛到 0. 它在 $(E,\|\cdot\|_1)$ 中是否收敛? 由这两个范数在 $E$ 上诱导的拓扑是否相同?
+      \item 设 $\alpha\in(0,1]$, 并令 $B=\{f\in E:f(x)=0,\forall x\in[0,\alpha]\}$. 证明这两个范数在 $B$ 上诱导相同的拓扑.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 由
+        \begin{itemize}
+        \item $N(f)=\int_0^1x|f(x)|dx\geq 0$ 且 $N(f)=0\Leftrightarrow x|f(x)|\equiv 0\Leftrightarrow f(x)\equiv 0$ (这里利用了 $f(x)$ 的连续性)
+        \item $N(\lambda f)=\int_0^1x|\lambda f(x)|dx=|\lambda|\int_0^1x|f(x)|dx=|\lambda|N(f)$
+        \item $N(f+g)=\int_0^1x|f(x)+g(x)|dx\leq \int_0^1x(|f(x)|+|g(x)|)dx=N(f)+N(g)$
+        \end{itemize}
+        知 $N$ 是 $E$ 上的范数, $N\leq\|\cdot\|_1$是显然的.
+        
+        \item 因
+        \[N(f_n)=\int_0^{ \frac{1}{n}}x(n-n^2x)\diff x= \frac{1}{6n}\rightarrow 0(n\to\infty),\]
+        故 $(f_n)_{n\geq 1}$ 在 $(E,N)$ 中收敛到 $0$. 
+        假设函数列在 $(E,\|\cdot\|_1)$ 中收敛, 即存在 $g(x)\in E$ 使得
+        \[\lim_{n\to\infty}\int_0^1|f_n(x)-g(x)|\diff x=0\Rightarrow f_n(x)-g(x)=0\ae (n\to\infty).\]
+        又 $f_n(x)=0\ae  (n\to\infty)$, 故$g(x)=0$, 也就是说如果收敛只能收敛到 0, 但
+        \[\lim_{n\to\infty}\|f_n(x)-0\|_1=\lim_{n\to\infty}\int_0^{ \frac{1}{n}}(n-n^2x)\diff x= \frac{1}{2}\neq 0.\]
+        矛盾, 故 $(f_n)_{n\geq 1}$ 在 $(E,\|\cdot\|_1)$ 中不收敛.
+        
+        两范数在 $E$ 上诱导的拓扑不同, 理由如下:
+        
+        记$\|\cdot\|_1$诱导的拓扑为$\tau_1$, $N$诱导的拓扑为$\tau_2$, 
+        相应的距离分别记为 $d_1,d_2$. 
+        由 $N\leq \|\cdot\|_1$ 知 $\tau_2\subset\tau_1$, 
+        故我们实际需要证明 $\tau_2$ 是 $\tau_1$ 的真子集, 即
+        \[\exists V\in\tau_1,\text{但}\;V\notin\tau_2.\]
+        取 $\tau_1$ 中开球 $B_{d_1}(0, \frac{1}{3})\in\tau_1$,
+        假设$B_{d_1}(0, \frac{1}{3})\in\tau_2$. 因为 $0\in B_{d_1}(0, \frac{1}{3})$, 
+        所以 $\exists\delta>0,s.t.B_{d_2}(0,\delta)\subset B_{d_1}(0, \frac{1}{3})$.
+        取前面给出的 $(f_n)_{n\geq 1}$, 由$d_2(f_n,0)\to 0(n\to\infty)$ 知
+        \[\exists M>0,s.t.f_M\in B_{d_2}(0,\delta)\subset B_{d_1}(0, \frac{1}{3})\]
+        但是 $d_1(f_M,0)= \frac{1}{2}> \frac{1}{3}$, 矛盾, 故假设不成立, 即$B_{d_1}(0, \frac{1}{3})\notin\tau_2$.
+        
+        \item 对于 $\forall f\in B$, 有 
+        \begin{align*}
+            N(f) & =\int_0^1x|f(x)|\diff x=\int_a^1 x|f(x)|\diff x \\
+                 & \geq a\int_a^1|f(x)|\diff x=a\int_0^1|f(x)|\diff x=a\|f\|_1,
+        \end{align*} 
+        结合 (a) 中给出的 $N\leq\|\cdot\|_1$ 知两范数等价, 因此必在 $B$ 上诱导相同的拓扑.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $\varphi:[0,1]\to[0,1]$ 是连续函数并且不恒等于 1. 设 $\alpha\in\R $, 定义 $C([0,1],\R )$ 上的映射 $T$ 为
+  \[T(f)(x)=\alpha+\int_0^xf(\varphi(t))\diff t.\]
+  证明 $T$ 是压缩映射.
+
+  根据以上结论证明下面的方程存在唯一解:
+  \[f(0)=\alpha,\quad f'(x)=f(\varphi(x)),\quad x\in[0,1].\]
+    \begin{answer}
+      取 $C([0,1])$ 上的范数 $\|\cdot\|$, 定义为
+      \[\|f\|=\sup\limits_{x\in [0,1]}|f(x)|\e^{-Mx}.\]
+      由 $\varphi([0,1])\subset [0,1]$ 知
+      \[\sup\limits_{t\in[0,1]}|f(\varphi(t))-g(\varphi(t))|\e^{-M\varphi(t)}\leq\sup\limits_{x\in[0,1]}|f(x)-g(x)|\e^{-x}=\|f-g\|.\]
+      因此
+      \begin{align*}
+          \|T(f)-T(g)\| & =\sup\limits_{x\in[0,1]}\left|\int_0^x(f(\varphi(t))-g(\varphi(t)))\diff t\right|\e^{-Mx}\\
+                        & =\sup\limits_{x\in [0,1]}\left|\int_0^x(f(\varphi(t))-g(\varphi(t)))\e^{-M\varphi(t)}\e^{M\varphi(t)}\diff t\right|\e^{-Mx}\\
+                        & \leq\|f-g\|\cdot\sup\limits_{x\in [0,1]}\int_0^x\e^{M\varphi(t)}\diff t\cdot\e^{-Mx}.
+      \end{align*}
+
+      下面我们说明通过选取合适的 $M>0$, 可以使得 
+      \[\lambda\colon=\sup_{0\leq x\leq 1}\int_0^x \e^{M\varphi(t)}\diff t\cdot\e^{-Mx}<1.\]
+      令函数
+      \[h(x):=\int_0^x \e^{M\varphi(t)}\diff t\cdot\e^{-Mx}.\]
+      因 $h(x)$ 在 $[0,1]$ 上连续, 故 $h(x)$ 在 $[0,1]$ 上存在最大值点, 记之为 $x_0$.
+
+      若 $x_0<1$, 则
+      \[h(x_0)=\int_0^{x_0} \e^{M\varphi(t)}\diff t\cdot\e^{-Mx_0}\leq x_0\e^{M(1-x_0)},\]
+      取 $0<M< \frac{-\ln x_0}{1-x_0}$, 则 $h(x_0)<1$.
+
+      若 $x_0=1$, 注意到 $\varphi$ 不恒等于 $1$, 则
+      \[h(x_0)=\int_0^1 \e^{M\varphi(t)}\diff t\cdot\e^{-M}<\e^M\cdot\e^{-M}=1.\]
+
+      综上得知, 通过选择合适的 $M>0$, 可以使得映射 $T$ 为 $C([0,1])$ 上的压缩映射.
+      且由 $\e^{-M}\|f\|_{\infty}\leq\|f\|\leq\|f\|_{\infty}$ 
+      知 $(C([0,1]),\|\cdot\|)$ 是 Banach 空间, 故根据不动点定理知存在唯一$f\in C([0,1])$ 使得 $T(f)=f$, 即:
+      \[\alpha+\int_0^xf(\varphi(t))\diff t=f(x)\Leftrightarrow f(0)=\alpha\text{\ 且\ }f'(x)=f(\varphi(x)).\qedhere\]
+    \end{answer}
+  \item 设 $\alpha\in\R ,a>0,b>1$. 考察下面的微分方程
+  \begin{equation}
+  f(0)=\alpha,\quad f'(x)=af(x^b),\quad 0\leq x\leq 1.\tag{$*$}
+  \end{equation}
+    \begin{enumerate}
+    \item 令 $M>0$. 验证 $E=C([0,1],\R )$ 上赋予范数
+    \[\|f\|=\sup_{0\leq x\leq 1}|f(x)|\e^{-Mx}\]
+    后成为一个 Banach 空间.
+    \item 设 $g(x)=\alpha+\int_0^x af(t^b)\diff t$, 定义映射 $T:E\to E$ 为 $T(f)=g$. 证明选择合适的 $M$, 可使 $T$ 为压缩映射.
+    \item 证明方程~($*$) 有唯一解.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 容易验证 $\|\cdot\|$ 是$C([0,1],\R )$ 上的范数, 并且
+        \[\e^{-M}\sup\limits_{0\leq x\leq1}|f(x)|\leq\sup\limits_{0\leq x\leq1}|f(x)|\e^{-Mx}\leq\sup\limits_{0\leq x\leq1}|f(x)|,\]
+        即
+        \[e^{-M}\|f\|_{\infty}\leq\|f\|\leq\|f\|_{\infty}.\]
+        因此 $E=C([0,1],\R )$ 赋予范数 $\|\cdot\|$ 是 Banach 空间.
+        
+        \item 因为
+        \[(T(f_1)-T(f_2))(x)=\int_0^xa\left(f_1(t^b)-f_2(t^b)\right)\diff t,\]
+        所以
+        \begin{align*}
+            \|T(f_1)-T(f_2)\| & =\sup\limits_{0\leq x\leq 1}\left|\int_0^x a\left(f_1(t^b)-f_2(t^b)\right)\diff t\right|\cdot \e^{-Mx}\\
+                              & \leq a\sup\limits_{0\leq x\leq 1}\int_0^x|f_1(t^b)-f_2(t^b)|\e^{-Mt^b}\cdot \e^{Mt^b}\diff t\cdot \e^{-Mx}\\
+                              & \leq\|f_1-f_2\|\cdot a\sup\limits_{0\leq x\leq 1}\int_0^x \e^{Mt^b}\diff t\cdot \e^{-Mx}\\
+                              & \leq\|f_1-f_2\|\cdot a\sup\limits_{0\leq x\leq 1}\int_0^x \e^{Mt}\diff t\cdot \e^{-Mx}\\
+                              & =\|f_1-f_2\|\cdot\sup\limits_{0\leq x\leq 1}\R ac{a\left(1-\e^{-Mx}\right)}{M}\leq\R ac{a}{M}\|f_1-f_2\|.
+        \end{align*}
+        故当 $M>a$ 时, $\|T(f_1)-T(f_2)\|<\|f_1-f_2\|$, 也就是此时$T$是压缩映射.
+        
+        \item 压缩映射有唯一不动点, 即存在唯一 $f\in C([0,1],\R )$ 使得
+        \[\alpha+\int_0^xaf\left(t^b\right)\diff t=f(x),\]
+        而上述方程等价于方程 $(*)$, 证毕.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $E$ 是数域 $\K$ 上的无限维向量空间. 设 $(e_i)_{i\in I}$
+  是 $E$ 中的一组向量, 若 $E$ 中任一向量可用 $(e_i)_{i\in I}$
+  中的有限个向量唯一线性表示, 即对任意 $x\in E$, 存在唯一一组 $(\alpha_i)_{i\in I}\subset\K$,
+  使得仅有有限多个 $\alpha_i$ 不等于零且 $x=\sum_{i\in I}\alpha_ie_i$,
+  则称 $(e_i)_{i\in I}$ 是 $E$ 中的 Hamel 基.
+    \begin{enumerate}
+        \item 由 Zorn 引理证明 $E$ 有一组 Hamel 基.
+        \item 假设 $E$ 还是一个赋范空间, 证明 $E$ 上必存在不连续的线性泛函.
+        \item 证明在任一无限维赋范空间上, 一定存在一个比原来的范数严格强的范数
+              (即新范数诱导的拓扑一定比原来的范数诱导的拓扑强且不相同).
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 首先构造一个偏序集$(\mathcal{F},\subset)$, 这里的$\mathcal{F}$是$E$中一些子集构成的集族,
+        满足若 $F\in\mathcal{F}$, 则 $F$ 中任意有限多个向量都线性无关, $\subset$表示集合间的包含关系.
+        
+        任取$\mathcal{F}$的一个链$\mathcal{A}$,
+        令 $G=\bigcup_{A\in\mathcal{A}}A$, 则 $G\in\mathcal{F}$,
+        即 $G$ 是 $\mathcal{A}$ 的上界. 由 Zorn 引理知$\mathcal{F}$有极大元,记为 $B$.
+        如果存在 $x\in E$, $x$ 不能由 $B$ 中任意有限多个向量线性表达,
+        则 $B\bigcup\{x\}\in\mathcal{F}$, 这与 $B$ 是极大元矛盾, 故这个极大元 $B$ 就是 $E$ 的 Hamel 基.
+        
+        \item 设 $B$ 是 $E$ 上的一个 Hamel 基, 若 $E$ 还是一个赋范空间,
+        则不妨设 Hamel 基中的任一向量 $e$ 的范数为 1,
+        由于 $E$ 中的任意向量关于Hamel基的线性表达是唯一的,
+        故 $E$ 上的线性泛函 $f$ 由其在 Hamel 基中每一个元素上的取值 $f(e)$ 决定,
+        显然 Hamel 基是无限集, 故我们可以选取一个序列 $(e_n)\in B$,
+        令 $f(e_n)=n$; 当$e\in B\backslash(e_n)$时,$f(e)=1$,则线性泛函$f$在$E$上不连续.
+        
+        \textcolor{blue}{注:和课本定理3.2.9对比体会有限维和无限维的区别}.
+        
+        \item 仍考虑(b)中约定的Hamel基$B$, 并记$E$上原有的范数为$\|\cdot\|$,
+        接下来定义$E$上的新范数$\|\cdot\|_1$,取$(e_n)\in B$,令$\|e_n\|_1=n,n\geq 1$;
+        当$e\in B\backslash(e_n)$时,令$\|e\|_1=\|e\|$,任取$x\in E$,
+        则$x=\sum_{j\in J}\lambda_je_j,J\subset I$是有限集,注意这种表达式唯一,
+        令
+        \[\|x\|_1=\sum_{j\in J}|\lambda_j|\;\|e_j\|_1\]
+        容易验证 $\|\cdot\|_1$确实是 $E$ 上的范数, 并且由三角不等式有
+        \[\|x\|=\|\sum_{j\in J}\lambda_je_j\|\leq\sum_{j\in J}|\lambda_j|\,\|e_j\|\leq\sum_{j\in J}|\lambda_j|\,\|e_j\|_1=\|x\|_1\]
+        故$\|\cdot\|_1$是在$E$上比$\|\cdot\|$强的范数.另一方面(b)约定的线性泛函$f$满足
+        \[|f(x)|\leq\sum_{j\in J}|\lambda_j|\,|f(e_j)|=\sum_{j\in J}|\lambda_j|\,\|e_j\|_1=\|x\|_1\]
+        但是$f$关于原来的范数$\|\cdot\|$不连续,这意味着$\|\cdot\|$一定是比$\|\cdot\|$严格强的范数.       
+      \end{enumerate}
+    \end{answer}
+  \item 设 $E$ 为数域 $\K$ 上有限维向量空间, 其维数 $\dim E=n$.
+  $\{e_{1},\cdots,e_{n}\}$ 表示 $E$ 上的一组基, 任取 $u\in\mathcal{L}(E)$, 令 $[u]$ 表示 $u$ 在这组基下对应的矩阵.
+
+    \begin{enumerate}
+      \item 证明映射 $u \mapsto[u]$ 建立了从 $\mathcal{L}(E)$ 到所有 $n \times n$ 矩阵构成的向量空间 
+      $\mathbb{M}_{n}(\K)$ 之间的同构映射.
+
+      \item 假设 $E=\mathbb{K}^{n}$ 且 $\{e_1,\cdots,e_n\}$ 是经典基 
+      (即 $e_{k}=(0, \cdots, 0,1,0, \cdots, 0)$, 对应于第 $k$ 个向量, 
+      它仅在第 $k$ 个位置取 1 , 其他位置取 $0$). 
+      并约定 $E=\mathbb{K}^{n}$ 赋予欧氏范数. 证明若 $u$ (或等价地 $[u]$) 可对角化, 
+      则 $\|u\|=\max\{|\lambda_{1}|,\cdots,|\lambda_{n}|\}$, 这里 $\lambda_{1}, \cdots, \lambda_{n}$ 是 $u$ 的特征值.
+
+      \item $\{e_{1}, \cdots, e_{n}\}$ 如上, 试由 $[u]$ 中的元素分别确定在 $p=1$ 和 $p=\infty$ 时的
+      范数 $\left\|u:\left(\mathbb{K}^{n},\|\cdot\|_{p}\right)\rightarrow\left(\mathbb{K}^{n},\|\cdot\|_{p}\right)\right\|$.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 记
+        \[u(e_k)=\sum_{m=1}^n u_{mk}e_m,\quad k=1,\cdots,n\]
+        并记矩阵 $[u]=(u_{mk})\in\mathbb{M}_n(\mathbb{K})$,
+        则 $(u(e_1),\cdots,u(e_n))=(e_1,\cdots,e_n)[u]$.
+        任取 $x\in E$, 存在唯一的一组数 $x_1,\cdots,x_n$ 使得 $x=\sum_{k=1}^n x_ke_k$. 则
+        \[u(x)=\sum_{k=1}^n x_ku(e_k)=(e_1,\cdots,e_n)[u]
+        \begin{pmatrix}
+            x_1\\\vdots\\x_n
+        \end{pmatrix}\]
+        由此说明映射 $u\mapsto [u]$ 建立了从 $\mathcal{L}(E)$ 到所有 $n\times n$ 
+        矩阵构成的向量空间 $\mathbb{M}_n(\mathbb{K})$ 之间的同构映射.
+        
+        \item \textcolor{blue}{注: 这一问的题目条件稍微改一下, 将$u$可对角化改为$u$可酉对角化,
+        即存在酉矩阵 $P$ 使得 $P[u]P^{*}=\Lambda$, 其中 $\Lambda=\diag\{\lambda_1,\cdots,\lambda_n\}$.}
+        
+        由题意知此时 $E$ 为有限维赋范空间, 故由定理 3.2.9 知 $\mathcal{L}(E)=\mathcal{B}(E)$,
+        即对于任意 $u\in\mathcal{L}(E)$, 都有 $u$ 为有界线性算子.
+        对于任意 $x\in E=\mathbb{K}^n$, 由 (a) 知 $u(x)$ 在 $e_1,\cdots,e_n$
+        下的坐标为 $[u]x$, 故
+        \begin{align*}
+            \|u(x)\|^2
+            & =x^{*}[u]^{*}[u]x\\
+            & =x^{*}P^{*}\Lambda^{*}PP^{*}\Lambda Px\\
+            & =(Px)^{*}\Lambda^{*}\Lambda(Px)\\
+            & =(Px)^{*}\begin{pmatrix}|\lambda_1|^2& & \\ &\ddots& \\ & & |\lambda_n|^2\end{pmatrix}(Px)\\
+            & \leq\max\{|\lambda_1|,\cdots,|\lambda_n|\}^2\|Px\|^2\\&=\max\{|\lambda_1|,\cdots,|\lambda_n|\}^2\|x\|^2,
+        \end{align*}
+        故 $\|u(x)\|\leq \max\{|\lambda_1|,\cdots,|\lambda_n|\}\|x\|$, 因此$||u||\leq \max\{|\lambda_1|,\cdots,|\lambda_n|\}$.
+        
+        设$\max\{|\lambda_1|,\cdots,|\lambda_n|\}=|\lambda_k|$, 取$Px=(0,\cdots,0,1,0,\cdots,0)^T,\|x\|=1$,其中1位于第$k$个坐标位置,则
+        \[\|u(x)\|^2=|\lambda_k|^2\|x\|^2\Rightarrow \|u(x)\|=|\lambda_k|\|x\|\]
+        综上知$\|u\|=\max\{|\lambda_1|,\cdots,|\lambda_n|\}$.
+        
+        \item 记$\|u\|_p=\|u:(\mathbb{K}^n,\|\cdot\|_p)\to(\mathbb{K}^n,\|\cdot\|_p)\|,p=1,\infty$.
+        
+          \begin{enumerate}
+            \item 当 $p=1$ 时, 任取 $x=(x_1,\cdots,x_n)^T\in\mathbb{K}^n$, 则
+            \[\begin{split}\|u(x)\|_1
+            &=\|[u]x\|_1=\sum_{j=1}^n\left|\sum_{i=1}^nu_{ji}x_i\right|\\
+            &\leq \sum_{j=1}^n\sum_{i=1}^n|u_{ji}|\cdot|x_i|=\sum_{i=1}^n\sum_{j=1}^n|u_{ji}|\cdot|x_i|\\
+            &=\sum_{i=1}^n\left(|x_i|\sum_{j=1}^n|u_{ji}|\right)\leq\left(\max\limits_{1\leq i\leq n}\sum_{j=1}^n|u_{ji}|\right)\|x\|_1,
+            \end{split}\]
+            故
+            \[\|u\|_1\leq \max\limits_{1\leq i\leq n}\sum_{j=1}^n|u_{ji}|.\]
+            设 $\max_{1\leq i\leq n}\sum_{j=1}^n|u_{ji}|=\sum_{j=1}^n|u_{jk}|$, 
+            取 $x=(0,\cdots,0,1,0,\cdots,0)^T,\|x\|_1=1$, 其中 1 位于第 $k$ 个坐标位置, 则
+            \[\|u(x)\|_1=\left(\sum_{j=1}^n|u_{jk}|\right)\|x\|_1.\]
+            综上得知
+            \[\|u\|_1=\max\limits_{1\leq i\leq n}\sum_{j=1}^n|u_{ji}|.\]
+            
+            \item 当 $p=\infty$ 时, 同理可证明:
+            \[\|u\|_{\infty}=\max\limits_{1\leq j\leq n}\sum_{i=1}^n|u_{ji}|.\qedhere\]
+          \end{enumerate}  
+      \end{enumerate}
+    \end{answer}
+  \item 设 $E$ 是 Banach 空间.
+    \begin{enumerate}
+      \item 设 $u\in\mathcal{B}(E)$ 且 $\|u\|<1$. 证明 $I_E-u$ 在 $\mathcal{B}(E)$ 中可逆.
+      \item 设 $GL(E)$ 表示 $\mathcal{B}(E)$ 中可逆元构成的集合. 证明 $GL(E)$ 关于复合运算构成一个群且是 $\mathcal{B}(E)$ 中的开集.
+      \item 证明 $u\to u^{-1}$ 是 $GL(E)$ 上的同胚映射.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 因为 $\|u\|<1$, 且 $\|u^n\|\leq\|u\|^n$, 所以级数 $\sum_{n=0}^{\infty}\|u^n\|$ 收敛, 
+        又因为 $\mathcal{B}(E)$ 完备, 故 $\sum_{n=0}^{\infty}u^n$ 收敛, 记
+        \[v=\sum_{n=0}^{\infty}u^n\in\mathcal{B}(E).\]
+        则
+        \[(I_E-u)v=\lim_{k\to\infty}(I_E-u)\sum_{n=0}^ku^n=I_E.\]
+        同理可证 $v(I_E-u)=I_E$, 因此 $I_E-u$ 在 $\mathcal{B}(E)$ 中可逆.
+        
+        \item 
+        \begin{itemize}
+        \item $(uv)w=u(vw)$,即满足结合律
+        \item 恒等映射 $id$ 即为单位元
+        \item 任意元 $u$ 都存在 $u^{-1}\in GL(E),s.t.u\circ u^{-1}=id$
+        \end{itemize}
+        故 $GL(E)$ 关于复合运算构成一个群, 
+        下证 $GL(E)$ 是 $\mathcal{B}(E)$ 中的开集: 
+        任意 $u\in GL(E)$, 考虑 $u$ 的开球 $B(u,\|u^{-1}\|^{-1})$, 
+        则 $\forall v\in B(u,\|u^{-1}\|^{-1})$, 有 $\|v-u\|<\|u^{-1}\|^{-1}$, 
+        故 $\|u^{-1}(u-v)\|\leq \|u^{-1}\|\cdot\|u-v\|<1$, 从而
+        \[I-u^{-1}(u-v)=u^{-1}v\in GL(E).\]
+        由群中元素运算封闭性知
+        \[u\cdot u^{-1}v=v\in GL(E).\]
+        故
+        \[B(u,\|u^{-1}\|^{-1})\in GL(E).\]
+        由开集的定义知 $GL(E)$ 是 $\mathcal{B}(E)$ 中的开集.
+        
+        \item 记$\Phi:GL(E)\to GL(E),u\mapsto u^{-1}$.
+        \begin{itemize}
+        \item 显然映射 $\Phi:u\mapsto u^{-1}$ 是 $GL(E)$ 上的双射;
+        \item $\Phi$ 连续: 由前面的证明过程知 $\forall v\in B(u,\|u^{-1}\|^{-1})$ 有
+        \[(I-u^{-1}(u-v))^{-1}=\sum_{n=0}^{\infty}(u^{-1}(u-v))^n.\]
+        故
+        \[v^{-1}=(u-(u-v))^{-1}=(u(I-u^{-1}(u-v)))^{-1}=\sum_{n=0}^{\infty}(u^{-1}(u-v))^nu^{-1}.\]
+        因此
+        \[\begin{split}
+        \|v^{-1}-u^{-1}\|
+        &=\|\sum_{n=1}^{\infty}(u^{-1}(u-v))^nu^{-1}\|\\
+        &\leq\|u^{-1}\|\cdot\sum_{n=1}^{\infty}(\|u-v\|\cdot\|u^{-1}\|)^n\\
+        &=\R ac{\|u^{-1}\|^2\|u-v\|}{1-\|u^{-1}\|\cdot\|u-v\|}.
+        \end{split}\]
+        当 $\|u-v\|\to 0$ 时, $\|u^{-1}-v^{-1}\|\to 0$, 所以 $\Phi$ 连续;
+        \item $\Phi=\Phi^{-1}$
+        \end{itemize}
+        综上知 $\Phi$ 是 $GL(E)$ 上的同胚.
+      \end{enumerate}
+    \end{answer}
+  \item (\textbf{广义 Minkowski 不等式}) 
+  设 $\left(\varOmega_{1}, \mathcal{A}_{1}, \mu_{1}\right)$ 
+  和 $\left(\varOmega_{2}, \mathcal{A}_{2}, \mu_{2}\right)$ 是两个测度空间, $0<p<q<\infty$. 
+  证明对任意可测函数 
+    $f:\left(\varOmega_{1} \times \varOmega_{2}, \mathcal{A}_{1} \otimes \mathcal{A}_{2}\right) \rightarrow\K$, 有
+    \begin{align*}
+        &\left(\int_{\varOmega_{2}}\left(\int_{\varOmega_{1}}\left|f\left(x_{1}, x_{2}\right)\right|^{p}\diff\mu_{1}(x_{1})\right)^{\R ac{q}{p}}\diff \mu_{2}\left(x_{2}\right)\right)^{\R ac{1}{q}} \\
+      \leq &\left(\int_{\varOmega_{1}}\left(\int_{\varOmega_{2}}\left|f\left(x_{1}, x_{2}\right)\right|^{q}\diff\mu_{2}\left(x_{2}\right)\right)^{\R ac{p}{q}}\diff\mu_{1}\left(x_{1}\right)\right)^{\R ac{1}{p}}.
+    \end{align*}
+    \begin{answer}
+      首先由 Fubini 定理可得
+      \begin{align*}
+          & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}}\diff\mu_2(x_2) \\
+      ={} & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}-1}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)\diff\mu_2(x_2) \\
+      ={} & \int_{\varOmega_1}\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}-1}\cdot |f(x_1,x_2)|^p\diff\mu_2(x_2)\diff\mu_1(x_1).
+      \end{align*}
+      然后由 H\"older 不等式得
+      \begin{align*}
+          & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}-1}\cdot |f(x_1,x_2)|^p\diff\mu_2(x_2) \\
+      \leq{} & \biggl[\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}}\diff\mu_2(x_2)\biggr]^{\R ac{q-p}{q}}\biggl(\int_{\varOmega_2}|f(x_1,x_2)|^q\diff\mu_2(x_2)\biggr)^{\R ac{p}{q}}.
+      \end{align*}
+      故
+      \begin{align*}
+          & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}}\diff\mu_2(x_2) \\
+      \leq{} & \biggl[\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}}\diff\mu_2(x_2)\biggr]^{\R ac{q-p}{q}}\cdot\int_{\varOmega_1}\biggl(\int_{\varOmega_2}|f(x_1,x_2)|^q\diff\mu_2(x_2)\biggr)^{\R ac{p}{q}}\diff\mu_1(x_1).
+      \end{align*}
+      即
+      \[\biggl[\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}}\diff\mu_2(x_2)\biggr]^{\R ac{p}{q}}\leq\int_{\varOmega_1}\biggl(\int_{\varOmega_2}|f(x_1,x_2)|^q\diff\mu_2(x_2)\biggr)^{\R ac{p}{q}}\diff\mu_1(x_1).\]
+      因此
+      \begin{align*}
+          & \left(\int_{\varOmega_{2}}\left(\int_{\varOmega_{1}}\left|f\left(x_{1}, x_{2}\right)\right|^{p}\diff\mu_{1}(x_{1})\right)^{\R ac{q}{p}}\diff \mu_{2}\left(x_{2}\right)\right)^{\R ac{1}{q}} \\
+      \leq{} & \left(\int_{\varOmega_{1}}\left(\int_{\varOmega_{2}}\left|f\left(x_{1}, x_{2}\right)\right|^{q}\diff\mu_{2}\left(x_{2}\right)\right)^{\R ac{p}{q}}\diff\mu_{1}\left(x_{1}\right)\right)^{\R ac{1}{p}}.\qedhere
+      \end{align*}
+    \end{answer}
+  \item (\textbf{卷积}) 
+  在实数集 $\R $ 上取 Lebesgue $\sigma$-代数及 Lebesgue 测度, 并设 $f,g\in L_{1}(\R )$.
+
+    \begin{enumerate}
+      \item 证明
+        \begin{align*}
+          \int_{\R \times\R } f(u)g(v)\diff u\diff v 
+          & =\left[\int_{\R } f(u) \diff u\right]\left[\int_{\R } g(v) \diff v\right] \\
+          & =\int_{\R }\left[\int_{\R } f(x-y)g(y) \diff y\right] \diff x.
+        \end{align*}
+      由此导出函数 $x\mapsto\int_{\R } f(x-y)g(y)\diff y$ 在 $\R $ 上几乎处处有定义.
+
+      \item 我们定义 $f$ 和 $g$ 的卷积 $f*g$ 为
+      \[
+      f*g(x)= \begin{cases}
+          \int_{\R } f(x-y)g(y) \diff y, & \text{当积分存在, } \\ 
+          0, & \text{其他.}\end{cases}
+      \]
+      证明 $f*g\in L_{1}(\R )$ 且 $\|f*g\|_1\leq\|f\|_1\|g\|_1$.
+
+      \item 取 $f=\mathbb{1}_{[0,1]}$, 计算 $f*f$.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 首先容易验证 $f(x-y)g(y)$ 为可测函数, 故由 Tonelli 定理得
+        \begin{align*}
+            \int_{\R ^2} |f(x-y)g(y)|\diff(x,y)
+            & =\int_{\R }\int_{\R } |f(x-y)g(y)|\diff x\diff y \\
+            & =\int_{\R }|g(y)|\int_{\R } |f(x-y)|\diff x\diff y \\
+            & =\|f\|_{L_1}\int_{\R }|g(y)|\diff y=\|f\|_{L_1}\|g\|_{L_1}<\infty.
+        \end{align*}
+        故 $f(x-y)g(y)$ 在 $\R ^2$ 上可积, 由 Fubini 定理立即可得对于几乎处处的 $x\in\R $, 有
+        \[\int_{\R }f(x-y)g(y)\diff y<\infty,\]
+        也即函数 $x\mapsto\int_{\R }f(x-y)g(y)\diff y$ 在 $\R $ 上几乎处处有定义.
+    
+        \item 由 (a) 中结论知
+        \begin{align*}
+            \int_{\R }|f*g(x)|\diff x
+            & =\int_{\R }\left|\int_{\R }f(x-y)g(y)\diff y\right|\diff x \\
+            & \leq\int_{\R }\int_{\R }|f(x-y)g(y)|\diff y\diff x \\
+            & =\|f\|_{L_1}\|g\|_{L_1}<\infty.
+        \end{align*}
+        故 $f*g\in L_1(\R )$ 且 $\|f*g\|_{L_1}\leq\|f\|_{L_1}\|g\|_{L_1}$.
+    
+        \item 由定义
+        \begin{align*}
+            f*f(x)
+            & =\int_{\R } f(x-y)f(y)\diff y=\int_{\R } \mathbb{1}_{[0,1]}(x-y)\mathbb{1}_{[0,1]}(y)\diff y \\
+            & =\int_0^1 \mathbb{1}_{[0,1]}(x-y)\diff y.
+        \end{align*}
+        分类讨论可得, 当 $x<0$ 时, $f*f(x)=0$;
+        当 $0\leq x\leq 1$ 时, $f*f(x)=x$;
+        当 $1<x\leq 2$ 时, $f*f(x)=2-x$;
+        当 $x>2$ 时, $f*f(x)=0$.
+      \end{enumerate}
+    \end{answer}
+\end{enumerate}
+
+
+
+
+\subsection{第4章习题}
+\begin{enumerate}
+  \item 设 $u:H\to K$ 是两个实内积空间之间的映射, 且有
+  \[\|u(x)-u(y)\|=\|x-y\|,\quad\forall x,y\in H\;(\text{也就是说}, u\text{\ 是一个等距映射}).\]
+  证明 $u-u(0)$ 是线性的.
+    \begin{answer}
+      记 $v=u-u(0)$, 则 $v(0)=0$, $\|v(x)-v(y)\|=\|x-y\|$ $(\forall x,y\in H)$,
+      即 $v$ 保距离(特别地, $v$ 还保范数), 将上式平方得 
+      \[\|v(x)\|^2+\|v(y)\|^2-2\langle v(x),v(y)\rangle=\|x\|^2+\|y\|^2-2\langle x,y\rangle.\]
+      故
+      \[\langle v(x),v(y)\rangle=\langle x,y\rangle.\]
+      因此 $v$ 保内积,下面证明 $v$ 是线性的:
+      \begin{itemize}
+      \item $v(x+y)=v(x)+v(y)$ $(\forall x,y\in H)$:
+      \begin{align*}
+          &\langle v(x+y)-v(x)-v(y),v(x+y)-v(x)-v(y)\rangle\\
+          &=\|v(x+y)\|^2+\|v(x)\|^2+\|v(y)\|^2-2\langle v(x+y),v(x)\rangle-2\langle v(x+y),v(y)\rangle+2\langle v(x),v(y)\rangle\\
+          &=\|x+y\|^2+\|x\|^2+\|y\|^2-2\langle x+y,x\rangle-2\langle x+y,y\rangle+2\langle x,y\rangle\\
+          &=\|x+y\|^2+\|x\|^2+\|y\|^2-2\|x+y\|^2+2\langle x,y\rangle\\
+          &=0\\
+          &\Rightarrow v(x+y)=v(x)+v(y).
+      \end{align*}
+      \item $v(\lambda x)=\lambda v(x)$ $(\forall\lambda\in\mathbb{R},x\in H)$:
+      \begin{align*}
+          &\langle v(\lambda x)-\lambda v(x),v(\lambda x)-\lambda v(x)\rangle\\
+          &=\|v(\lambda x)\|^2+\lambda^2\|v(x)\|^2-2\lambda\langle v(\lambda x),v(x)\rangle\\
+          &=\|\lambda x\|^2+\lambda^2\|x\|^2-2\lambda\langle\lambda x,x\rangle\\
+          &=0\\&\Rightarrow v(\lambda x)=\lambda v(x).
+      \end{align*}    
+      \end{itemize}
+      根据上面两点知 $v$ 是线性的.
+    \end{answer}
+  \item 设 $H$ 是内积空间, $x_n,x\in H$. 并假设
+  \[\lim_{n\to\infty}\|x_n\|=\|x\|\quad\text{且}\quad \lim_{n\to\infty}\innerp{y}{x_n}=\innerp{y}{x}, \forall y\in H.\]
+  证明 $\lim_{n\to\infty} \|x_n-x\|=0$.
+    \begin{answer}
+      因 $\lim_{n\to\infty}\|x_n\|=\|x\|$,
+      所以 $\lim_{n\to\infty}\langle x_n,x_n\rangle=\langle x,x\rangle\cdots(1)$
+
+      因为 $\lim_{n\to\infty}\langle y,x_n\rangle=\langle y,x\rangle$,
+      所以 $\lim_{n\to\infty}\langle x,x_n\rangle=\langle x,x\rangle\cdots(2)$
+
+      两式相减得 $\lim_{n\to\infty}\langle x_n-x,x_n\rangle=0$,
+      另外由第二式可得 $\lim_{n\to\infty}\langle x_n-x,x\rangle=0$.
+
+      故
+      \begin{align*}
+          \lim_{n\to\infty}\|x_n-x\|^2
+          & =\lim_{n\to\infty}\langle x_n-x,x_n-x\rangle\\
+          & =\lim_{n\to\infty}\langle x_n-x,x_n\rangle-\lim_{n\to\infty}\langle x_n-x,x\rangle\\
+          & =0-0=0.
+      \end{align*}
+      从而 $\lim_{n\to\infty}\|x_n-x\|=0$.
+    \end{answer}
+  \item 设 $H$ 是内积空间. $(x_{1}, \cdots, x_{n})$ 是 $H$ 中的任一向量组,
+  称矩阵 $(\innerp{x_i}{x_j})_{1\leq i,j\leq n}$ 
+  的行列式为向量组 $\left(x_{1},\cdots, x_{n}\right)$ 的 Gram 行列式, 记作 $G(x_{1},\cdots,x_{n})$.
+  
+    \begin{enumerate}
+      \item 证明 $G(x_{1},\cdots,x_{n})\geq 0$; 
+      且 $G\left(x_{1},\cdots,x_{n}\right)>0$ 当且仅当向量组 $\left(x_{1}, \cdots, x_{n}\right)$ 线性独立.
+      
+      \item 假设向量组 $\left(x_{1},\cdots,x_{n}\right)$ 线性独立. 
+      令 $E=\operatorname{span}\left(x_{1},\cdots, x_{n}\right)$. 证明
+      \[
+          d(x, E)^{2}=\frac{G\left(x, x_{1}, x_{2}, \cdots, x_{n}\right)}{G\left(x_{1}, x_{2}, \cdots, x_{n}\right)}, \quad \forall x\in H.
+      \]
+    \end{enumerate}
+    \begin{answer}
+      (参考《高等代数与解析几何》 陈志杰习题 6.3.13 及 6.4.6)
+
+      \begin{enumerate}
+        \item 设 $W=\operatorname{span}\{x_1,\cdots,x_n\}$ 且 $\dim W=k$,
+        取 $W$ 的规范正交基 $(e_i)_{1\leq i\leq k}$. 由于
+        \[x_i=\sum_{m=1}^k \innerp{x_i}{e_m}e_m,\quad x_j=\sum_{k=1}^m \innerp{x_j}{e_m}e_m,\]
+        故
+        \begin{align*}
+            \innerp{x_i}{x_j}
+            &=\innerp{\sum_{m=1}^k \innerp{x_i}{e_m}e_m}{\sum_{m=1}^k \innerp{x_j}{e_m}e_m} \\
+            &=\sum_{m=1}^k \innerp{x_i}{e_m}\innerp{x_j}{e_m}=\sum_{k=1}^m \innerp{x_i}{e_m}\overline{\innerp{e_m}{x_j}}.
+        \end{align*}
+        记
+        \[M=\begin{pmatrix}
+            \innerp{x_1}{e_1} & \cdots & \innerp{x_1}{e_k} \\
+            \vdots            &        & \vdots            \\
+            \innerp{x_n}{e_1} & \cdots & \innerp{x_n}{e_k}
+        \end{pmatrix}_{n\times k}.\]
+        则
+        \[M^\T
+        =\begin{pmatrix}
+            \overline{\innerp{e_1}{x_1}} & \cdots & \overline{\innerp{e_1}{x_n}} \\
+            \vdots & & \vdots \\
+            \overline{\innerp{e_k}{x_1}} & \cdots & \overline{\innerp{e_k}{x_n}} 
+        \end{pmatrix}_{k\times n},\]
+        且 $(\innerp{x_i}{x_j})_{1\leq i,j\leq n}=MM^\T$, 从而 $G(x_1,\cdots,x_n)=\det(MM^\T)$.
+    
+        若 $k<n$, 则 $\rank(M)\leq k<n$, 故 $\rank(\innerp{x_i}{x_j})<n$, 故 $|G(x_1,\cdots,x_n)|=0$.
+    
+        若 $k=n$, 则 $x_1,\cdots, x_n$ 线性无关,
+        即关于 $\lambda_1,\cdots,\lambda_n$ 的方程
+        \[\lambda_1 x_1+\cdots+\lambda_nx_n=0\]
+        只有零解. 考虑关于 $\lambda_1,\cdots,\lambda_n$ 的齐次线性方程组
+        \[\begin{cases}
+            \lambda_1\innerp{x_1}{e_1}+\cdots+\lambda_n\innerp{x_n}{e_1}=0 \\
+            \cdots \\
+            \lambda_1\innerp{x_1}{e_n}+\cdots+\lambda_n\innerp{x_n}{e_n}=0.
+        \end{cases}\]
+        上述方程组的系数矩阵即为 $M^\T$, 将上述方程组的第 $i$ ($1\leq i\leq n$) 个方程乘以 $e_i$ 并求和即得
+        \[\lambda_1x_1+\cdots+\lambda_nx_n=0,\]
+        于是 $\lambda_1=\cdots=\lambda_n=0$, 因此 $\det(M)\neq 0$,
+        从而 
+        \[G(x_1,\cdots,x_n)=\det(MM^\T)=\det(M)\det(M^\T)=(\det(M))^2>0.\]
+    
+        \item 略.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $E$ 和 $F$ 是 Hilbert 空间 $H$ 的两个正交向量子空间. 证明 $E+F$ 是闭的当且仅当 $E$ 和 $F$ 都是闭的.
+    
+  \item $(e_{n})$ 表示 $\ell_{2}$ 中的标准正交基. 
+  设 $E$ 是 $\left\{e_{2 n}: n \geq 1\right\}$ 的线性扩张的闭包, 
+  而 $F$ 是 $\left\{e_{2 n}+\frac{1}{n} e_{2 n+1}: n \geq 1\right\}$ 的线性扩张的闭包. 
+  证明 $E\cap F=\{0\}$ 并 且 $E+F$ 在 $\ell_{2}$ 中不是闭的.
+    \begin{answer}
+      \begin{enumerate}
+        \item 由 $E$ 与 $F$ 正交知 $E+F=E\oplus F$, 即任取 $z\in E+F$,
+        存在唯一的 $x\in E$ 和 $y\in F$, 使得 $z=x+y$.
+    
+        \equivalent{
+        任取 $E$ 中收敛列 $(x_n)_{n\geq 1}$, 设 $x_n\to x\in E+F$,
+        即 $\lim_{n\to\infty}\|x_n-x\|=0$. 由于 $x\in E+F$, 故存在 $x'\in E$, $x''\in F$,
+        使得 $x=x'+x''$, 那么
+        \begin{align*}
+            \lim_{n\to\infty}\|x_n-x\|^2
+            & =\lim_{n\to\infty}\|x_n-x'-x''\|^2 \\
+            & =\lim_{n\to\infty}\|x_n-x'\|^2+\|x''\|^2-2\Re\innerp{x_n-x'}{x''} \\
+            & =\lim_{n\to\infty}\|x_n-x'\|^2+\|x''\|^2=0.
+        \end{align*}
+        故必有 $x''=0$, 从而 $x=x'\in E$, 因此 $E$ 为闭集. 同理可证 $F$ 为闭集.}
+    
+        {
+        任取 $E+F$ 中 Cauchy 序列 $(z_n)_{n\geq 1}$, 设 $z_n=x_n+y_n$, 其中 $x_n\in E$, $y_n\in F$, 则
+        \begin{align*}
+            \|z_m-z_n\|^2
+            & =\|x_m+y_m-x_n-y_n\|^2 \\
+            & =\|x_m-x_n\|^2+\|y_m-y_n\|^2+2\Re\innerp{x_m-x_n}{y_m-y_n} \\
+            & =\|x_m-x_n\|^2+\|y_m-y_n\|^2\to 0\quad (m,n\to\infty).
+        \end{align*}
+        故 $(x_n)_{n\geq 1}$ 和 $(y_n)_{n\geq 1}$ 分别为 $E$ 和 $F$ 中的 Cauchy 序列,
+        而 $E,F$ 皆完备, 故设 $x_n\to x\in E$, $y_n\to y\in F$.
+        令 $z=x+y\in E+F$, 则当 $n\to\infty$ 时
+        \[\|z_n-z\|^2=\|x_n+y_n-x-y\|^2=\|x_n-x\|^2+\|y_n-y\|^2\to 0.\]
+        即 $z_n\to z\in E+F$, 故 $E+F$ 完备, 从而为闭集.}
+    
+        \item 任取 $x\in E\cap F$, 由于 $E$ 是 Hilbert 空间, 且
+        $\{e_{2n}:n\geq 1\}$ 是 $E$ 的一组规范正交基, 故存在唯一的系数列 $(x_n)_{n\geq 1}$,
+        使得 $x=\sum_{n=1}^{\infty}x_n e_{2n}$. 类似地, $F$ 为 Hilbert 空间, 且规范化后的
+        $\{\frac{n}{\sqrt{n^2+1}}(e_{2n}+\frac{1}{n}e_{2n+1}):n\geq 1\}$ 是 $F$ 的一组规范正交基,
+        故存在唯一的系数列 $(y_n)_{n\geq 1}$, 
+        使得 $x=\sum_{n=1}^{\infty}y_n\frac{n}{\sqrt{n^2+1}}(e_{2n}+\frac{1}{n}e_{2n+1})$.
+        于是对任意 $n\geq 1$, 有
+        \[x_n=y_n\cdot\frac{n}{\sqrt{n^2+1}},\quad\frac{y_n}{\sqrt{n^2+1}}=0\Longrightarrow x_n=y_n=0.\]
+        故 $x=0$, 因此 $E\cap F=\{0\}$. 下证 $E+F$ 不是闭集,
+        取 $x^{(m)}=\sum_{n=1}^m -e_{2n}\in E$, $y^{(m)}=\sum_{n=1}^m (e_{2n}+\frac{1}{n}e_{2n+1})\in F$,
+        则
+        \[x^{(m)}+y^{(m)}=\sum_{n=1}^m \frac{1}{n}e_{2n+1}\in E+F\]
+        且
+        \[x^{(m)}+y^{(m)}\xrightarrow{\ell_2}\sum_{n=1}^{\infty}\frac{1}{n}e_{2n+1}.\]
+        但 $\sum_{n=1}^{\infty}\frac{1}{n}e_{2n+1}\notin E+F$, 事实上, 若存在
+        $x=\sum_{n=1}^{\infty}x_n e_{2n}\in E$ 和 $y=\sum_{n=1}^{\infty}y_n\frac{n}{\sqrt{n^2+1}}(e_{2n}+\frac{1}{n}e_{2n+1})\in F$,
+        使得 $x+y=\sum_{n=1}^{\infty}\frac{1}{n}e_{2n+1}$, 则
+        \[x_n+\frac{ny_n}{\sqrt{n^2+1}}=0,\quad\frac{y_n}{\sqrt{n^2+1}}=\frac{1}{n}\Longrightarrow x_n=-1,y_n=\frac{\sqrt{n^2+1}}{n}.\]
+        但此时 $x=\sum_{n=1}^{\infty}-e_{2n}\notin\ell_2$, 矛盾.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $[0,1]$ 上赋予 Lebesgue 测度, $H=L_{2}(0,1)$. 并假设 $K \in L_{2}([0,1] \times[0,1])$. 我们定义
+  \[
+  T_{K}(f)(x)=\int_{0}^{1} K(x, y) f(y)\diff y, \quad f \in H, x \in[0,1].
+  \]
+
+    \begin{enumerate}
+      \item 证明 $T_{K}(f)$ 在 $[0,1]$ 上几乎处处有定义.
+
+      \item 证明 $T_{K} \in\mathcal{B}(H)$ 且
+      \[
+      \left\|T_{K}\right\|\leq\|K\|_{L_{2}([0,1] \times[0,1])}.
+      \]
+  
+      \item 设 $\widetilde{K}(x, y)=\overline{K(y, x)}$, $x,y\in[0,1]$. 证明 $T_{K}^{*}=T_{\tilde{K}}$.
+  
+      \item 定义
+      \[
+      T(f)(x)=\int_{0}^{x} f(1-y)\diff y, \quad f \in H, x \in[0,1].
+      \]
+      证明 $T\in\mathcal{B}(H)$ 且有 $T^{*}=T$.
+      最后给出 $T$ 的非零特征值并证明相应的特征子空间两两正交.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 任意固定 $x$, 将 $K(x,y)$ 看作关于 $y$ 的一元函数, 由 Cauchy-Schwarz 不等式得:
+        \begin{align*}
+            |\innerp{K}{\bar{f}}|^2
+            & =\left|\int_0^1K(x,y)f(y)\diff y\right|^2 \\
+            & \leq\int_0^1|K(x,y)|^2\diff y\cdot\int_0^1|f(y)|^2\diff y.
+        \end{align*}
+        因为 $f\in L_2(0,1)$, 所以
+        \[\int_0^1|f(y)|^2\diff y<\infty.\]
+        因为 $K\in L_2([0,1]\times [0,1])$, 所以
+        \[\int_0^1\int_0^1|K(x,y)|^2\diff y\diff x<\infty\Rightarrow\int_0^1|K(x,y)|^2\diff y<\infty, \almosteverywhere\]
+        结合以上三式得
+        \[\left|\int_0^1K(x,y)f(y)\diff y\right|^2<\infty, \almosteverywhere\]
+        也就证明了 $T_K(f)$ 在 $[0,1]$ 上几乎处处有定义.
+    
+        \item 由 (a) 中结论知: $\forall f\in H$, $T_K(f)\in H$.
+    
+        首先, $T_K$ 为线性算子. 对于任意 $f,g\in H$ 和 $\lambda\in\mathbb{K}$, 有
+        \[T_K(\lambda f+g)=\int_0^1K(x,y)(\lambda f(y)+g(y))\diff y=\lambda T_K(f)+T_K(g).\] 
+    
+        其次, $T_K$ 为有界算子. 对于任意 $f\in H$, 有
+        \begin{align*}
+            \|T_K(f)\|^2
+            &=\int_0^1|T_K(f)(x)|^2\diff x\\
+            &=\int_0^1\left|\int_0^1K(x,y)f(y)\diff y\right|^2\diff x\\
+            &\leq \int_0^1\left(\int_0^1|K(x,y)|^2\diff y\cdot\int_0^1|f(y)|^2\diff y\right)\diff x\\
+            &=\int_0^1|f(y)|^2\diff y\cdot\int_0^1\int_0^1|K(x,y)|^2\diff x\diff y\\
+            &=\|f\|^2\cdot\|K\|_{L_2([0,1]\times[0,1])}^2.
+        \end{align*}
+        故 $T_K$ 为有界算子且 $\|T_K\|\leq \|K\|_{L_2([0,1]\times [0,1])}$.
+    
+    
+        \item 对于 $\forall f,g\in H$, 有
+        \begin{align*}
+            \langle T_{\widetilde{K}}(f),g\rangle&=\int_0^1\left(\int_0^1\widetilde{K}(x,y)f(y)\diff y\right)\conjugate{g(x)}\diff x\\
+            &=\int_0^1\left(\int_0^1\overline{K(y,x)}f(y)\diff y\right)\conjugate{g(x)}\diff x \\
+            &=\int_0^1\left(\int_0^1\overline{K(x,y)}f(x)\diff x\right)\conjugate{g(y)}\diff y \\
+            &=\int_0^1\left(\int_0^1\overline{K(x,y)g(y)}f(x)\diff x\right)\diff y \\
+            &=\int_0^1\left(\int_0^1\overline{K(x,y)g(y)}f(x)\diff y\right)\diff x \\
+            &=\int_0^1f(x)\overline{\left(\int_0^1K(x,y)g(y)\diff y\right)}\diff x \\
+            &=\langle f,T_K(g)\rangle.
+        \end{align*}
+        因此由伴随算子的定义知 $T_K^{*}=T_{\widetilde{K}}$.
+    
+        \item $T(f)(x)=\int_0^x f(1-y)\diff y=\int_{1-x}^1 f(y)\diff y$, 取:
+        \[K(x,y)=
+        \begin{cases}
+        0, & 0\leq y\leq 1-x,\\
+        1, & 1-x<y\leq 1.
+        \end{cases}\]
+        显然 $K(x,y)\in L_2([0,1]\times [0,1])$, 且
+        \[T_K(f)(x)=\int_0^1 K(x,y)f(y)\diff y=\int_{1-x}^1 f(y)\diff y=T(f)(x).\]
+        即在此情形下 $T_K$ 和 $T$ 是同一个算子, 利用(b)中结论知 $T\in\mathcal{B}(H)$.
+    
+        由 $K(x,y)$ 的定义知 $\widetilde{K}(x,y)=\overline{K(y,x)}=K(y,x)=K(x,y)$, 所以由 (c) 中结论知:
+        \[T^{*}=T_K^{*}=T_{\widetilde{K}}=T_K=T.\]
+        因为 $T^{*}=T$, 所以 $T$ 的特征值全部都为实数, 
+        任取两个特征值 $\lambda,\mu\in\mathbb{R}$, 任取两个相应的特征向量 $f,g\in H$, 
+        即$T(f)=\lambda f,T(g)=\mu g$,则:
+        \[\mu\langle f,g\rangle=\langle f,\mu g\rangle=\langle f,T(g)\rangle=\langle T(f),g\rangle=\lambda\langle f,g\rangle.\]
+        从而
+        \[(\mu-\lambda)\langle f,g\rangle=0.\]
+        故 $\langle f,g\rangle=0$, 因此相应的特征子空间两两正交.
+    
+        下面具体求特征值. 任取非零特征值 $\lambda$ 及其相应的特征向量 $f$, 则
+        \[T(f)(x)=\int_{1-x}^1 f(y)\diff y=\lambda f(x),\quad\forall x\in [0,1].\]
+        故 $f(0)=0$ 且 $\lambda f(1)=\int_0^1 f(y)\diff y$. 将上式求导一次得
+        \begin{equation}
+            f(1-x)=\lambda f'(x)\Longrightarrow f(x)=\lambda f'(1-x).\tag{$\star$}
+        \end{equation}
+        再将上式求导一次得
+        \begin{equation}
+            -f'(1-x)=\lambda f''(x).\tag{$\star\star$}
+        \end{equation}
+        结合 $(\star)(\star\star)$ 两式即得 ODE
+        \[f''(x)+\frac{1}{\lambda^2}f(x)=0.\]
+        上述常微分方程的解为 $f(x)=C_1\cos\frac{x}{\lambda}+C_2\sin\frac{x}{\lambda}$.
+        由 $f(0)=0$, 得 $f(x)=C_2\sin\frac{x}{\lambda}$, 再由 $\lambda f(1)=\int_0^1 f(x)\diff x$ 得
+        \[\lambda C_2\sin\frac{1}{\lambda}=\int_0^1 C_2\sin\frac{x}{\lambda}\diff x.\]
+        由上式直接解得 $\sin\frac{1}{\lambda}+\cos\frac{1}{\lambda}=1$,
+        故 $\lambda=\frac{1}{2k\pi}$ ($k\in\Z,k\neq 0$) 或 $\frac{1}{\frac{\pi}{2}+2k\pi}$ ($k\in\Z$).
+      \end{enumerate}
+    \end{answer}
+  \item 和上一习题一样, 令 $H=L_{2}(0,1)$; 并设 $\left(e_{n}\right)_{n \geq 1}$ 是 $H$ 中的规范正交集. 
+  证明: $\left(e_{n}\right)_{n \geq 1}$ 是 $H$ 上的规范正交基的充分必要条件是
+  \[
+  \sum_{n\geq 1}\left|\int_{0}^{x} e_{n}(t)\diff t\right|^{2}=x, \quad \forall x \in[0,1].
+  \]
+    \begin{answer}[][取 $f_x=\mathbb{1}_{(0,x)}$, 由 Parseval 恒等式得 
+      \begin{equation}
+          \|f_x\|_{L_2}^2=\sum_{n\geq 1}|\innerp{f_x}{e_n}|^2,\tag{$\star$}
+      \end{equation}
+      换个马甲即为
+      \[x=\sum_{n\geq 1}\left|\int_{0}^{x} e_{n}(t)\diff t\right|^{2}.\]]
+
+      将 $(e_n)_{n\geq 1}$ 扩展成为 $L_2(0,1)$ 的规范正交基 $(e_n)_{n\geq 1}\cup(\tilde{e}_n)_{n\geq 1}$,
+      则由 Parseval 恒等式得
+      \[\|f_x\|_{L_2}^2=\sum_{n\geq 1}|\innerp{f_x}{e_n}|^2+\sum_{n\geq 1}|\innerp{f_x}{\tilde{e}_n}|^2.\]
+      而由 $(\star)$ 式得 $\sum_{n\geq 1}|\innerp{f_x}{\tilde{e}_n}|^2=0$, 即对任意的 $n\geq 1$, 有
+      \[\innerp{f_x}{\tilde{e}_n}=\int_0^x \tilde{e}_n(t)\diff t=0,\quad\forall x\in [0,1].\]
+      故 $\tilde{e}_n=0$, $\forall n\geq 1$, 从而 $(e_n)_{n\geq 1}$ 为 $L_2(0,1)$ 的规范正交基.
+    \end{answer}
+\end{enumerate}
+\subsection{第5章习题}
+\begin{enumerate}
+  \item （习题5 T2）设$K$是度量空间，$E$是赋范空间，$(f_n)_{n\geqslant 1}$是一列从$K$到$E$的连续函数
+    \begin{enumerate}
+      \item 证明若$(f_n)_{n\geqslant1}$在一个点$x$处等度连续，则对任一收敛到$x$的点列$(x_n)_{x\geqslant 1}$，都有$(f_n(x)-f_n(x_n))_{n\geqslant 1}$收敛到$0$。
+      \item 证明如果$(f_n(x))_{n\geqslant 1}$在$E$中收敛到$y$，那么对任一收敛到$x$的点列$(x_n)_{n\geqslant1}$，$(f_n(x_n))_{n\geqslant1}$也收敛到$y$。
+      \item 取$f_n(x)=\sin nx$。证明$(f_n)_{n\geqslant 1}$在$\mathbb{R}$上每一点都不等度连续。
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 若$(f_n)_{n\geqslant 1}$在点$x$处等度连续，则对$\forall \varepsilon>0$，$\exists \delta>0$，使得当$d(x,y)<\delta$时，对$\forall n\in\mathbb{N}^*$，$||f_n(x)-f_n(y)||<\varepsilon$。且对任意收敛到$x$的点列$(x_n)_{n\geqslant 1}$，存在正整数$N$，当$n>N$时，$d(x_n,x)<\delta$，故此时对任意正整数$k$，$||f_k(x)-f_k(x_n)||<\varepsilon$。取$k=n$，得$||f_n(x)-f_n(x_n)||<\varepsilon$。 综上，对$\forall \varepsilon>0$，$\exists$正整数$N$，当$n>N$时，$||f_n(x)-f_n(x_n)||<\varepsilon$，这就是说$(f_n(x)-f_n(x_n))_{n\geqslant 1}$收敛到$0$。 
+        \item 由于$(f_n(x))_{n\geqslant 1}$在$E$中收敛到$y$，故对$\varepsilon>0$，$\exists N_1\in\mathbb{N}^*$，当$n>N_1$时，$||f_n(x)-y||<\frac{\varepsilon}{2}$，又根据$(1)$，设$(x_n)_{n\geqslant 1}$收敛于$x$，则存在$N_2\in\mathbb{N}^*$，使得$n>N_2$时，$||f_n(x)-f_n(x_n)||<\frac{\varepsilon}{2}$。取$N=\max\left\{N_1,N_2\right\}$，当$n>N$时，
+        \[||f_n(x_n)-y||\leqslant ||f_n(x_n)-f_n(x)||+||f_n(x)-y||\leqslant \dfrac{\varepsilon}{2}+\dfrac{\varepsilon}{2}<\varepsilon.\] 
+        故$f_n(x_n)_{n\geqslant 1}$也收敛到$y$。 
+        \item 若$x=k\pi$，$k\in\mathbb{Z}$，则取$x_n=k\pi+\frac{1}{n}$，注意到$f_n(k\pi)=\sin(nk\pi)=0$，故$\lim\limits_{n\rightarrow \infty}f_n(k\pi)=0$，而\[\begin{aligned}
+          f_n(x_n)&=\sin(n(k\pi+\frac{1}{n}))\\&=\sin(nk\pi+1)\\
+          &=\sin(nk\pi)\cos1+\cos(nk\pi)\sin1\\&=\cos(nk\pi)\sin1
+        \end{aligned}\]
+      从而$|f_n(x_n)|=\sin 1$对任意正整数$n$都成立，因此$f_n(x_n)$在$n$趋于$\infty$时极限不可能为$0$。由$(2)$知$(f_n)_{n\geqslant 1}$在$x=k\pi$处不等度连续。 
+      
+      若$x\neq  k\pi$，$k\in\mathbb{Z}$，取$x_n=x+\frac{\pi}{n}$，从而
+      \[\begin{aligned}
+      ||f_n(x)-f_n(x_n)||&=|\sin (nx)-\sin(nx+\pi)|\\
+      &=|\sin (nx)-\sin(nx)\cos\pi-\cos(nx)\sin\pi|\\
+                        &=2|\sin nx|
+      \end{aligned}\] 
+      下面我们说明当$x\neq k\pi$时，$\lim\limits_{n\rightarrow \infty}\sin nx$不存在。 
+      事实上，设$x\neq k\pi$，$k\in\mathbb{Z}$，若$\lim\limits_{n\rightarrow \infty} \sin nx$存在，那么
+      \[\lim\limits_{n\rightarrow \infty} (\sin((n+1)x)-\sin((n-1)x))=0.\]
+      由和差化积，我们知道$\sin((n+1)x)-\sin((n-1)x)=2\sin x\cos nx$，从而
+      \[\lim\limits_{n\rightarrow \infty} \cos nx=0.\]
+      接着注意到$\cos((n+1)x)=\cos nx\cos x-\sin nx\sin x$，故\[\lim\limits_{n\rightarrow \infty} \sin nx =0,\]而这与$\sin^2 nx+\cos^2 nx=1$矛盾！从而$\lim\limits_{n\rightarrow \infty} \sin nx$不存在。 
+      因此当$n$趋近于$\infty$时，$||f_n(x)-f_n(x_n)||$极限不存在，由$(1)$知$(f_n)_{n\geqslant 1}$在$x\neq  k\pi$处不等度连续。 综上，$(f_n)_{n\geqslant 1}$在$\mathbb{R}$上每一点都不等度连续。
+      \end{enumerate}
+    \end{answer}
+  \item （习题5 T5）考虑函数序列$(f_n)$，这里$f_n(t)=\sin(\sqrt{t+4(n\pi)^2}),t\in[0,\infty)$。 
+    \begin{enumerate}
+      \item 证明$(f_n)$等度连续并且逐点收敛到$0$函数。 
+      \item $C_b([0,\infty),\mathbb{R})$表示$[0,\infty)$上所有有界连续实函数构成的空间，并赋予范数
+      \[ ||f||_\infty=\sup_{t\geqslant 0}|f(t)|.\] 
+      $(f_n)$在$C_b([0,\infty),\mathbb{R})$中是否相对紧？ 
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 对任意$t\geqslant 0$，
+        \[\begin{aligned}
+          |f_n(t)|&=|\sin(\sqrt{t+4(n\pi)^2})|\\
+                  &=|\sin(\sqrt{t+4(n\pi)^2}-2n\pi)|\\
+                  &=|\sin(\dfrac{t}{\sqrt{t+4(n\pi)^2}+2n\pi})|\\
+                  &\leqslant \dfrac{t}{\sqrt{t+4(n\pi)^2}+2n\pi}\rightarrow 0,(n\rightarrow \infty)
+        \end{aligned}\] 
+        故$(f_n)$逐点收敛到0函数。 
+        设$x\in[0,\infty)$，则对任意$\varepsilon>0$，取$\delta=2\pi\varepsilon$，当$|x-y|<\delta$时，
+        \[\begin{aligned}
+          |f_n(y)-f_n(x)|&=|\sin\sqrt{y+4(n\pi)^2}-\sin\sqrt{x+(4(n\pi)^2)}\\
+                        &=|2\cos(\dfrac{\sqrt{y+4(n\pi)^2}+\sqrt{x+(4(n\pi)^2)}}{2})\sin(\dfrac{\sqrt{y+4(n\pi)^2}-\sqrt{x+(4(n\pi)^2)}}{2})|\\
+                        &\leqslant\dfrac{|y-x|}{\sqrt{y+4(n\pi)^2}+\sqrt{x+(4(n\pi)^2)}}\\
+                          &\leqslant \dfrac{|x-y|}{2\pi}<\varepsilon.	              
+        \end{aligned}\]
+        从而$(f_n)_{n\geqslant 1}$等度连续。 
+        \item 注意到依范数$\|\cdot\|_\infty$下的收敛即为在$[0,\infty)$下的一致收敛，假设$(f_n)_{n\geqslant1}$有依范数$\|\cdot\|_\infty$收敛的子列，则由$(a)$知该子列必一致收敛于0函数，但是对任意正整数$n$，$\|f_n\|_\infty=\sup\limits_{t\geqslant0}|\sin\sqrt{t+4(n\pi)^2}|=1$，因此$(f_n)$的任一子列不可能收敛于0函数，导出矛盾，故$(f_n)$不是相对紧的
+      \end{enumerate}
+    \end{answer}
+  \item （习题5 T10）设$(K,d)$是紧度量空间。证明所有从$K$到$\mathbb{R}$的Lipschitz函数构成的集合在$(C(K,\mathbb{R}),||\cdot||_{\infty})$中稠密。 
+    \begin{answer}
+      记所有从$K$到$\mathbb{R}$的Lipschitz函数的集合为$Lip(K,\mathbb{R})$。容易验证$Lip(K,\mathbb{R})$是$C(K,\mathbb{R})$的向量子空间，下面证明它还是一个代数： 
+      设$f,g\in Lip(K,\mathbb{R})$，故存在$\lambda_1>0,\lambda_2>0$，使得对任意$x,y\in K$有
+      \[ |f(x)-f(y)|\leqslant \lambda_1 d(x,y),\\
+      |g(x)-g(y)|\leqslant \lambda_2 d(x,y). \]且注意到$K$是紧的，$f,g$都是连续的，从而存在$M_1>0,M_2>0$，使得对任意$x\in K$，$|f(x)|\leqslant M_1$，$|g(x)|\leqslant M_2$。从而对任意$x,y\in K$，我们有
+      \[\begin{aligned} 
+        |f(x)g(x)-f(y)g(y)|&=|f(x)g(x)-f(y)g(x)+f(y)g(x)-f(y)g(y)|\\
+                          &\leqslant M_2 |f(x)-f(y)|+M_1 |g(x)-g(y)|\\
+                          &\leqslant (\lambda_1 M_2+\lambda_2 M_1)d(x,y)
+      \end{aligned}\]
+      因此$fg\in Lip(K,\mathbb{R})$。故$Lip(K,\mathbb{R})$是$C(K,\mathbb{R})$的子代数。 
+      对任意$x,y\in K$，且$x\not= y$，则取$f(x)=d(x,y)$，则$f(x)\not= 0$但$f(y)=d(y,y)=0$。从而$f(x)\not= f(y)$。因此$Lip(K,\mathbb{R})$在$K$上是可分点的。另一方面对任意$x\in K$，取$f(x)=1\in Lip(K,\mathbb{R})$，则$f(x)\not=0$。故由Stone-Weierstrass定理知，所有从$K$到$\mathbb{R}$的Lipschitz函数构成的集合在$(C(K,\mathbb{R}),||\cdot||_{\infty})$中稠密。
+    \end{answer}
+  \item （习题5 T12）
+    \begin{enumerate}
+      \item $\left[0,1\right]$上所有的偶多项式构成的集合$\mathcal{Q}$是否在$C(\left[0,1\right],\mathbb{R} )$上稠密？ 
+      \item $\left[-1,1\right]$上所有的偶多项式构成的集合$\mathcal{R}$是否在$C(\left[0,1\right],\mathbb{R})$上稠密？ 
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 容易验证$[0,1]$上所有偶多项式的集合$\mathcal{Q}$是一个代数。并且取$f(x)=x^2$，则对任意$x,y\in[0,1],x\not= y$，我们有$f(x)\not=f(y)$。并且对任意$x\in[0,1]$，取$f(y)=y^2+1,$从而$f(x)=x^2+1\not=0$。故由Stone-Weierstrass定理，$\mathcal{Q}$在$C([0,1],\mathbb{R})$上稠密。 
+        \item 设$f(x)=x$，若存在一列偶多项式$p_n(x)$，使得
+        \[\lim\limits_{n\rightarrow \infty} \sup_{x\in[-1,1]}|p_n(x)-f(x)|=0.\]
+        故对任意$x\in [-1,1]$，
+        \[\lim\limits_{n\rightarrow \infty}p_n(x)=f(x).\]
+        从而
+        \[f(-x)=\lim\limits_{n\rightarrow \infty}p_n(-x)=\lim\limits_{n\rightarrow \infty}p_n(x)=f(x).\]
+        这与$f(x)=x$是奇函数矛盾！故$\left[-1,1\right]$上所有的偶多项式构成的集合$\mathcal{R}$不在$C(\left[0,1\right],\mathbb{R})$上稠密。
+      \end{enumerate}
+    \end{answer}
+\end{enumerate}
+
+
+
+
+\subsection{第6章习题}
+\begin{enumerate}
+  \item 
+    \begin{enumerate}
+      \item 设 $f:\R\to\R$ 是可微函数. 证明: $\cont{f'}$ 是 $\R$ 上稠密的 $\mathcal{G}_{\delta}$ 集.
+
+      \item 设 $f:\R^2\to\R$ 连续且在 $\R^2$ 上存在偏导数 $\frac{\partial f}{\partial x}$ 和 $\frac{\partial f}{\partial y}$.
+      证明: $f$ 的可微点包含 $\R^2$ 中一个稠密的 $\mathcal{G}_{\delta}$ 集.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 记
+        \[g_n(x)=n\left[f\left(x+\frac{1}{n}\right)-f(x)\right].\]
+        则 $(g_n)_{n\geq 1}$ 是 $\R$ 上的连续函数序列且对于任意 $x\in\R$, 有
+        \[\lim_{n\to\infty}g_n(x)=f'(x).\]
+        由定理 6.1.7 知 $\cont{f'}$ 是 $\R$ 中稠密的 $\mathcal{G}_{\delta}$ 集.
+    
+        \item 因为 
+        \[\frac{\partial f(x,y)}{\partial x}=\lim\limits_{n\to\infty}n\left[f\left(x+\frac{1}{n},y\right)-f(x,y)\right]\overset{\Delta}{=}\lim\limits_{n\to\infty}F_n(x,y).\]
+        且 $F_n(x,y)\in C(\R^2)$, 所以 $\frac{\partial f(x,y)}{\partial x}$ 
+        的连续点集是稠密的 $\mathcal{G}_{\delta}$集, 记为 $G_x$;
+        同理 $\frac{\partial f(x,y)}{\partial y}$ 的连续点集也是稠密的 $\mathcal{G}_{\delta}$集,
+        记为 $G_y$. 令 $G=G_x\cap G_y$, 则 $G$ 也是稠密的 $\mathcal{G}_{\delta}$ 集, 并且 $f$ 在 $G$ 上可微.
+      \end{enumerate}
+    \end{answer}
+  \item     设 $E$ 是 $(C([0,1]),\|\cdot\|_{\infty})$ 的闭向量子空间, 并假设 $E$ 中的元素都是 Lipschitz 函数.
+
+    \begin{enumerate}
+      \item 设 $x,y\in [0,1]$ 且 $x\neq y$, 定义泛函 $\varPhi_{x,y}:E\to\R$ 为
+      \[\varPhi_{x,y}(f)=\frac{f(y)-f(x)}{y-x}.\]
+      证明: $\{\varPhi_{x,y}\mid x,y\in [0,1],x\neq y\}$ 是 $E^*$ 中的有界集.
+    
+      \item 导出 $E$ 中闭单位球在 $[0,1]$ 上等度连续, 且 $\dim E<\infty$.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 因为完备度量空间的闭子空间完备, 所以 $E$ 是 Banach 空间,
+        容易验证 $\{\varPhi_{x,y}\}\subset E^*$, 又因为对任意 $f\in E$, 有
+        \[\sup_{x,y\in[0,1],x\neq y}|\varPhi_{x,y}(f)|=\sup_{x,y\in[0,1],x\neq y}\left|\frac{f(y)-f(x)}{y-x}\right|\leq C.\]
+        这里的 $C$ 是函数 $f$ 的 Lipschitz 常数, 故由 Banach-Steinhaus 定理知
+        \[\sup_{x,y\in[0,1],x\neq y}\|\varPhi_{x,y}\|<\infty.\]
+        也即 $\{\varPhi_{x,y}\mid x,y\in[0,1],x\neq y\}$ 是 $E^*$ 中的有界集.
+    
+        \item 记 $E$ 中的闭单位球为 $\closure{B_E}$, 则由 (a) 中结论知
+        \[\sup_{x,y\in[0,1],x\neq y}\sup_{f\in \closure{B_E}}\|\varPhi_{x,y}(f)\|<\infty.\]
+        即
+        \[\sup_{x,y\in[0,1],x\neq y}\sup_{f\in \closure{B_E}}\left|\frac{f(y)-f(x)}{y-x}\right|<\infty.\]
+        这说明 $\closure{B_E}$ 在 $[0,1]$ 上一致等度连续, 故必然等度连续.
+        又对任意 $x\in[0,1]$, $\closure{B_E}$ 的轨道
+        \[\closure{B_E}(x)=\{f(x):f\in \closure{B_E}\}=\{f(x):\max_{0\leq x\leq 1}|f(x)|=1\}\]
+        有界, 故由 Ascoli 定理知 $\closure{B_E}$ 在 $E$ 中相对紧, 从而紧, 根据 Riesz 引理知 $\textrm{dim}E<\infty$.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $E,F$ 都是 Banach 空间, $u\in\mathcal{B}(E,F)$ 并满足 $u(B_E)$ 在 $B_F$ 中稠密.
+
+    \begin{enumerate}
+        \item 计算 $\|u\|$.
+
+        \item 证明: $u(B_E)=B_F$. 因此 $u$ 是满射.
+    
+        \item 设 $v\in B(E/\ker u,F)$ 并满足 $v\circ q=u$, 这里 $q:E\to E/\ker u$
+        是商映射. 证明: $v$ 是从 $E/\ker u$ 到 $F$ 上的等距映射.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 因为 $u(B_E)$ 在 $B_F$ 中稠密,
+        所以 $B_F\subset\overline{u(B_E)}=\overline{B_F}$,
+        又由 $u$ 连续知 $u(\overline{B_E})\subset\overline{u(B_E)}$, 故
+        \[\|u\|=\sup_{x\in\overline{B_E}}\|u(x)\|=\sup_{u(x)\in u(\overline{B_E})}\|u(x)\|\leq\sup_{u(x)\in \overline{u(B_E)}}\|u(x)\|=\sup_{u(x)\in\overline{B_F}}\|u(x)\|=1.\]
+        对任意 $\varepsilon>0$, 存在 $y\in B_F$,
+        使得 $\|y\|\geq 1-\varepsilon$, 对于上述 $y\in B_F$, 存在 $x\in B_E$,
+        使得 $\|u(x)-y\|\leq\varepsilon$, 故
+        \[\|u(x)\|\geq\|y\|-\|u(x)-y\|\geq 1-2\varepsilon.\]
+        由 $\varepsilon$ 的任意性知 $\|u\|=1$.
+    
+        \item 由条件知, $u(B_{E})\subset B_{F}$ 且 $B_{F}\subset\closure{u\left(B_{E}\right)}$. 
+        我们采用和教材中开映射定理 6.3.1 类似的证明过程, 首先任取常数 $0<\delta<1$, 对任意 $y\in B_{F}$, 取 $x_0\in B_{E}$, 使得
+        \[
+        \|y-u(x_0)\|<\delta.
+        \] 
+        并设 $y_{1}=\frac{1}{\delta}(y-u(x_{0}))$, 则 $y_1\in B_F$. 再取 $x_1\in B_E$, 使得
+        \[
+        \|y_{1}-u(x_{1})\|<\delta .
+        \]
+        再设 $y_2=\frac{1}{\delta}(y_1-u(x_1))$, 则 $y_2\in B_F$. 依次下来, 
+        可得一列 $(y_n)_{n\geq 1}\subset B_F$ 及相应序列 $(x_n)_{n\geq 1}\subset B_E$, 满足
+        \[
+        y_{n+1}=\frac{1}{\delta}(y_n-u(x_n)),\|y_{n}-u(x_{n})\|<\delta, \quad n\geq 1.
+        \]
+        由以上构造过程, 可得
+        \begin{equation}
+            \begin{aligned}
+                y &=\delta y_{1}+u(x_{0})=\delta^{2} y_{2}+u(x_{0})+\delta u(x_{1})=\cdots \cdots \\
+                &=\delta^{n+1} y_{n+1}+u(x_{0})+\delta u(x_{1})+\delta^{2} u(x_{2})+\cdots+\delta^{n} u(x_{n}) \\
+                &=\delta^{n+1} y_{n+1}+u\biggl(\sum_{k=0}^{n} \delta^{k} x_{k}\biggr).
+            \end{aligned}\tag{$\star$}
+        \end{equation}
+        在上式中, $\sum_{k=0}^n \delta^k x_k$ 在 $n\to\infty$ 时收敛于某一点 $x\in E$, 且
+        \[\|x\|\leq\sum_{n=1}^{\infty}\delta^n\|x_n\|<\frac{1}{1-\delta}.\]
+        在 $(\star)$ 式中取 $n\to\infty$, 得 $y=u(x)$, 故 $B_F\subset u(\frac{1}{1-\delta}B_E)$.
+        由 $u$ 的线性性, 有 $(1-\delta)B_F\subset u(B_E)$.
+        任取 $y\in B_F$, 总可取到 $0<\delta<1$ 使得 $1-\delta>\|y\|$, 故
+        $y\in u(B_E)$, 从而 $B_F\subset u(B_E)$. 这样就证明了 $u(B_E)=B_F$.
+    
+        \item 对任意 $x\in E$, 用 $[x]$ 表示以 $x$ 为代表元的等价类. 由定义可知, 若 $[x]=[y]$, 则
+        $u(x-y)=0$. 而且, 由于 $u$ 是连续的, 则 $\ker u$ 是 $E$ 的闭向量子空间, $E/\ker u$ 自然
+        成为一个赋范空间, 其上的范数 $\|\cdot\|$ 约定为
+        \[\|[x]\|=\inf_{y\in\ker u}\|x+y\|=\inf_{y\in[x]}\|y\|.\]
+        由于 $v\in\mathcal{B}(E/\ker u, F)$ 满足 $v\circ q=u$, 则 $v([x])=u(x)$, $\forall x\in E$. 
+        因 $u$ 是满射, 故 $v$ 也是满射; 而 $[x]\neq[y]$ 等价于 $u(x)\neq u(y)$, 故 $v$ 也是单射. 实际上, 由开
+        映射定理立即得到, $v$ 是 $E/\ker u$ 到 $F$ 的线性同构映射.
+    
+        任取 $[x]\in E/\ker u$, 设 $y=v([x])$, 则也有 $y=u(x)$. 那么由 $u(B_{E})=B_{F}$, 可
+        知对任意 $0<\varepsilon<1$, 存在 $x_{0}\in B_{E}$, 使得 
+        $u(x_0)=\varepsilon \frac{y}{\|y\|}$, 则又有 $y=u(\varepsilon^{-1}\|y\| x_{0})$.
+        于是得 $u(x-\varepsilon^{-1}\|y\| x_{0})=0$, 这表明 $\varepsilon^{-1}\|y\| x_{0}\in [x]$. 因此
+        \[
+        \|[x]\| \leq\bigl\|\varepsilon^{-1}\|y\|x_{0}\bigr\|\leq\varepsilon^{-1}\|y\|=\varepsilon^{-1}\|v([x])\| .
+        \]
+        由 $\varepsilon$ 的任意性, 即得 $\|[x]\|\leq\|v([x])\|$.
+    
+        另一方面, 对任意 $[x]\in E/\ker u$, 任取 $[x]$ 的代表元 $y$, 都有
+        \[
+        \|v([x])\|=\|u(y)\| \leq\|u\|\cdot\|y\|=\|y\|.
+        \]
+        对上式右边所有代表元的范数取下确界, 即得
+        \[\|v([x])\|\leq\inf_{y\in [x]}\|y\|=\|[x]\|.\]
+        综合以上讨论, 我们证明了 $v$ 是从 $E/\ker u$ 到 $F$ 上的等距同构映射.
+    
+        \textbf{另一种更直接的证明}:
+        任取 $x\in B_E$, 则有 $\|[x]\|\leq\|x\|<1$, 即
+        \[q(B_E)\subset B_{E/\ker u}.\]
+        反过来, 任取 $[x]\in B_{E/\ker u}$, 则必定存在代表元 $y\in[x]$, 
+        使得 $\|[x]\|\leq\|y\|<1$. 于是得 $y\in B_{E}$, 满足 $[x]=q(y)\in q(B_{E})$, 也就有
+        \[
+        B_{E/\ker u}\subset q(B_{E}).
+        \]
+        因此, 我们得到 $B_{E/\ker u}=q(B_{E})$. 再由 $u(B_{E})=B_{F}$, 以及 $u=v \circ q$, 立即得到
+        \[
+        v(B_{E/\ker u})=B_{F}.
+        \]
+        而且, 因 $v\in E/\ker u\to F$ 是同构映射, 故也有
+        \[
+        v^{-1}(B_{F})=B_{E/\ker u}.
+        \]
+        由以上两式立即得到 $\|v\|=\|v^{-1}\|=1$. 故 $v$ 是从 $E/\ker u$ 到 $F$ 上的等距同构映射.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $E$ 是 Banach 空间, $F$ 和 $G$ 都是 $E$ 的闭向量子空间, 并且 $F+G$
+  也是闭向量子空间. 证明: 存在一个常数 $C\geq 0$, 使得 $\forall x\in F+G$,
+  存在 $(f,g)\in F\times G$, 满足
+  \[x=f+g,\;\|f\|\leq C\|x\|,\;\|g\|\leq C\|x\|.\]
+    \begin{answer}
+      考虑乘积 Banach 空间 $F\times G$ (赋予范数 $\|(f,g)\|=\|f\|+\|g\|$)
+      和 Banach 空间 $F+G$ (范数即为 $E$ 中范数). 映射
+      \[u:F\times G\to F+G,\;(f,g)\mapsto f+g\]
+      为连续线性的满射, 由开映射定理, $u(B_{F\times G}(0,1))$ 为 $F+G$ 中含原点的开集,
+      取常数 $c>0$, 使得 $B_{F+G}(0,c)\subset u(B_{F\times G}(0,1))$.
+      则对于任意 $x\in F+G$ 且 $\|x\|<c$, 存在 $f\in F$, $g\in G$
+      且 $\|f\|+\|g\|<1$, 使得 $x=f+g$.
+
+      对于一般的 $x\in F+G$, 任取 $0<c'<c$, 由于 $x=\frac{\|x\|}{c'}\bigl(\frac{c'}{\|x\|}x\bigr)$,
+      其中 $\left\|\frac{c'}{\|x\|}x\right\|=c'<c$, 故存在 $f'\in F$, $g'\in G$,
+      使得 $\frac{c'}{\|x\|}x=f'+g'$ 且 $\|f'\|+\|g'\|<1$.
+      令 $f=\frac{\|x\|}{c'}f'$, $g=\frac{\|x\|}{c'}g'$, 则
+      $x=f+g$ 且
+      \[\|f\|+\|g\|=\frac{\|x\|}{c'}\bigl(\|f'\|+\|g'\|\bigr)<\frac{1}{c'}\|x\|.\]
+      由 $c'$ 的任意性即得 $\|f\|+\|g\|\leq\frac{1}{c}\|x\|$.
+      再令 $C=\frac{1}{c}$ 即证所需.
+    \end{answer}
+  \item 设 $H$ 是 Hilbert 空间, 且线性映射 $u:H\to H$ 满足
+  \[\innerp{u(x)}{y}=\innerp{x}{u(y)},\quad\forall x,y\in H.\]
+  证明: $u$ 连续.
+    \begin{answer}
+      考虑线性泛函
+      \[f_x:H\to\mathbb{K},y\mapsto\langle u(y),u(x)\rangle.\]
+      记 $H$ 中的闭单位球为 $\closure{B_H}$, 对于任意 $y\in H$,由 Cauchy-Schwarz 不等式有
+      \[\sup_{x\in\closure{B_H}}|f_x(y)|=\sup_{x\in\closure{B_H}}|\innerp{u(y)}{u(x)}|=\sup_{x\in \closure{B_H}}|\innerp{u(u(y))}{x}|\leq\|u(u(y))\|<\infty.\]
+      故由 Banach-Steinhaus 定理知
+      \[\sup_{x\in \closure{B_H}}\|f_x\|<\infty.\]
+      即
+      \[\sup_{x\in \closure{B_H}}\sup_{y\in \closure{B_H}}|\langle u(y),u(x )\rangle|<\infty.\]
+      因此
+      \[\|u\|^2=\sup_{x\in\closure{B_H}}\|u(x)\|^2=\sup_{x\in \closure{B_H}}\langle u(x),u(x)\rangle<\infty.\]
+      从而 $u$ 为有界算子, 亦即为连续算子.
+    \end{answer}
+\end{enumerate}
+
+
+
+
+\subsection{第7章习题}
+\begin{enumerate}
+  \item 
+\end{enumerate}
+
+
+\subsection{第8章习题}
+\begin{enumerate}
+  \item （习题8 T1）设 $1 \leqslant p \leqslant \infty$, 考虑 $\mathbb{R}^{2}$ 上的 $p$ 范数:
+    \[
+        \left\|\left(x_{1}, x_{2}\right)\right\|_{p}=\left(\left|x_{1}\right|^{p}+\left|x_{2}\right|^{p}\right)^{\frac{1}{p}}, \quad p<\infty ; \quad\left\|\left(x_{1}, x_{2}\right)\right\|_{\infty}=\max \left\{\left|x_{1}\right|,\left|x_{2}\right|\right\} .
+    \]
+    设 $F=\mathbb{R} \times\{0\}$, 即由 $e_{1}=(1,0)$ 生成的向量子空间, 并设 $f: F \rightarrow \mathbb{R}$ 是线性 泛函, 满足 $f\left(e_{1}\right)=1$.
+    \begin{enumerate}
+        \item 当 $\mathbb{R}^{2}$ 上赋予 $\|\cdot\|_{1}$ 范数时, 确定 $f$ 从 $F$ 到 $\mathbb{R}^{2}$ 的所有保范延拓.
+        \item 当 $\mathbb{R}^{2}$ 上赋予 $\|\cdot\|_{p}$ 范数时, 考虑同样的问题.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item For any extension $g\in (\mathbb R^2)^*$ of f such that $\|f\|_F = \|g\|$. We have
+        \[
+            |\lrangle{g}{x}| =
+            |k_1 + k_2\lrangle{g}{e_2}|\leq
+            \|x\|_1\max\{1, |\lrangle{g}{e_2}|\}, \forall x = k_1e_1 + k_2e_2,
+        \]
+        and
+        \[
+            |\langle g, k_1e_1\rangle| = |k_1| + |k_2|, |\langle g, k_2e_2\rangle| = (|k_1| + |k_2|)|\langle g, e_2\rangle|.
+        \]
+        Thus $\|g\|_1 = \max\{1, |\langle g, e_2\rangle|\}$. Therefore $|\langle g, e_2\rangle| \leq 1$.
+        \[\{g; \langle g, e_1\rangle = 1, |g(e_2)\langle g, e_2\rangle|\leq 1\}. \]
+        \item This case is almost identical to the first one. We can calculate $\|g\|_p = (1 + |\langle g, e_2\rangle|^q)^{\frac1q}$, where $\frac1p + \frac1q = 1$ if $p < \infty$ and $q = 1$ if $p = \infty$. Since $\|g\|_p = \|f\| = 1$, $|\langle g, e_2\rangle| = 0$.
+        \[\{g; \langle g, e_1\rangle = 1, \langle g, e_2\rangle=0\}. \]
+      \end{enumerate}
+    \end{answer}
+  \item （习题8 T4）设 $E$ 是 Hausdorff 拓扑向量空间, $A$ 是 $E$ 中包含原点的开凸集以及 $x_{0} \in E \backslash A$.
+    \begin{enumerate}
+        \item 证明: 存在 $f \in E^{*}$, 使得$\operatorname{Re} f\left(x_{0}\right)=1$, 且在 $A$ 上 $\operatorname{Re} f<1$.
+        \item 假设 $A$ 还是平衡的. 证明: 可以选择 $f \in E^{*}$, 使其满足
+        $$
+        f\left(x_{0}\right)=1 \text {, 且在 } A \text { 上 }|f|<1 \text {. }
+        $$
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item $\exists g\in E^*, \alpha \in \mathbb R$ s.t. $Re \langle g, x\rangle  < \alpha \leq Re \langle g, x_0\rangle, \forall x\in A$. Since $0\in A$, $\alpha >0$. Define $f = \frac1{Re\langle g, x_0\rangle}g$, therefore $Re \langle f, x\rangle  < 1 = Re\langle f, x_0\rangle$.
+        \item Let $h$ denote $\frac{Re \langle f, x_0\rangle}{\langle f, x_0\rangle}f$, and then
+        \[
+            \langle h, x_0\rangle = \frac{Re \langle f, x_0\rangle}{\langle f, x_0\rangle}\langle f, x_0\rangle = Re \langle f, x_0\rangle = 1.
+        \]
+        And for $x\in A$ s.t. $\langle h, x\rangle \neq  0$,
+        \[
+            |\langle h, x\rangle| =
+            \langle h, \frac{|\langle h, x\rangle|}{\langle h, x\rangle}x\rangle = Re\langle h, \frac{|\langle h, x\rangle|}{\langle h, x\rangle}x\rangle =
+            Re\langle f, \frac{Re \langle f, x_0\rangle}{\langle f, x_0\rangle}\frac{|\langle h, x\rangle|}{\langle h, x\rangle}x\rangle=:Re\langle f, \beta x \rangle.
+        \]
+        $\left|\beta\right|\leq 1$, and $x\in A$, hence $\beta x\in A$. Thus $|\langle h, x\rangle| = Re\langle f,\beta x\rangle < 1$.
+      \end{enumerate}
+    \end{answer}
+  \item （习题8 T5）设 $E$ 是 Hausdorff 局部凸空间, $A$ 是 $E$ 中包含原点的闭凸集以及 $x_{0} \in E \backslash A$.
+    \begin{enumerate}
+        \item 证明: 存在 $f \in E^{*}$, 使得
+        $$
+        \operatorname{Re} f\left(x_{0}\right)>1 \text { 且 } \sup _{x \in A} \operatorname{Re} f(x) \leqslant 1 \text {. }
+        $$
+        \item 假设 $A$ 还是平衡的. 证明: 可以选择 $f$, 使其满足
+        $$
+        f\left(x_{0}\right)=1 \text { 且 } \sup _{x \in A}|f(x)| \leqslant 1 \text {. }
+        $$
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item There exists $g\in E^*, alpha\in \mathbb R$ s.t. $Re\langle g, x\rangle < \alpha < Re \langle g, x_0\rangle, \forall x\in A$. Since $0 \in A$, $Re\langle g, x_0\rangle > 0$. Define $f = \frac1\alpha g$,
+        \[Re\langle f, x\rangle = \frac1\alpha Re \langle g, x\rangle \leq \frac\alpha\alpha = 1< \frac{Re\langle g, x_0\rangle}{\alpha} = Re\langle f, x_0\rangle.\]
+        \item Let $h$ denote $\frac1{\langle g, x_0\rangle} g$, and
+        \[\langle h, x_0\rangle = \langle\frac{1}{\langle g, x_0\rangle}g, x_0\rangle = 1.\]
+        Since $\left|\frac{|\langle g, x_0\rangle|}{\langle g, x_0\rangle}\right|\leq 1$, $\frac{|\langle g, x\rangle|}{\langle g, x\rangle}x\in A$. Then
+        \[|\langle h, x\rangle| = \frac1{|\langle g, x_0\rangle|}|\langle g, x\rangle| = \frac1{|\langle g, x_0\rangle|}\langle g, \frac{|\langle g, x\rangle|}{\langle g, x\rangle}x\rangle\leq \frac{|\langle g, x_0\rangle|}{|\langle g, x_0\rangle|} = 1\]
+    \end{enumerate}
+    \end{answer}
+  \item （习题8 T9）设 $E$ 是数域 $\mathbb{K}$ 上的拓扑向量空间. 称 $E$ 的向量子空间 $H$ 是超平面, 若有某 个 $x_{0} \in E \backslash H$, 使得 $E=H+\mathbb{K} x_{0}$.
+    \begin{enumerate}
+        \item 证明: 若 $H$ 是超平面, 则对任意 $x_{0} \in E \backslash H, E=H+\mathbb{K} x_{0}$ 成立.
+        \item 证明: 一个超平面或者是 $E$ 中的稠密集, 或者是闭集.
+        \item 证明: $H$ 是超平面当且仅当存在 $E$ 上的一个非零线性泛函 $f$, 使得 $H=$ $\operatorname{ker} f$. 因而 $H$ 是闭的等价于 $f$ 是连续的.
+    \end{enumerate}
+    称 $H$ 是一个仿射超平面, 若 $H$ 是某个超平面 $H_{0}$ 的平移, 也就是说, 存在某 个 $a \in E$, 使得 $H=H_{0}+a$. 因此, $H$ 是仿射超平面意味着存在一个线性泛 函 $f$, 以及某个常数 $\alpha \in \mathbb{K}$, 使得 $H$ 能被表示为 $H=\{x \in E: f(x)=\alpha\}$. 在 术语的使用上, 我们通常把仿射超平面也简单地称为超平面.
+    \begin{answer}
+      \begin{enumerate}
+        \item Since $x_0\notin H$, $\mathbb K \cap H = 0$ which means the sum $H + \mathbb K x_0$ is direct. Define $f:E\to \mathbb K, y + k x_0\in H+\mathbb K x_0\mapsto k$, and $\ker f = H$. For any $x_1\in E\setminus H$ and $\forall x\in E$, $f(x_1)\neq  0$. We claim that $x - \frac{f(x)}{f(x_1)}x_1\in \ker f$. Indeed $f(x - \frac{f(x)}{f(x_1)}x_1) = f(x) - f(x) = 0$. Therefore, $x \in H + \mathbb K x_1$, which means $E = H + \mathbb K x_1$.
+        \item If $x_2\in E\setminus \overline H$, then $\exists g\neq  0 \in E^*$ such that $\langle g, y\rangle < \langle g, x_2\rangle, \forall y \in \overline H$. If exist $y_0\in \overline H$ s.t. $\langle g, y_0 \rangle > 0$, then $\langle g, k y_0\rangle\to \infty, k\to\infty$, which is impossible. Then $\overline H \subset \ker g$. If we can find $x$ such that $ x\in \ker g\setminus H$, then $H + \mathbb K x = E$ while $H\subset \ker g$ and $x\in \ker f$, which is impossible. Therefore $H = \ker g$, then $H$ is close.
+        \item If $H$ is a hyperplane, the function $f$ is the corresponding linear functional of $H$. Conversely, if $H = \ker f$, $\exists x_0\in E\setminus \ker g$. $\forall x \in E$, $x = (x - \frac{f(x)}{f(x_0)}x_0) + \frac{f(x)}{f(x_0)}x_0\in \ker f + \mathbb K x_0$, hence $H$ is a hyperplane.
+    \end{enumerate}
+    \end{answer}
+  \item （习题8 T11）设 $\left(X,\|\cdot\|_{X}\right)$ 是实赋范空间, $\bar{B}_{X}$ 表示该空间中的闭单位球. 假设 $K \geqslant 1, C$ 是 $X$ 中闭凸对称子集 ( $C$ 对称是指 $x \in C \Longrightarrow-x \in C$ ), 且满足
+    $$
+    B_{X} \subset C \subset K \bar{B}_{X}
+    $$
+    定义
+    $$
+    p(x)=\inf \left\{\lambda>0: \frac{x}{\lambda} \in C\right\}, \forall x \in X .
+    $$
+    \begin{enumerate}
+        \item 证明: $p$ 是 $X$ 上和 $\|\cdot\|_{X}$ 等价的范数. 更精确地说, 证明:
+        $$
+        \frac{1}{K}\|x\| \leqslant p(x) \leqslant\|x\|, \forall x \in X .
+        $$
+        \item 设 $x \in X$. 证明:\begin{enumerate}
+            \item $x \in X \backslash C \Longleftrightarrow p(x)>1$.
+            \item $x \in \stackrel{\circ}{C} \Longleftrightarrow p(x)<1$.
+            \item $x \in \partial C \Longleftrightarrow p(x)=1$.
+        \end{enumerate}
+        \item 任取 $x \in \partial C$. 证明: 存在 $X$ 上的连续线性泛函 $f$, 使得 $f(x)=1$ 且在集 合 $C$ 上, $|f| \leqslant 1$.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item $\forall x, y\in X$, $\frac{x}{p(x) + \varepsilon}, \frac{y}{p(y) + \varepsilon}\in C$ for all $\varepsilon > 0$, it follows that
+        \[\frac{x + y}{p(x) + p(y) + 2\varepsilon} = \frac{p(x) + \varepsilon}{p(x) + p(y) + 2\varepsilon}\frac{x}{p(x) + \varepsilon} + \frac{p(x) + \varepsilon}{p(x) + p(y) + 2\varepsilon}\frac{y}{p(y) + \varepsilon}\in C, \]
+        and therefore $p(x+y) \leq p(x) + p(y) + 2\varepsilon$. Thus $p(x + y) \leq p(x) + p(y)$.
+    
+        For all $ x \in X, \lambda\in \mathbb R\setminus \{0\}, \frac{\lambda x}{p(\lambda x) + \varepsilon} = \frac{x}{\frac{1}{|\lambda|}(p(\lambda x) + \varepsilon}\in C$ and thus $|\lambda|p(x)\leq p(\lambda x) + \varepsilon$. Conversely, $\frac{x}{p(x) + \varepsilon} = \frac{\lambda x}{|\lambda|(p(x) + \varepsilon)}\in C$, we find that $p(\lambda x)\leq |\lambda|p(x)$. Therefore, $p(\lambda x) = |\lambda|p(x)$.
+    
+        For all $x\in X$, $\frac{x}{\|x\|}\in \overline{B_X}\subset C$, it follows that $p(\frac{x}{\|x\|})\leq 1$ which means $p(x)\leq \|x\|$. Also $\frac{x}{p(x) + \varepsilon}\in C$ for small enough $\varepsilon > 0$, then $\|\frac{x}{p(x) + \varepsilon}\|\leq K$, which means $\frac1K\|x\|\leq p(x)$.
+    
+        We see that $p(x)$ is a norm and $\frac1K\|x\|\leq p(x)\leq \|x\|$.
+        \item \begin{enumerate}
+            \item If $x\notin C$, we obtain $\exists \lambda > 0$ such that $(1-\lambda) x\notin C$ ($C$ is closed). Assume $p(x)<\frac1{\lambda-1}$, then exists $\mu : 1-\lambda < \mu <1$ such that $\frac x \mu\in C$. Therefore $x = (1-\mu)\times0 + \mu\times\frac{x}{\mu}\in C$ which contradicts the assumption that $x\notin C$. Hence $p(x) \geq \frac1{1-\lambda}>1$. Conversely, we can immediately obtain that $x\notin C$ if $p(x) > 1$.
+    
+            \item For all $x\in Int C$, we can find $\lambda > 0$ such that $(1+\lambda)x\in C$. It follows that $p(x) \leq \frac1{1+\lambda} < 1$. Conversely, if $x\in p^{-1}((-\infty, 1))$, then $p(x) < 1$ and $x\in C$ ($x\notin C\iff p(x) > 1$). Since $p^{-1}((-\infty, 1))$ is open, $x\in Int C$. Therefore we can see that $Int C = p^{-1}((-\infty, 1))$.
+    
+            \item \[\partial C = C\setminus (Int C) = (X\setminus \{x; p(x)>1\})\setminus\{x; p(x) < 1\} = \{x; p(x) = 1\}. \]
+        \end{enumerate}
+        \item Since $x\notin Int C$, there exist $g\in X^*$ s.t.
+        \[ \langle g, y\rangle < \langle g, x\rangle, \forall y \in Int C. \]
+        By $0\in Int C, \langle g, x\rangle > 0$. Denote $f = \frac1{\langle g, x\rangle g}$, then $f\in X^*$ and $f < 1$ on $Int C$. Since $C$ is convex, $\overline{Int C} = \overline C$ and thus $f(C) = f(\overline{Int C})\subset \overline{f(Int C)}\subset(-\infty, 1]$. And $C$ is symmetric, $f(C)\subset [-1, 1]$. Therefore
+        \[ |f| \leq 1\ on\ C\ and \ \langle f, x\rangle = 1. \]
+    \end{enumerate}
+    \end{answer}
+  \item （习题8 T16）考虑空间 $\ell_{\infty}$ 和它的向量子空间 $F$ :
+    $$
+    F=\left\{x \in \ell_{\infty}: \lim _{n \rightarrow \infty} m_{n}(x) \text { 存在 }\right\} \text {, 其中 } m_{n}(x)=\frac{1}{n} \sum_{k=1}^{n} x_{k} \text {. }
+    $$
+    \begin{enumerate}
+        \item 定义 $f: F \rightarrow \mathbb{R}$ 为 $f(x)=\lim _{n \rightarrow \infty} m_{n}(x)$. 证明: $f \in F^{*}$.
+        \item 证明: 存在 $\ell_{\infty}$ 上连续线性泛函 $m$ 满足下面的性质:\begin{enumerate}
+            \item $\liminf _{n \rightarrow \infty} x_{n} \leqslant \langle m, x\rangle  \leqslant \limsup _{n \rightarrow \infty} x_{n}, \forall x \in \ell_{\infty}$.
+            \item $m \circ \tau=m$, 这里 $\tau: \ell_{\infty} \rightarrow \ell_{\infty}$ 是右移算子, 即 $\tau(x)_{n}=x_{n+1}$. ( $m$ 被称为 Banach 平均或 $\ell_{\infty}$-极限.)
+        \end{enumerate}
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item We can obtain it from definition easily that
+        \[ |m_n(x)| \leq \frac1n\sum_{k=1}^n |x_k|\leq \|x\|_\infty. \]
+        Then $|f(x)| = |\lim m_n(x)|\leq \|x_\infty\|.$
+        \item Define $p: l^\infty\to \mathbb R, (x_n)\mapsto \lim \frac1n|\sum_{k = 1}^nx_k|$, and we can obtain $p(x) \geq 0, p(x + y)\leq p(x) + p(y)$ and $|\lambda|p(x) = p(\lambda x)$. Since $p(x) \leq \|x\|_\infty$, $p$ is a continous seminorm. Therefore, $\exists m\in (l^\infty)^*$ s.t. $m = f$ on $F$ and $|m|\leq p$ on $l^\infty$.
+
+        Let $x^*$ denote $\overline\lim x_n$ and $x_*$ denote $\underline \lim x_n$. We obtain that
+        \[ \langle m, x\rangle  = \langle m, x-x_*\rangle + x_* \leq p(x-x_*) + x_*.\]
+        We claim that $p(x-x_*)\leq \overline\lim |x_n - x_*| = x^*-x_*$. Indeed, there exist $N>0$ such that $\forall n > N$, $|x_n - x_*| \leq \overline\lim |x_n - x_*| + \varepsilon$ for any $\varepsilon>0$. Thus
+        \[ \frac1n|\sum_{k=1}^n x_k - x_*|\leq \frac1n \sum_{k=1}^N |x_k - x_*| + \frac{n-N}{n}\overline\lim|x_n - x_*| + \varepsilon. \]
+        Then we have $\langle m, x\rangle \leq p(x-x_*) + x_*\leq x^*$. Conversely, we have $\langle m, -x\rangle \leq -x_*$, and it follows that $x_*\leq \langle m, x\rangle \leq x^*$.
+
+        Since
+        \[ p(\tau x - x) = \overline\lim \frac1n |\sum_{k = 1}^nx_k - x_{k+1}| = \overline\lim\frac1n(|x_{n+1}-x_1|)\leq \overline\lim \frac{2\|x\|_\infty}{n} = 0, \]
+        and then $|\langle m, \tau x - x\rangle|\leq p(\tau x - x) = 0$, $\langle m, \tau x\rangle = \langle m, x\rangle$.
+      \end{enumerate}
+    \end{answer}
+\end{enumerate}
+
+
+\subsection{第9章习题}
+\begin{enumerate}
+  \item （习题9 T1）设$E$是赋范空间, 并设$E^*$是可分的
+    \begin{enumerate}
+        \item 令$(f_n)$是$E^*$中的稠密子集. 选出$E$中的序列$(x_n)$使得$f_n(x_n)\geq \|f_n\|/2$.
+        \item 任取$f\in E^*$. 证明:若对每个$x_n$有$f(x_n)=0$, 则$f=0$.
+        \item 由此导出$\text{span}\{x_1, x_2, \cdots\}$在$E$中稠密且$E$是可分的.
+        \item 证明: 一个Banach空间是可分且自反的当且仅当它的对偶空间是可分且自反的.
+        \item 举一个可分赋范空间但其对偶空间不可分的例子.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item Fix n. Since $\|f_n\| = \sup_{\|x\leq 1|}\langle f_n, x \rangle$,  $\exists x_n\in B_E$ s.t.  $\langle f_n, x_n\rangle \geq \|f_n\|/2$.
+        \item For all $\varepsilon > 0$, $\exists n$ s.t. $\|f - f_n\|\leq \varepsilon$. Then
+        \[
+            \frac{\|f_n\|}{2}\leq\langle f_n, x_n\rangle = \langle f_n - f, x_n\rangle \leq \|f_n - f\|\|x_n\|\leq \varepsilon.
+        \]
+        Therefore,
+        \[
+            \|f\|\leq \|f - f_n\| + \|f_n\|\leq 3\varepsilon \Rightarrow \|f\| = 0.
+        \]
+        \item Let $L_0$ denote the vector space over $Q$ by the $(x_n)$, and $L=\text{span}_{n\geq1}\{x_n\}$ denote the vector space over $R$ by the $(x_n)$. $L_0$ is a countable subset and a dense subset of $L$.  We have proved that $\forall f \in E^*$ such that $f$ vanishes on $(x_n)\subset L$, $f = 0$. Then $L$ dense in $E$, which means $L_0$, a countable set, dense in $E$.
+        \item Assume that $E^*$ is reflexive and separable. We have proved above that $E$ is separable. Let $J^*$ denote the canonical injection from $E^*$ to $(E^*)^{**}$, and $J$ denote the cannonical injection from $E$ to $E^{**}$. We want to prove that $J(E)$ is a dense subset in $E^{**}$. Indeed forall $\xi = J^*(f)\in E^{***}$ vanishes on $J(E)$,
+        \[
+            \langle J^*(f), J(x)\rangle_{E^{***},E^{**}} =
+            \langle J(x), f\rangle_{E^{**}, E^*} =
+            \langle f, x\rangle_{E^*, E} = 0, \forall x \in E
+            \Rightarrow f = 0.
+        \]
+        Since $J(E)\simeq E$ which means $J(E)$ is a close subset in $E^{**}$, then $J(E) = E^{**}$. Therefore $E$ is reflexive and separable.
+
+        Conversely, if $E$ is reflexive, $E^{***} = (E^{**})^*\simeq E^{*}$. Thus $E^*$ is reflexive. Since $E\simeq E^{**} = (E^*)^*$ is separable, $E^*$ is separable. Thus $E^*$ is reflexive and separable.
+        \item $l^1$ is separable but its dual space $l^{\infty}=(l^1)^*$ is not separable. Indeed
+        \[A = \{a = (a_i)\in l^\infty;a_i\in \mathbb Z\}\]
+        is an uncountable subset of $l^\infty$, and denote $Q$ is a dense subset of $l^\infty$. For any distinct element $a,b$ in $A$, $\|a - b\|\geq1$, there exists element $q_a, q_b\in Q$ such that $\|q_a - a\|<\frac12, \|q_b - b\|<\frac12$. Since $\|q_a - q_b\|\geq \|a - b\| -\|q_a - a\| - \|q_b - b\| > 0$, the map $a\in A\mapsto q_a\in Q$ is injective. Then $Q$ should not be countable while $A$ is uncountable.
+      \end{enumerate}
+    \end{answer}
+  \item （习题9 T2）设$E$是Banach空间, $B\subset E^*$.
+    \begin{enumerate}
+        \item 证明$B$是相对$w^*-$紧的当且仅当$B$是有界的.
+        \item 假设$B$是有界的且$E$是可分的. 证明$(B, \sigma(E^*, E))$可度量化. (提示, 对于$E$的闭单位球中稠密序列$(q_n)$, 考虑距离$d(f, g) = \sum 2^{-n}|\langle f-g, q_n\rangle_{E^*, E}|$.)
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item Let $B_{E^*}$ denote the unit close ball of $E^*$.
+
+        If $\overline B$ is compact in the weak$^*$ topology, $\sup_{f\in \overline B}\lrangle{f}{x} = \max_{f\in \overline B} \lrangle{f}{x}<+\infty$. Using the Uniform Boundedness Principle, we find that $\sup_{f\in\overline B}\|f\|<+\infty$, which means $B$ is bounded in $E^*$.
+
+        Conversely, assume that $B$ is bounded in $E^*$, then there exists $r>0$ s.t. $\overline B\subset B_{E^*}$. Since $B_{E^*}$ is compact in the weak$^*$ topology, the close subset $\overline B$ is also $w^*$-compact.
+
+        \item Let $\{q_n\}_{n \leq 1}$ denote the countable dense subset of the unit close ball of $E$. Clearly, \[d(f, g) = \sum 2^{-n}|\lrangle{f-g}{q_n}|\leq \sum 2^{-n} \|f - g\|\leq \|f - g\|<+\infty\] is a metric on $B$.
+
+        To prove the topology of $(B, d)$ is the same topology as the one in $(E^*, \sigma(E^*, E))$ restricted in $B$, we should prove that for any open neighbourhood $V$ of $\sigma(E^*, E)$ is open in $(B, d)$, and vise versa.
+
+        \begin{enumerate}
+            \item Let $f_0\in B$, denote $V = \{f\in B; |\lrangle{f - f_0}{x_i}|<\varepsilon, i = 1, \cdots, N\}$. Denote $m = \max_{1\leq i\leq N} \|x_i\|$. Since $\{q_n\}$ is dense in the unit close ball of $E$, $\forall i$, exists $q_{n_i}$ s.t. \[\|q_{n_i} - \frac{1}{m} x_i\|\leq \frac{\varepsilon}{4m\sup\|f\|}. \]
+            Denote $M = \max{n_1, \cdots, n_N}$, $r = \frac{\varepsilon}{m2^{M+1}}$. For all $g\in U = \{g\in B; d(g, f_0) < r\}$,
+            \[ \begin{aligned}
+                \frac1m|\lrangle{g - f_0}{x_i}|
+                &\leq |\lrangle{g - f_0}{q_{n_i}}| + |\lrangle{g - f_0}{q_{n_i}-x_i}| \\
+                &< 2^{M} r + \|g - f_0\|\|q_{n_i} - x_i\| \\
+                &\leq \frac{\varepsilon}{2m} + 2\sup\|f\|\frac{\varepsilon}{4m\sup\|f\|} = \frac\varepsilon m
+            \end{aligned} \]
+            and therefore $U\subset V$. It follows that every open set of $\sigma(E^*, E)$ is open in $(B, d)$.
+
+            \item Conversely, let $f_0\in B$, and denote $U = \{ f\in B; d(f, f_0) < \varepsilon\}$. $\exists N > 0$, s.t. $\varepsilon > 2^N\sup\|f\|$ and then denote $\varepsilon_0 = \varepsilon - 2^N\sup\|f\|$. For all $f\in V = \{f\in B; |\lrangle{f-f_0}{q_n}|\leq \frac{\varepsilon_0}{2N}, i = 1, \cdots N\}$,
+            \[ \begin{aligned}
+                d(f, f_0) &= \sum2^{-n} |\lrangle{f-f_0}{q_n}| \leq \sum_{n \leq N+1} |\lrangle{f-f_0}{q_n}| +  \sum_{n > N+1}|\lrangle{f-f_0}{q_n}|\\
+                &< (N+1) \frac{\varepsilon_0}{2N} + \|f - f_0\| 2^{N-1}\leq \varepsilon_0 + 2^N\sum\|f\|=\varepsilon
+            \end{aligned}\]
+            Thus $V\subset U$, and therefore any open subset of $(B, d)$ is open in $\sigma(E^*, E)$.
+        \end{enumerate}
+    \end{enumerate}
+    \end{answer}
+  \item （习题9 T3）设$E$是赋范空间, $A\subset E$. 
+    \begin{enumerate}
+      \item 假设$A$是弱紧的. 证明: 若对任意$f\in E^*, \{\lrangle{f}{x}; x\in A\}$是有界的, 则$A$是有界的.
+      \item 假设$A$有界且$E^*$可分. 证明: $(A, \sigma(E, E^*))$可度量化.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item Let $\varphi_x : E^*\to \mathbb R,f\mapsto \lrangle{f}{x}$, and we obtain $\|\varphi_x\| = \|x\| < +\infty$ which means $\varphi_x\in E^{**}$. Since $A$ is compact in weak topology, then $f(A)$ is compact in $\mathbb R$ and
+        \[ \sup_{x\in A}|\lrangle{\varphi_x}{f}| = \sup_{x\in A} |\lrangle{f}{x}| < +\infty, \forall f \in E^* \]
+        By Uniform Boundedness Principle, we have $\sup_{x\in A}\|x\| = \sup_{x\in A} \|\varphi_x\| < +\infty$.
+        \item Denote $J$ as the canonical projection from $E$ to $E^{**}$. Then $A$'s boundedness means $J(A)$'s boundedness. By the conclution of Ex 9.2, we find that $(J(A), \sigma(E^{**}, E^{*}))$ is metrizable. And then $(A, \sigma(E, E^*))$ is metrizable.
+      \end{enumerate}
+    \end{answer}
+  \item （习题9 T7）设 $E$ 和 $F$ 是两个 Banach 空间, $u: E^{*} \rightarrow F^{*}$ 是线性映射. 证明: 映射
+    $$
+    u:\left(E^{*}, \sigma\left(E^{*}, E\right)\right) \rightarrow\left(F^{*}, \sigma\left(F^{*}, F\right)\right)
+    $$
+    连续的充分必要条件是存在 $v \in \mathcal{B}(F, E)$, 使得 $u=v^{*}$.
+    \begin{answer}
+      If $\exists v\in B(F, E)$ s.t. $u = v^*$, we immediately find $u = v^*\in B(E^*, F^*)$. It suffices to check that $\forall x\in F, g_x: f\in E^*\mapsto \lrangle{u(f)}{x}$ is continous from $E$ weak$^*$ to $\mathbb R$. We obtain
+      \[ \begin{aligned}
+          g_x(f) = \lrangle{u(f)}{x}=\lrangle{f}{v(x)}
+      \end{aligned} \]
+      and $v(x)\in E$, hence $g_x = J(v(x))$ is continous on $\sigma(E^*, E)$. Therefore $u$ is continous from $(E, \sigma(E^*, E))$ to $(F, \sigma(F^*, F))$.
+
+      Conversely, $\forall x \in F$, denote $g_x: E^*\to \mathbb R, f\mapsto \lrangle{u(f)}{x}$. We obtain that $g_x\in E^{**}$ is w$^*$ continous on $E^*$. Then exists $x_1, \cdots, x_n\in E, \varepsilon > 0$ such that
+      \[ |g_x(f)| < 1 , \forall f\in V = \{ f\in E^*; |\lrangle{f}{x_i}| < \varepsilon , i = 1,\cdots, n \}.  \]
+      Hence for any $h\in K = \cap_i \{h; \lrangle{h}{x_i} = 0\}$, $\lrangle{g_x}{h}= 0$. Indeed if $\lrangle{g_x}{h} \neq  0$, $|\lrangle{g_x}{kh}|\to \infty(k\to\infty)$. But $kh\in K\subset V$ and then $|g_x(kh)|<1$ which is impossible. Therefore exists $\lambda_1, \cdots, \lambda_n\in \mathbb R$ s.t.
+      \[\lrangle{g_x}{f^*}_{E^{**}, E^*} = \lrangle{f^*}{\sum_{i=1}^n\lambda_i x_i}_{E^*, E}:= \lrangle{f^*}{x^*}, \forall f^*\in E^*. \]
+      Let $v: x\in F\mapsto x^*\in E$. We obtain $\lrangle{f}{v(x)} = \lrangle{g_x}{f} = \lrangle{u(f)}{x}$, then
+      \[ \begin{aligned}
+          &\lrangle{f}{v(k_1x_1 + k_2x_2)} = \lrangle{u(f)}{k_1x_1 +k_2x_2}\\
+          =&k_1\lrangle{u(f)}{x_1} + k_2\lrangle{u(f)}{x_2}
+          =\lrangle{f}{k_1v(x_1) + k_2v(x_2)}, \forall f\in E^*,
+      \end{aligned}\]
+      and
+      \[ |\lrangle{f}{v(x)}| = |\lrangle{u(f)}{x}|\leq \|u\|\|f\|\|x\|\Rightarrow \|v(x)\|\leq \|u\|\|x\|. \]
+      Therefore, $v\in B(F, E)$.
+    \end{answer}
+  \item （习题9 T9）构造空间 $\ell_{\infty}^{*}$ 的单位球面上的一个序列, 使其没有 $w^{*}-$收敛的子序列. 这是否与 Banach-Alaoglu 定理矛盾? 如果在 $\ell_{\infty}$ 上有什么结论?
+    \begin{answer}
+      It can be happened that $B$ is compact but $(f_n)\subset B$ has no converge subsequence if $B$ is not metrizable. However, if $B\subset \ell_\infty = \ell_1^*$, $\ell_1$ is separable which means every bounded subsets of $\ell_1^*$ are metrizable. Therefore for any bounded subset $B$ of $\ell_\infty$, any sequence $(x_n)\subset B$ has a converge subsequence in $(\ell_1^*, \sigma(\ell_1^*, \ell_1))$.
+
+      Denote $e_n = (0, \cdots, 0, 1, 0, \cdots)$, and $\{e_n\}\subset \ell_1\subset \ell_\infty^*$. $\|e_n\|_{\ell_1} = 1$, and then $e_n\in S(\ell_\infty^*)$. Assume that exists $n_k$ such that $e_{n_k}\to f\in \ell_\infty^*$ in $\sigma(\ell_\infty^*, \ell_1)$. Then $\forall (x_n)\in \ell^\infty$ such that $x_n$ is not converged, $\lrangle{e_{n_k}}{x} = x_{n_k}\to \lrangle{f}{x}$ but $x_n$ is not converged. Therefore $(e_{n})$ has not any $w^*$-converge subsequence.
+    \end{answer}
+  \item （习题9 T10）刻画 $\ell_{p}$ 的对偶空间比刻画 $L_{p}$ 的对偶要容易. 试不用课程中的结论, 直接导 出
+    \[
+    \ell_{p}^{*} \cong \ell_{q}, 1 \leqslant p<\infty, \quad \frac{1}{p}+\frac{1}{q}=1 .
+    \]
+    并且证明
+    \[
+    c_{0}^{*} \cong \ell_{1} .
+    \]
+    由此导出 $c_{0}, \ell_{1}$ 和 $\ell_{\infty}$ 都不是自反的.
+  \item （习题9 T12）
+    \begin{enumerate}
+      \item 设 $E$ 是自反 Banach 空间. 证明: 每个 $\varphi \in E^{*}$ 可以达到范数, 即存在 $x_{0} \in E$, 使得 $\left|\varphi\left(x_{0}\right)\right|=\|\varphi\|$.
+      \item 由此导出已知的事实: $\ell_{1}, L_{1}(0,1)$ 和 $C([0,1])$ 都不是自反的. (提示: 对空间 $C([0,1])$ 考察泛函 $\varphi=\int_{0}^{\frac{1}{2}}-\int_{\frac{1}{2}}^{1}$.)
+      \item 证明: $C^{1}([0,1])$ 不是自反的, 这里 $C^{1}([0,1])$ 上赋予的范数是 $\|f\|=$ $\|f\|_{\infty}+\left\|f^{\prime}\right\|_{\infty}$ .(提示: 可以考虑 $C^{1}([0,1])$ 中由在原点处取零值的函数构成的子空间.)
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item $\forall \varphi\in E^*$, exists $\xi\in E^{**}$ such that $\lrangle{\xi}{\varphi} = \|\varphi\|^2$(by corollary of Hahn-Banach theorem). Since $E$ is reflexive, $\xi\in E$. Thus $x_0 = \frac1{\|\varphi\|}\xi\in E$ and than $\lrangle{\varphi}{x_0} = \|\varphi\|$.
+        \item Let $\varphi_1=(1-\frac1n)_{n > 0}\in \ell_\infty=\ell_1^*$. $\|\varphi_1\| = 1$, but  $|\varphi_1(x)| = \sum (1 - \frac1n)|x_i| < \|x\|_1, \forall x\in \ell_1$.
+
+        Let $\varphi_2(x) = x \in L_1^*$, and $\|\varphi_2\|=1$. But $|\varphi_2(f)| = \int_0^1 xf dx < \int_0^1 |f|dx = \|f\|_1, \forall f\in L^1$.
+
+        Let $\varphi = \int_0^{1/2} - \int_{1/2}^1$, and
+        \[ |\varphi(f)| = |\int_0^{\frac12}f - \int_{\frac{1}{2}}^1f |\leq \int_0^1|f|\leq\|f\|_\infty. \]
+
+        Set
+        \[ f_n(x) = \left\{\begin{aligned}
+            &1\quad &x < \frac12 - \frac1n\\
+            &-n(x-\frac12)\quad&\frac12 - \frac1n < x < \frac12 + \frac1n\\
+            &-1\quad &x > \frac12 + \frac1n
+        \end{aligned}\right. ,\]
+        and $\varphi(f_n) = 1 - \frac1n\to 1(n\to\infty)$ which means $\|\varphi\|_{C([0,1])} = 1$. However, if $f\in C([0, 1])$ such that $\varphi(f) = 1$ and $\|f\| = 1$, we obtain that
+        \[
+            \int_0^1|f| = \|f\|_\infty \ and \ \|f\|=1 \iff f = \pm 1,
+        \]
+        but $|\varphi(\pm1)| = 0$ which contradicts. Therefore $|\varphi(f)|/\|f\| < 1, \forall f\in C([0, 1])$.
+      \end{enumerate}
+    \end{answer}
+\end{enumerate}
+
+
+\subsection{第11章习题}
+\begin{enumerate}
+  \item （习题11 T8）设$E$和$F$是赋范空间。证明下面的命题成立： 
+    \begin{enumerate}
+      \item 若$(x_n)$是$E$的弱收敛序列，则$(x_n)$有界。 
+      \item 若$T\in\mathcal{B}(E,F)$且$x_n$弱收敛到$x$，则$T(x_n)$弱收敛到$T(x)$。 
+      \item 若$T\in\mathcal{B}(E,F)$是紧算子且$x_n$弱收敛到$x$，则$T(x_n)$依范数收敛到$T(x)$。 
+      \item 若$E$自反，$T\in\mathcal{B}(E,F)$且当$x_n$弱收敛到$x$时，有$T(x_n)$依范数收敛到 $T(x)$，则$T$是紧算子。 
+      \item 若$E$自反，且$T\in\mathcal{B}(E,l_1)$或$T\in\mathcal{B}(c_0,E)$，则$T$是紧算子。
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 若$(x_n)$是$E$中的弱收敛序列，设其极限为$x$，则对任意$f\in E^*$，有$\lim\limits_{n\rightarrow \infty}f(x_n)=f(x)$。令$\hat{x_n}(f)=f(x_n)$，则$\hat{x_n}\in\mathcal{B}(E^*,\mathbb{R})$，且对任意$f\in E^*$，$(\hat{x_n}(f))_{n\geqslant 1}$有界。因此由Banach-Steinhaus定理，$\sup\limits_{n\geqslant 1}||x_n||=\sup\limits_{n\geqslant 1}||\hat{x_n}||<\infty$，从而$(x_n)_{n\geqslant 1}$有界。 
+
+        \item 若$T\in\mathcal{B}(E,F)$，则$T^*\in\mathcal{B}(F^*,E^*)$，则对任意$f\in F^*$，
+        \[ \lim\limits_{n\rightarrow \infty}<f,T(x_n)>=\lim\limits_{n\rightarrow \infty}<T^*(f),x_n>=<T^*(f),x>=<f,T(x)>.\] 
+        
+        \item 由$(a)$知$(x_n)_{n\geqslant 1}$有界，而$T$是紧算子，故$(T(x_n))_{n\geqslant 1}$相对紧，从而$(T(x_n))_{n\geqslant 1}$任一子列必有收敛子列$(T(x_{n_k}))_{k\geqslant 1 }$，且该子列必依范数收敛于$T(x)$，这是因为若$(T(x_{n_k}))_{k\geqslant 1}$依范数收敛到$y$，则对任意$f\in F^*$，我们有
+        \[|f(T_{x_{n_k}})-f(y)|\leqslant ||f||~||T(x_{n_k})-y||.\]
+        因此$T_{x_{n_k}}$弱收敛于$T(y)$，但由$(b)$知，$T(x_n)$弱收敛于$T(x)$，因此$y=f(x)$。 若$T(x_n)$不依范数收敛于$T(x)$，则对任意正整数$N$，存在$n_0>N$，使得$||T(x_{n_0})-T(x)||>1$
+        ，从而可选取一子列$(T(x_{n_k}))_{k\geqslant 1}$，使得$||T(x_{n_k})-T(x)||\geqslant1$，但由上述讨论可知$T((x_{n_k}))_{k\geqslant 1}$有收敛于$T(x)$的子列，矛盾！因此$T(x_n)$依范数收敛于$T(x)$。 
+        
+        \item 由第九章第4题的结论，若$E$是的自反的，设$(x_n)_{n\geqslant 1}\subset B_E$，则存在子列$(x_{n_k})_{k\geqslant 1}$，使得$(x_{n_k})_{k\geqslant1}$弱收敛于$x$。由题目条件知$T(x_{n_k})$依范数收敛到$T(x)$，这说明$T(B_E)$相对紧，从而$T$是紧算子。
+        $(e)$由第八章第22题的结论知，$l_1$的依范数收敛与弱收敛等价。故若$l_1$中的序列$(x_n)$弱收敛到$x$，则$(x_n)$依范数收敛到$x$，从而$T(x_n)$依范数收敛到$T(x)$，由$(d)$知，$T$是紧算子。 
+        若$T\in \mathcal{B}(c_0,E)$，则$T^*\in \mathcal{B}(l_1,E^*)=\mathcal{B}(l_1,E)$，故由上一段讨论知$T^*$是紧算子，从而$T$是紧算子。
+      \end{enumerate}
+    \end{answer}
+  \item （习题11 T9）设$(e_n)$是$l_2$中的标准基。定义算子$T:l_2\rightarrow l_2$为
+  \[T(\sum_{n\geqslant 1}x_n e_n)=\sum_{n\geqslant 1}\dfrac{x_n}{n}e_n,\quad (x_n)_{n\geqslant 1}\in l_2.\]
+  证明：$T\in \mathcal{K}(l_2)$。 
+    \begin{answer}
+      定义
+      \[T_N(\sum_{n\geqslant 1}x_n e_n)=\sum_{n=1}^{N}\dfrac{x_n}{n}e_n.\]
+      则$T_N$是有限秩算子，且
+      \[\begin{aligned}
+        ||T(\sum_{n\geqslant 1}x_n e_n)-T_N (\sum_{n\geqslant 1}x_n e_n)||^2&=||\sum_{n=N+1}^{\infty}\dfrac{x_n}{n}e_n||^2\\
+                &=\sum_{n=N+1}^\infty \dfrac{|x_n|^2}{n^2}\\
+                &\leqslant \sum_{n=N+1}^\infty \dfrac{1}{n^2}\cdot\sum_{n=N+1}^\infty |x_n|^2\\
+                &\leqslant \sum_{n=N+1}^\infty \dfrac{1}{n^2}\cdot \sum_{n=1}^\infty |x_n|^2.
+      \end{aligned}\] 
+      因此$\lim\limits_{N\rightarrow \infty}||T-T_N||\leqslant\lim\limits_{N\rightarrow \infty} \sqrt{\sum_{n=N+1}^\infty \frac{1}{n^2}}=0$，从而$T$是紧算子。
+    \end{answer}
+  \item （习题11 T10）设$(\alpha_n)_{n\geqslant 1}\subset\mathbb{C}$。定义算子$T\in \mathcal{B}(c_0)$为
+  \[T(x)=(\alpha_n x_n)_{n\geqslant1},\quad x=(x_n)_{n\geqslant 1}\in c_0.\]
+  证明：$T\in \mathcal{K}(c_0)$当且仅当$\lim\limits_{n\rightarrow \infty}\alpha_n=0$。
+    \begin{answer}[][若$\lim\limits_{n\rightarrow \infty} \alpha_n\not=0$，则存在子列$(\alpha_{n_k})_{k\geqslant 1}$，使得对任意$k\geqslant 1$，$|\alpha_{n_k}|\geqslant 1$。设$e_i=(0,\cdots,0,1,0,\cdots)$（在第$i$个坐标处是1，其余坐标都是0）， 则$A=\left\{ e_i;i\geqslant 1\right\}$在$c_0$中有界，且
+      \[Te_{n_j}=\alpha_{n_j}e_{n_j},\]
+      但对任意$i\not= j$，
+      \[||Te_{n_j}-Te_{n_i}||=\max\left\{|\alpha_{n_i}|,|\alpha_{n_j}|\right\}>1,\]
+      故$(Te_{n_j})_{j\geqslant1}$的任一子列都不是Cauchy列，从而不收敛，这说明$T(A)$在$c_0$不是相对紧的。这与$T$是紧算子矛盾，故$\lim\limits_{n\rightarrow \infty}\alpha_n=0$。 ]
+      设$T_N(x)=(\alpha_n x_n)_{1\leqslant n\leqslant N}$，则$T_N$是有限秩算子。
+      且
+      \[\begin{aligned}
+        ||T(x)-T_N(x)||&=\sup_{n\geqslant N+1}|\alpha_n x_n|\\ 
+                      &\leqslant \sup_{n\geqslant N+1}|\alpha_n| \sup_{n\geqslant 1}|x_n|.
+      \end{aligned}\]
+      由于$\lim\limits_{N\rightarrow \infty} \sup\limits_{n\geqslant N+1}|\alpha_n|=\limsup\limits_{n\rightarrow \infty}|\alpha_n|=\lim\limits_{n\rightarrow \infty}|\alpha_n|=0$。故
+      \[\lim\limits_{N\rightarrow \infty}||T-T_N||\leqslant  \lim\limits_{N\rightarrow \infty}\sup_{n\geqslant N+1}|\alpha_n|=0.\]
+      从而$T$是紧算子。
+    \end{answer}
+\end{enumerate}
