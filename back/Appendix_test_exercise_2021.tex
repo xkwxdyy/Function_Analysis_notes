@@ -1197,7 +1197,7 @@
                               & \leq a\sup\limits_{0\leq x\leq 1}\int_0^x|f_1(t^b)-f_2(t^b)|\e^{-Mt^b}\cdot \e^{Mt^b}\diff t\cdot \e^{-Mx}\\
                               & \leq\|f_1-f_2\|\cdot a\sup\limits_{0\leq x\leq 1}\int_0^x \e^{Mt^b}\diff t\cdot \e^{-Mx}\\
                               & \leq\|f_1-f_2\|\cdot a\sup\limits_{0\leq x\leq 1}\int_0^x \e^{Mt}\diff t\cdot \e^{-Mx}\\
-                              & =\|f_1-f_2\|\cdot\sup\limits_{0\leq x\leq 1}\R ac{a\left(1-\e^{-Mx}\right)}{M}\leq\R ac{a}{M}\|f_1-f_2\|.
+                              & =\|f_1-f_2\|\cdot\sup\limits_{0\leq x\leq 1}\frac{a\left(1-\e^{-Mx}\right)}{M}\leq\frac{a}{M}\|f_1-f_2\|.
         \end{align*}
         故当 $M>a$ 时, $\|T(f_1)-T(f_2)\|<\|f_1-f_2\|$, 也就是此时$T$是压缩映射.
         
@@ -1368,7 +1368,7 @@
         \|v^{-1}-u^{-1}\|
         &=\|\sum_{n=1}^{\infty}(u^{-1}(u-v))^nu^{-1}\|\\
         &\leq\|u^{-1}\|\cdot\sum_{n=1}^{\infty}(\|u-v\|\cdot\|u^{-1}\|)^n\\
-        &=\R ac{\|u^{-1}\|^2\|u-v\|}{1-\|u^{-1}\|\cdot\|u-v\|}.
+        &=\frac{\|u^{-1}\|^2\|u-v\|}{1-\|u^{-1}\|\cdot\|u-v\|}.
         \end{split}\]
         当 $\|u-v\|\to 0$ 时, $\|u^{-1}-v^{-1}\|\to 0$, 所以 $\Phi$ 连续;
         \item $\Phi=\Phi^{-1}$
@@ -1382,32 +1382,32 @@
   证明对任意可测函数 
     $f:\left(\varOmega_{1} \times \varOmega_{2}, \mathcal{A}_{1} \otimes \mathcal{A}_{2}\right) \rightarrow\K$, 有
     \begin{align*}
-        &\left(\int_{\varOmega_{2}}\left(\int_{\varOmega_{1}}\left|f\left(x_{1}, x_{2}\right)\right|^{p}\diff\mu_{1}(x_{1})\right)^{\R ac{q}{p}}\diff \mu_{2}\left(x_{2}\right)\right)^{\R ac{1}{q}} \\
-      \leq &\left(\int_{\varOmega_{1}}\left(\int_{\varOmega_{2}}\left|f\left(x_{1}, x_{2}\right)\right|^{q}\diff\mu_{2}\left(x_{2}\right)\right)^{\R ac{p}{q}}\diff\mu_{1}\left(x_{1}\right)\right)^{\R ac{1}{p}}.
+        &\left(\int_{\varOmega_{2}}\left(\int_{\varOmega_{1}}\left|f\left(x_{1}, x_{2}\right)\right|^{p}\diff\mu_{1}(x_{1})\right)^{\frac{q}{p}}\diff \mu_{2}\left(x_{2}\right)\right)^{\frac{1}{q}} \\
+      \leq &\left(\int_{\varOmega_{1}}\left(\int_{\varOmega_{2}}\left|f\left(x_{1}, x_{2}\right)\right|^{q}\diff\mu_{2}\left(x_{2}\right)\right)^{\frac{p}{q}}\diff\mu_{1}\left(x_{1}\right)\right)^{\frac{1}{p}}.
     \end{align*}
     \begin{answer}
       首先由 Fubini 定理可得
       \begin{align*}
-          & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}}\diff\mu_2(x_2) \\
-      ={} & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}-1}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)\diff\mu_2(x_2) \\
-      ={} & \int_{\varOmega_1}\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}-1}\cdot |f(x_1,x_2)|^p\diff\mu_2(x_2)\diff\mu_1(x_1).
+          & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\frac{q}{p}}\diff\mu_2(x_2) \\
+      ={} & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\frac{q}{p}-1}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)\diff\mu_2(x_2) \\
+      ={} & \int_{\varOmega_1}\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\frac{q}{p}-1}\cdot |f(x_1,x_2)|^p\diff\mu_2(x_2)\diff\mu_1(x_1).
       \end{align*}
       然后由 H\"older 不等式得
       \begin{align*}
-          & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}-1}\cdot |f(x_1,x_2)|^p\diff\mu_2(x_2) \\
-      \leq{} & \biggl[\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}}\diff\mu_2(x_2)\biggr]^{\R ac{q-p}{q}}\biggl(\int_{\varOmega_2}|f(x_1,x_2)|^q\diff\mu_2(x_2)\biggr)^{\R ac{p}{q}}.
+          & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\frac{q}{p}-1}\cdot |f(x_1,x_2)|^p\diff\mu_2(x_2) \\
+      \leq{} & \biggl[\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_,x_2)|^p\diff\mu_1(x_1)\biggr)^{\frac{q}{p}}\diff\mu_2(x_2)\biggr]^{\frac{q-p}{q}}\biggl(\int_{\varOmega_2}|f(x_1,x_2)|^q\diff\mu_2(x_2)\biggr)^{\frac{p}{q}}.
       \end{align*}
       故
       \begin{align*}
-          & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}}\diff\mu_2(x_2) \\
-      \leq{} & \biggl[\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}}\diff\mu_2(x_2)\biggr]^{\R ac{q-p}{q}}\cdot\int_{\varOmega_1}\biggl(\int_{\varOmega_2}|f(x_1,x_2)|^q\diff\mu_2(x_2)\biggr)^{\R ac{p}{q}}\diff\mu_1(x_1).
+          & \int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\frac{q}{p}}\diff\mu_2(x_2) \\
+      \leq{} & \biggl[\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_,x_2)|^p\diff\mu_1(x_1)\biggr)^{\frac{q}{p}}\diff\mu_2(x_2)\biggr]^{\frac{q-p}{q}}\cdot\int_{\varOmega_1}\biggl(\int_{\varOmega_2}|f(x_1,x_2)|^q\diff\mu_2(x_2)\biggr)^{\frac{p}{q}}\diff\mu_1(x_1).
       \end{align*}
       即
-      \[\biggl[\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\R ac{q}{p}}\diff\mu_2(x_2)\biggr]^{\R ac{p}{q}}\leq\int_{\varOmega_1}\biggl(\int_{\varOmega_2}|f(x_1,x_2)|^q\diff\mu_2(x_2)\biggr)^{\R ac{p}{q}}\diff\mu_1(x_1).\]
+      \[\biggl[\int_{\varOmega_2}\biggl(\int_{\varOmega_1}|f(x_1,x_2)|^p\diff\mu_1(x_1)\biggr)^{\frac{q}{p}}\diff\mu_2(x_2)\biggr]^{\frac{p}{q}}\leq\int_{\varOmega_1}\biggl(\int_{\varOmega_2}|f(x_1,x_2)|^q\diff\mu_2(x_2)\biggr)^{\frac{p}{q}}\diff\mu_1(x_1).\]
       因此
       \begin{align*}
-          & \left(\int_{\varOmega_{2}}\left(\int_{\varOmega_{1}}\left|f\left(x_{1}, x_{2}\right)\right|^{p}\diff\mu_{1}(x_{1})\right)^{\R ac{q}{p}}\diff \mu_{2}\left(x_{2}\right)\right)^{\R ac{1}{q}} \\
-      \leq{} & \left(\int_{\varOmega_{1}}\left(\int_{\varOmega_{2}}\left|f\left(x_{1}, x_{2}\right)\right|^{q}\diff\mu_{2}\left(x_{2}\right)\right)^{\R ac{p}{q}}\diff\mu_{1}\left(x_{1}\right)\right)^{\R ac{1}{p}}.\qedhere
+          & \left(\int_{\varOmega_{2}}\left(\int_{\varOmega_{1}}\left|f\left(x_{1}, x_{2}\right)\right|^{p}\diff\mu_{1}(x_{1})\right)^{\frac{q}{p}}\diff \mu_{2}\left(x_{2}\right)\right)^{\frac{1}{q}} \\
+      \leq{} & \left(\int_{\varOmega_{1}}\left(\int_{\varOmega_{2}}\left|f\left(x_{1}, x_{2}\right)\right|^{q}\diff\mu_{2}\left(x_{2}\right)\right)^{\frac{p}{q}}\diff\mu_{1}\left(x_{1}\right)\right)^{\frac{1}{p}}.\qedhere
       \end{align*}
     \end{answer}
   \item (\textbf{卷积}) 
