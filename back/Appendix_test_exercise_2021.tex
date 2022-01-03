@@ -476,7 +476,7 @@
         \item $\phi(O)$是闭集. 只需证明$\phi(O)$完备,
               任取 $\phi(O)$ 中的 Cauchy 序列 $\{(x_n,\rho_n)\}$,
               设其在 $E\times\mathbb{R}$ 中收敛到 $(x,\rho)$,
-              由Cauchy序列的有界性知存在 $M>0$, 使得 $0\leq\rho_n<M$, 且 $x\in\closure{O}$, 则 $x\in O$ 或者 $x\in\partial O$.
+              由Cauchy序列的有界性知存在 $M>0$, 使得 $0\leq\rho_n<M$, 且 $x\in \bar{O}$, 则 $x\in O$ 或者 $x\in\partial O$.
               若 $x\in\partial O$, 则 $d(x,O^C)=0$, 故存在 $n_o$, 使得 $d(x_{n_0},O^C)<\frac{1}{M}\Rightarrow\rho_{n_0}>M$,矛盾.
               所以 $x\in O$, 因此 $(x,\rho)\in\phi(O)$, 故 $\phi(O)$ 完备.
         \item $\phi^{-1}$连续. 由$(x_n,\rho_n)\rightarrow (x,\rho)$显然得到$x_n\rightarrow x$,故$\phi^{-1}$连续
@@ -539,7 +539,7 @@
   \item 设 $(E,d)$ 是度量空间且 $A\subset E$. 假设 $A$ 中任一 Cauchy 序列在 $E$ 中收敛,
   证明 $A$ 的闭包 $\overline{A}$ 是完备的.
     \begin{answer}
-      任取 $\closure{A}$ 中的 Cauchy 序列 $(x_n)_{n\geq 1}$.
+      任取 $\bar{A}$ 中的 Cauchy 序列 $(x_n)_{n\geq 1}$.
       对于 $\forall\varepsilon>0$, 存在序列 $(y_n)_{n\geq 1}\subset A$ 使得对于 $\forall n\geq 1$ 有
       \[d(x_n,y_n)<\frac{\varepsilon}{3}.\]
       因为 $(x_n)_{n\geq 1}$是 Cauchy 序列, 所以对于上述 $\varepsilon>0$,
@@ -547,10 +547,10 @@
       \[d(x_m,x_n)<\frac{\varepsilon}{3},\]
       于是
       \[d(y_m,y_n)\leq d(y_m,x_m)+d(x_m,x_n)+d(x_n,y_n)<\varepsilon,\]
-      所以 $(y_n)_{n\geq 1}$ 是 $A$ 中的 Cauchy 序列, 由题目条件知 $y_n\to y\in\closure{A}$,
+      所以 $(y_n)_{n\geq 1}$ 是 $A$ 中的 Cauchy 序列, 由题目条件知 $y_n\to y\in\bar{A}$,
       于是对于上述 $\varepsilon>0$, 存在 $M\geq 1$, 使得当 $n\geq M$ 时 $d(y_n,y)<\frac{2}{3}\varepsilon$,
       从而 $d(x_n,y)<d(x_n,y_n)+d(y_n,y)<\frac{\varepsilon}{3}+\frac{2}{3}\varepsilon=\varepsilon$.
-      所以$x_n\to y\in\closure{A}$, 由完备性定义知 $\closure{A}$ 完备.
+      所以$x_n\to y\in\bar{A}$, 由完备性定义知 $\bar{A}$ 完备.
     \end{answer}
   \item 设 $(E,d)$ 是度量空间, 而 $(x_n)$ 是 $E$ 中发散的 Cauchy 序列. 证明
     \begin{enumerate}
@@ -1913,14 +1913,14 @@
         \[\sup_{x,y\in[0,1],x\neq y}\|\varPhi_{x,y}\|<\infty.\]
         也即 $\{\varPhi_{x,y}\mid x,y\in[0,1],x\neq y\}$ 是 $E^*$ 中的有界集.
     
-        \item 记 $E$ 中的闭单位球为 $\closure{B_E}$, 则由 (a) 中结论知
-        \[\sup_{x,y\in[0,1],x\neq y}\sup_{f\in \closure{B_E}}\|\varPhi_{x,y}(f)\|<\infty.\]
+        \item 记 $E$ 中的闭单位球为 $\bar{B_E}$, 则由 (a) 中结论知
+        \[\sup_{x,y\in[0,1],x\neq y}\sup_{f\in \bar{B_E}}\|\varPhi_{x,y}(f)\|<\infty.\]
         即
-        \[\sup_{x,y\in[0,1],x\neq y}\sup_{f\in \closure{B_E}}\left|\frac{f(y)-f(x)}{y-x}\right|<\infty.\]
-        这说明 $\closure{B_E}$ 在 $[0,1]$ 上一致等度连续, 故必然等度连续.
-        又对任意 $x\in[0,1]$, $\closure{B_E}$ 的轨道
-        \[\closure{B_E}(x)=\{f(x):f\in \closure{B_E}\}=\{f(x):\max_{0\leq x\leq 1}|f(x)|=1\}\]
-        有界, 故由 Ascoli 定理知 $\closure{B_E}$ 在 $E$ 中相对紧, 从而紧, 根据 Riesz 引理知 $\textrm{dim}E<\infty$.
+        \[\sup_{x,y\in[0,1],x\neq y}\sup_{f\in \bar{B_E}}\left|\frac{f(y)-f(x)}{y-x}\right|<\infty.\]
+        这说明 $\bar{B_E}$ 在 $[0,1]$ 上一致等度连续, 故必然等度连续.
+        又对任意 $x\in[0,1]$, $\bar{B_E}$ 的轨道
+        \[\bar{B_E}(x)=\{f(x):f\in \bar{B_E}\}=\{f(x):\max_{0\leq x\leq 1}|f(x)|=1\}\]
+        有界, 故由 Ascoli 定理知 $\bar{B_E}$ 在 $E$ 中相对紧, 从而紧, 根据 Riesz 引理知 $\textrm{dim}E<\infty$.
       \end{enumerate}
     \end{answer}
   \item 设 $E,F$ 都是 Banach 空间, $u\in\mathcal{B}(E,F)$ 并满足 $u(B_E)$ 在 $B_F$ 中稠密.
@@ -1945,7 +1945,7 @@
         \[\|u(x)\|\geq\|y\|-\|u(x)-y\|\geq 1-2\varepsilon.\]
         由 $\varepsilon$ 的任意性知 $\|u\|=1$.
     
-        \item 由条件知, $u(B_{E})\subset B_{F}$ 且 $B_{F}\subset\closure{u\left(B_{E}\right)}$. 
+        \item 由条件知, $u(B_{E})\subset B_{F}$ 且 $B_{F}\subset\bar{u\left(B_{E}\right)}$. 
         我们采用和教材中开映射定理 6.3.1 类似的证明过程, 首先任取常数 $0<\delta<1$, 对任意 $y\in B_{F}$, 取 $x_0\in B_{E}$, 使得
         \[
         \|y-u(x_0)\|<\delta.
@@ -2046,14 +2046,14 @@
     \begin{answer}
       考虑线性泛函
       \[f_x:H\to\mathbb{K},y\mapsto\langle u(y),u(x)\rangle.\]
-      记 $H$ 中的闭单位球为 $\closure{B_H}$, 对于任意 $y\in H$,由 Cauchy-Schwarz 不等式有
-      \[\sup_{x\in\closure{B_H}}|f_x(y)|=\sup_{x\in\closure{B_H}}|\innerp{u(y)}{u(x)}|=\sup_{x\in \closure{B_H}}|\innerp{u(u(y))}{x}|\leq\|u(u(y))\|<\infty.\]
+      记 $H$ 中的闭单位球为 $\bar{B_H}$, 对于任意 $y\in H$,由 Cauchy-Schwarz 不等式有
+      \[\sup_{x\in\bar{B_H}}|f_x(y)|=\sup_{x\in\bar{B_H}}|\innerp{u(y)}{u(x)}|=\sup_{x\in \bar{B_H}}|\innerp{u(u(y))}{x}|\leq\|u(u(y))\|<\infty.\]
       故由 Banach-Steinhaus 定理知
-      \[\sup_{x\in \closure{B_H}}\|f_x\|<\infty.\]
+      \[\sup_{x\in \bar{B_H}}\|f_x\|<\infty.\]
       即
-      \[\sup_{x\in \closure{B_H}}\sup_{y\in \closure{B_H}}|\langle u(y),u(x )\rangle|<\infty.\]
+      \[\sup_{x\in \bar{B_H}}\sup_{y\in \bar{B_H}}|\langle u(y),u(x )\rangle|<\infty.\]
       因此
-      \[\|u\|^2=\sup_{x\in\closure{B_H}}\|u(x)\|^2=\sup_{x\in \closure{B_H}}\langle u(x),u(x)\rangle<\infty.\]
+      \[\|u\|^2=\sup_{x\in\bar{B_H}}\|u(x)\|^2=\sup_{x\in \bar{B_H}}\langle u(x),u(x)\rangle<\infty.\]
       从而 $u$ 为有界算子, 亦即为连续算子.
     \end{answer}
 \end{enumerate}
@@ -2063,7 +2063,244 @@
 
 \subsection{第7章习题}
 \begin{enumerate}
-  \item 
+  \item 设 $E$ 是拓扑向量空间, $A,B\subset E$.
+
+    \begin{enumerate}
+      \item 证明: 若 $A$ 是开集, 则 $A+B$ 也是开集.
+
+      \item 证明: 若 $A$ 和 $B$ 是紧的且 $E$ 是一个 Hausdorff 空间, 则 $A+B$ 也是紧的.
+
+      \item 构造 $\R^2$ 上的例子, 说明 $A$ 和 $B$ 是闭集, 但 $A+B$ 不是闭集.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 因为
+        \[A+B=\bigcup_{y\in B}(A+y).\]
+        所以 $A+B$ 是开集.
+    
+        \item $\varPhi:(x,y)\mapsto x+y$ 是连续映射, 因$A,B$紧, 故 $A\times B$紧, 故 $A+B=\varPhi(A\times B)$紧.
+    
+        \item 取 $A=\{(x,0)\mid x\in\R\}$, $B=\{xy=1\mid x>0\}$,
+        则 $A$ 和 $B$ 都是 $\R^2$ 中闭集, 但是 $A+B$ 不是闭集.
+        事实上, $A+B$ 中序列
+        \[(-n,0)+(n,\frac{1}{n})=(0,\frac{1}{n})\to (0,0),\]
+        但是 $(0,0)\notin A+B$, 因此 $A+B$ 不是闭集.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $E$ 是拓扑向量空间, $f$ 是 $E$ 到 $F$ 的线性泛函 ($f$ 不恒为 $0$). 
+  并假设 $H=f^{-1}(0)$ 是闭集. 本题的目的是证明在该假设下 $f$ 是连续的.
+
+    \begin{enumerate}
+      \item 证明: 存在元素 $a\in E$, 使得 $f(a)=1$.
+
+      \item 证明: $E\setminus f^{-1}(1)$ 是含有原点的开集.
+  
+      \item 设 $V$ 是包含于 $E\setminus f^{-1}(1)$ 的原点处的平衡邻域. 证明: $|f|$ 在 $V$ 上被 $1$ 严格控制, 进而导出 $f$ 连续.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 由于 $f$ 不恒为 $0$, 故存在 $x\in E$, 使得 $f(x)\neq 0$.
+        取 $a=\frac{x}{f(x)}\in E$, 则 $f(a)=1$.
+    
+        \item 显然 $E\setminus f^{-1}(1)$包含原点,
+        下证其为开集. 任取 $x\in E\setminus f^{-1}(1)$, 则 
+        \[f(x)\neq 1\Rightarrow f(x-a)\neq 0\Rightarrow x-a\in E\setminus f^{-1}(0).\]
+        而 $E\setminus f^{-1}(0)$ 为开集, 故存在开集 $U$ 使得 
+        \[x-a\in U\subset E\setminus f^{-1}(0).\]
+        那么 $a+U$ 也为开集且
+        \[x\in a+U\subset E\setminus f^{-1}(1).\]
+        因此 $E\setminus f^{-1}(1)$ 为开集.
+    
+        \item (反证法) 假设存在 $x\in V$, 使得 $|f(x)|=\lambda>1$,
+        则由 $V$ 是平衡的可得 $\frac{x}{\lambda}\in V$ 且 $|f(\frac{x}{\lambda})|=1$,
+        这与 $V\subset E\setminus f^{-1}(1)$ 相矛盾.
+        因此在 $V$ 上, $|f|<1$, 由推论 7.1.11 知 $f$ 连续.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $\varOmega$ 表示开圆盘 $\{z\in\C\mid |z|<3\}$, $K$ 表示闭单位圆盘 $\{z\in\C\mid |z\leq 1|\}$.
+  对 $f\in H(\varOmega)$ 定义
+  \[p(f)=\sup_{z\in K}|f(z)|.\]
+
+    \begin{enumerate}
+      \item 证明: $p$ 是 $H(\varOmega)$ 上的范数.
+
+      \item 证明: 由 $p$ 诱导的拓扑不同于在 $\varOmega$ 的紧子集上一致收敛的拓扑.
+      (提示: 可以考虑函数 $f_n(z)=\e^{n(z-2)}$.)
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 直接按定义验证.
+
+        \item 考虑 $f_n(z)=\e^{n(z-2)}$, 则在 $K$ 上有
+        \[\sup_{z\in K}|f_n(z)|=\sup_{z\in K}\left|\e^{n(z-2)}\right|=\e^{-n}\to 0.\]
+        故 $(f_n)_{n\geq 1}$ 依 $p$ 范数收敛于 $0$.
+        但在紧子集 $\{z\in\C: |z|\leq 2\}$ 上, $f_n(2)=1$, 故 $(f_n)_{n\geq 1}$ 不是一致收敛的.
+      \end{enumerate}
+    \end{answer}
+  \item 设 $A$ 是 $[0,1]$ 的可数子集, 且映射 $\alpha: A \rightarrow(0,+\infty)$ 
+  满足 $\sum_{t\in A}\alpha(t)<+\infty$. 对 $f\in C([0,1],\R)$ 定义
+  \[\|f\|_{A,\alpha}=\sum_{t\in A}\alpha(t)|f(t)|.\]
+
+    \begin{enumerate}
+      \item 证明: $\|\cdot\|_{A,\alpha}$ 是 $C([0,1],\R)$ 上的半范数. 什么时候它是一个范数? 
+      什么时候它等价于一致范数 $\|\cdot\|_{\infty}$?
+  
+      \item 证明: 两个半范数 $\|\cdot\|_{A, \alpha}$ 和 $\|\cdot\|_{A',\alpha'}$ 诱导相同的拓扑当且仅当 $A=A'$ 且
+      \[
+      0<\inf_{t\in A} \alpha'(t)/\alpha(t)\leqslant \sup_{t\in A} \alpha'(t)/\alpha(t)<\infty.
+      \]
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 首先由 $f \in C([0,1], \R)$, 知 $\sup_{t \in A}|f(t)|<\infty$. 那么
+        \[\|f\|_{A,\alpha}=\sum_{t\in A}\alpha(t)|f(t)|\leq\sup_{t\in A}|f(t)|\sum_{t \in A} \alpha(t)<+\infty.\]
+        并且容易验证 $\|\cdot\|_{A, \alpha}$ 是满足半范数满足的其它公理. 
+        而且可以看到, 若取 $A=\{1,\frac{1}{2},\ldots,\frac{1}{n},\ldots\}$, 
+        令映射 $\alpha: \frac{1}{n} \rightarrow \frac{1}{2^{n}}$, 
+        并设 $f$ 为在 $A$ 上取 $0$ 的 “锯齿” 函数, 则 $\|f\|_{A,\alpha}=0$, 但 $f\not\equiv 0$, 即 $\|f\|_{A,\alpha}$ 不是一个范数.
+    
+        由定义可知, $\|f\|_{A, \alpha}=0$ 等价于 $f(t)=0$, $t\in A$. 由此可以证明: $\|\cdot\|_{A, \alpha}$ 
+        是一个范数当且仅当 $A$ 在 $[0,1]$ 中稠密.
+    
+        实际上, 若 $A$ 在 $[0,1]$ 中稠密, 则由 $f(t)=0$, $t\in A$, 及 $f$ 的连续性, 得 $f(t)=0$, $\forall t \in[0,1]$. 
+        反过来, 假设 $A$ 在 $[0,1]$ 中不稠密, 那么存在点 $t\in[0,1]$
+        及 $t$ 的开邻域 $I$, 使得 $A\cap I=\emptyset$, 即 $A \subset[0,1]\setminus I$.
+        那么可取 $[0,1]$ 上的连续函数 $f$ 在 $[0,1]\setminus I$ 上为 $0$ , 而在 $I$ 上不为 $0$, 
+        这与 $\|\cdot\|_{A,\alpha}$ 是一个范数相予盾.
+    
+        最后, 我们来证明: 对任意一个半范数 $\|\cdot\|_{A,\alpha}$, 它都不等价于一致范数 $\|\cdot\|_{\infty}$.
+        对可列集 $A$ 中的元素排序, 记 $A=(t_{i})_{i\geq 1}$. 
+        由 $\sum_{t_i\in A} \alpha(t)<+\infty$, 存在 $N>0$, 使得当 $i\geq N$ 时, 
+        有 $\sum_{i \geq N} \alpha(t_i)<\varepsilon$. 接下来, 选择一个连续函数 $f$ 满足 $\|f\|_{\infty}=1$, 且
+        \[
+        f(t)= \begin{cases}0, & t=t_{i}, i<N \\ 1, & t=t_{N+1}\end{cases}
+        \]
+        那么
+        \[
+        \|f\|_{A,\alpha}=\sum_{i>N} \alpha(t_i)|f(t_i)|\leq\sum_{i>N} \alpha(t_i)<\varepsilon,
+        \]
+        这意味着一致范数 $\|\cdot\|_{\infty}$ 关于半范数 $\|\cdot\|_{A,\alpha}$ 不是有界的.
+    
+        \item 首先证明充分性. 设 $C_1=\inf_{t\in A}\alpha'(t)/\alpha(t)$, 
+        $C_{2}=\sup_{t \in A} \alpha'(t)/\alpha(t)$, 则由充分性条件知 $0<C_1\leq C_2<\infty$. 故
+        \[C_{1}\|f\|_{A,\alpha}\leq\|f\|_{A',\alpha'}=\sum_{t\in A'} \alpha'(t)|f(t)|=\sum_{t\in A} \frac{\alpha'(t)}{\alpha(t)} \alpha(t)|f(t)|\leq C_{2}\|f\|_{A,\alpha}.\]
+        即证两个范数 $\|\cdot\|_{A, \alpha}$ 和 $\|\cdot\|_{A', \alpha'}$ 等价.
+    
+        下面证明必要性, 我们先假设 $A\neq A'$. 
+        不妨设存在 $t_{i_0}\in A$, 但 $t_{i_{0}}\notin A'$. 任取 $\varepsilon>0$, 则存在 $N>0$, 
+        当 $i\geq N$ 时, 有 $\sum_{i\geq N} \alpha'(t_i')<\varepsilon$. 取连续函数 $f$ 满足 $\|f\|_{\infty}=1$, 且
+        \[f(t)=\begin{cases} 0, & t=t_{i}',\forall i<N; \\ 1, & t=t_{i_{0}} .\end{cases}\]
+        则有
+        \[\|f\|_{A,\alpha'}=\sum_{i>N} \alpha'(t_{i}')|f(t_{i}')|<\varepsilon,\]
+        而
+        \[\|f\|_{A, \alpha}\geq\alpha(t_{i_0}),\]
+        这意味着两个半范数 $\|\cdot\|_{A, \alpha}$ 和 $\|\cdot\|_{A', \alpha'}$ 诱导的拓扑不同. 因此必有 $A=A'$.
+    
+        接下来, 我们假设 $A=A'=(t_i)_{i\geq 1}$. 两个半范数 $\|\cdot\|_{A,\alpha}$ 和 $\|\cdot\|_{A',\alpha'}$
+        诱导的拓扑相同, 意味着存在常数 $C_1,C_2>0$, 使得
+        \begin{equation}
+            C_1\|f\|_{A,\alpha}\leq\|f\|_{A',\alpha'}\leq C_2\|f\|_{A,\alpha}.\tag{$\star$}
+        \end{equation}
+        任取一个 $t_{i_0}$, 则 $N>0$, 使得当 $i\geq N$ 时, 
+        有 $\sum_{i\geq N} \alpha(t_i)\leq\alpha(t_{i_0})$. 取连续函数 $f$ 满足 $\|f\|_{\infty}=1$, 且
+        \[
+        f(t)=
+        \begin{cases}
+            0, & t=t_{i},\forall i<N \text {\ 且\ }i\neq i_{0}; \\
+            1, & t=t_{i_{0}}.
+        \end{cases}\]
+        则有
+        \[\|f\|_{A, \alpha}\leq 2\alpha(t_{i_0})\quad\text{ 且 }\quad\|f\|_{A,\alpha'}\geq\alpha'(t_{i_{0}}).\]
+        综合上面的两个不等式以及 $(\star)$ 式, 立即可得
+        \[\alpha'(t_{i_{0}}) \leq\|f\|_{A, \alpha'} \leq C_{2}\|f\|_{A,\alpha}\leq 2C_2\alpha(t_{i_{0}}).\]
+        因此对任意 $t\in A$, 有 $\alpha'(t)/\alpha(t)\leq 2C_2$. 类似上面的讨论, 也有
+        \[
+        \alpha(t_{i_0})\leq\frac{2}{C_{1}}\alpha'(t_{i_{0}}).
+        \]
+        故结论成立.
+      \end{enumerate}
+    \end{answer}
+  \item 令 $0<p<1$, 考虑空间 $L_p=L_p(0,1)$, 并在 $L_p$ 上赋予距离 $d_{p}(f, g)=\|f-g\|_p^p$. 
+  本习题的目标是证明 $L_p$ 不是局部凸的且没有非零线性泛函.
+
+    \begin{enumerate}
+      \item 证明: $L_p$ 是拓扑向量空间.
+
+      接下来, 我们先考虑 $p=\frac{1}{2}$ 的情形, 用 $B(r)$ 表示中心在原点、半径为 $r$ 的 $L_{\frac{1}{2}}$ 中的闭单位球: 
+      $B(r)=\left\{f \in L_{\frac{1}{2}}\colon \|f\|_{\frac{1}{2}}^{\frac{1}{2}} \leqslant r\right\}$.
+  
+      \item 取 $f\in B(\sqrt{2}r)$. 证明: 存在 $t_0 \in(0,1)$, 使得
+      \[
+      \int_{0}^{t_0}|f(t)|^{\frac{1}{2}}\diff t=\frac{\|f\|_{\frac{1}{2}}^{\frac{1}{2}}}{2}.
+      \]
+  
+      \item 定义
+      \[g(t)=
+      \begin{cases}
+          2f(t), & 0\leqslant t\leqslant t_{0}, \\
+          0, & t_{0}<t\leqslant 1,
+      \end{cases}\quad\text{且}\quad 
+      h(t)=\begin{cases}
+          0, & 0 \leqslant t \leqslant t_{0}, \\
+          2f(t), & t_{0}<t \leqslant 1.
+      \end{cases}\]
+      证明:
+      \[g, h \in B(r) \quad \text{且} \quad f=\frac{g}{2}+\frac{h}{2}.\]
+  
+      \item 由此导出 $B(\sqrt{2} r)\subset\conv(B(r))$, 并有 $\conv(B(r))=L_{\frac{1}{2}}$.
+  
+      \item 得出 $L_{\frac{1}{2}}$ 是非局部凸的.
+  
+      \item 把以上结论推广到 $0<p<1$ 的情形.
+  
+      \item 证明: $L_{p}$ 上只有零线性泛函是连续的.
+    \end{enumerate}
+    \begin{answer}
+      \begin{enumerate}
+        \item 只证明映射 $\varPhi:L_p\times L_p\to L_p,(f,g)\mapsto f+g$ 连续,
+        对于加法的连续性同理可证, 对于以 $f+g$ 为中心的任意开球 $V=B(f+g,r)$,
+        取 $U_1=B(f,r/2),U_2=B(g,r/2)$, 则对任意 $f_1\in B(f,r/2),g_1\in B(g,r/2)$, 有
+        \[\|f_1-f\|_p^p<\frac{r}{2},\|g_1-g\|_p^p<\frac{r}{2}.\]
+        由距离的三角不等式有
+        \[\|(f_1+g_1)-(f+g)\|_p^p\leq\|f_1-f\|_p^p+\|g_1-g\|_p^p<\frac{r}{2}+\frac{r}{2}=r.\]
+        所以 $f_1+g_1\in V$, 故 $U_1+U_2\subset V$, 由定义知 $\varPhi$连续.
+    
+        \item 令
+        \[\varPhi(t)=\int_0^t|f(x)|^{\frac{1}{2}}\diff x.\]
+        则 $\varPhi(0)=0$, $\varPhi(1)=\|f\|_{\frac{1}{2}}^{\frac{1}{2}}$,
+        且 $\varPhi(t)$ 是连续函数, 由介值性定理知存在 $t_0\in(0,1)$ 使得
+        \[\varPhi(t_0)=\int_0^{t_0}|f(t)|^{\frac{1}{2}}\diff t=\frac{\|f\|_{\frac{1}{2}}^{\frac{1}{2}}}{2}.\]
+    
+        \item 因为
+        \[\|g\|_{\frac{1}{2}}^{\frac{1}{2}}=\int_0^1|g(t)|^{\frac{1}{2}}\diff t=\int_0^{t_0}|2f(t)|^{\frac{1}{2}}\diff t=\sqrt{2}\cdot\frac{\|f\|_{\frac{1}{2}}^{\frac{1}{2}}}{2}\leq\frac{\sqrt{2}}{2}\cdot\sqrt{2}r=r.\]
+        所以 $g\in B(r)$. 同理 $h\in B(r)$, 而 $f=\frac{g}{2}+\frac{h}{2}$ 是显然的.
+    
+        \item (注意, 在度量空间中, 球并不一定为凸集, 所以不要对本题中的 $B(r)$ 取凸包的操作感到惊讶! 但是在赋范空间中, 球一定为凸集.)
+        对任意的 $f\in B(\sqrt{2}r)$, 利用 (c) 中的构造方式得到 $g,h\in B(r)$ 使得 $f=\frac{g}{2}+\frac{h}{2}$,
+        故 $f\in \conv(B(r))$, 因此
+        \[B(\sqrt{2}r)\subset \conv(B(r)).\]
+        又
+        \[B(2r)\subset \conv(B(\sqrt{2}r))\subset \conv(\conv(B(r)))=\conv(B(r)).\]
+        故对任意的 $n$, 有
+        \[B(2^nr)\subset \conv(B(r)).\]
+        因此
+        \[L_{\frac{1}{2}}=\bigcup_{n=1}^{\infty} B(2^nr)\subset \conv(B(r)).\]
+        结合 $\conv(B(r))\subset L_{\frac{1}{2}}$ 知 $\conv(B(r))=L_{\frac{1}{2}}$.
+    
+        \item 由 (d) 知原点的凸开邻域只有 $L_{\frac{1}{2}}$, 因此 $L_{\frac{1}{2}}$ 是非局部凸的.
+    
+        \item 同 (c) 的构造亦可得 $L_p(0<p<1)$ 是非局部凸的.
+    
+        \item 设 $f:L_p\to\R$ 是连续的线性泛函,
+        则 $\forall r>0$, $(-r,r)$ 为 $\R$ 中开凸集,
+        由 $f$ 的线性性知 $f^{-1}((-r,r))$ 为 $L_p$ 中凸集, 
+        由 $f$ 的连续性知 $f^{-1}((-r,r))$ 为 $L_p$ 中的开集, 结合(f)中结论知
+        \[f^{-1}(-r,r)=L_p.\]
+        故
+        \[f^{-1}(0)=\bigcap_{n=1}^{\infty}f^{-1}\left(\left(-\frac{1}{n},\frac{1}{n}\right)\right)=L_p.\]
+        因此$f\equiv 0$.
+      \end{enumerate}
+    \end{answer}
 \end{enumerate}
 
 
@@ -2436,10 +2673,10 @@
   \item （习题11 T10）设$(\alpha_n)_{n\geqslant 1}\subset\mathbb{C}$。定义算子$T\in \mathcal{B}(c_0)$为
   \[T(x)=(\alpha_n x_n)_{n\geqslant1},\quad x=(x_n)_{n\geqslant 1}\in c_0.\]
   证明：$T\in \mathcal{K}(c_0)$当且仅当$\lim\limits_{n\rightarrow \infty}\alpha_n=0$。
-    \begin{answer}[][若$\lim\limits_{n\rightarrow \infty} \alpha_n\not=0$，则存在子列$(\alpha_{n_k})_{k\geqslant 1}$，使得对任意$k\geqslant 1$，$|\alpha_{n_k}|\geqslant 1$。设$e_i=(0,\cdots,0,1,0,\cdots)$（在第$i$个坐标处是1，其余坐标都是0）， 则$A=\left\{ e_i;i\geqslant 1\right\}$在$c_0$中有界，且
+    \begin{answer}[][若$\lim\limits_{n\rightarrow \infty} \alpha_n\not=0$，则存在 $\varepsilon_0 > 0$ 与子列$(\alpha_{n_k})_{k\geqslant 1}$，使得对任意$k\geqslant 1$，$|\alpha_{n_k}|\geqslant \varepsilon_0$。设$e_i=(0,\cdots,0,1,0,\cdots)$（在第$i$个坐标处是1，其余坐标都是0）， 则$A=\left\{ e_i;i\geqslant 1\right\}$在$c_0$中有界，且
       \[Te_{n_j}=\alpha_{n_j}e_{n_j},\]
       但对任意$i\not= j$，
-      \[||Te_{n_j}-Te_{n_i}||=\max\left\{|\alpha_{n_i}|,|\alpha_{n_j}|\right\}>1,\]
+      \[||Te_{n_j}-Te_{n_i}||=\max\left\{|\alpha_{n_i}|,|\alpha_{n_j}|\right\}> \varepsilon_0,\]
       故$(Te_{n_j})_{j\geqslant1}$的任一子列都不是Cauchy列，从而不收敛，这说明$T(A)$在$c_0$不是相对紧的。这与$T$是紧算子矛盾，故$\lim\limits_{n\rightarrow \infty}\alpha_n=0$。 ]
       设$T_N(x)=(\alpha_n x_n)_{1\leqslant n\leqslant N}$，则$T_N$是有限秩算子。
       且
