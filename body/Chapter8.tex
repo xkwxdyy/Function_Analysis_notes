@@ -1,0 +1,122 @@
+\chapter{Hahn-Banach定理, 弱拓扑和弱*拓扑}
+    第八章的难度和抽象程度相较于前几章要更进一步.
+    \section{Hahn-Banach定理:分析形式}
+    大致浏览了一下这一节, 发现有不少东西是需要补充的, 首先是引理8.1.2中出现的“余维数”:
+
+    \begin{definition}[余维数]\label{def:余维数}
+        设$L$是任意向量空间而$L\pie$是它的某一子空间, 商空间$L/L\pie$的维数叫做空间$L$中的子空间$L\pie$的余维数（或$L\pie$在$L$中的余维数）.
+    \end{definition}
+
+    从\autoref{def:余维数}中看出要想研究余维数, 我们得知道什么是商空间.
+
+    \begin{definition}[商空间]\label{def:商空间}
+        设$L$是一个向量空间, $L\pie$是$L$的向量子空间, 我们定义一个$L$上的关系\~{}: 设$x,y\in L$, 若$x-y\in L\pie$, 则称$x$和$y$有关系\~{}, 由$L\pie$是一个向量空间容易证明\~{}是一个$L$上的等价关系, 所有在关系\~{}意义下的等价类全体$\qty\big{[a]}_{a\in L}$记为$L/L\pie$, 称其为$L$关于$L\pie$的商空间.
+    \end{definition}
+    \begin{remark}
+        要特别注意的是, 如果只有\autoref{def:商空间} 的内容就称$L/L\pie$叫“商空间”, 其实是不太严谨的. 我们称一个集合为所谓的“空间”, 是因为上面除了集合本身的元素外还具有\emphasize{一定的结构}, 比如拓扑空间是集合加上了拓扑结构, 向量空间是集合加上了加法与数乘结构, 度量空间是集合加上了一个度量结构, 所以严格来说上面的的定义应该叫商集.
+
+        客观上看, 在集合上赋予结构是我们研究一般集合的手段和方法, 否则只有一个集合本身, 集合的元素之间没有任何联系, 那怎么去研究它呢? 
+
+        那么我们应该给商集赋予怎样的结构呢? 从商集本身的定义上看, 每一个$[a]$的都是来自$L$, 而$L$有所谓的线性结构, 自然地就想, 这个线性结构能不能“继承”或“传递”给这些等价类呢?  
+
+        其实“继承”这个想法在学习过程中我们也碰到过很多次了, 比如
+        \begin{itemize}
+            \item 度量空间完备性可以继承给闭集
+            \item 紧性可以继承给闭集
+            \item Baire空间的“Baire性”可以继承给开集
+            \item Hausdorff空间的T2性质可以继承给子空间
+        \end{itemize}
+        这本质上有“用已知研究未知”的意味在里面: 一些我们研究过的性质或结论, 想看看能否应用到别的集合上, 进而有利于我们对其它集合的性质研究和把握.
+    \end{remark}
+    下面我们规定$L/L\pie$上的加法和数乘运算: 
+    \begin{proposition}
+        设$L$是一个向量空间, $L\pie \zj L$为向量子空间, $L/L\pie$为商集, 那么$L/L\pie$可约定加法和数乘使之成为向量空间. 
+    \end{proposition}
+    \begin{proof}
+        \begin{step}
+            \item 定义
+                \begin{align*}
+                    \mathtext{加法: \quad}  L \times L &\rightarrow L\\
+                    [a]+[b] &\mapsto [a+b]
+                \end{align*}
+                \begin{align*}
+                    \mathtext{数乘: \quad}  \symbb{K} \times L &\rightarrow L\\
+                    k[a] &\mapsto [ka]
+                \end{align*}
+            \item 下面证明加法和数乘定义的合理性
+                \begin{step}
+                    \item 加法的合理性.
+                        若$[a\pie]=[a], [b\pie]=[b]$, 故$a\pie \in [a], b\pie \in [b]$, 因此 $(a\pie + b\pie)-(a+b)=(a\pie -a )+ (b\pie - b)\in L\pie$, 故$a\pie + b\pie \in [a+b]$, 进而有$[a\pie + b\pie ]=[a+b]$. 因此加法运算与代表元的选取无关.
+                    \item 数乘的合理性.
+                        若$[a\pie]=[a]$, 则$a\pie -a \in L\pie $, 故$k(a\pie -a )\in L\pie, \ie ka\pie - ka \in L\pie$, 即$ka\pie \~{} ka $, 因此$[ka\pie]=[ka]$. 因此数乘运算与代表元的选取无关.
+                \end{step}
+            \item 下面证明$L/L\pie$在赋予上述加法和数乘的运算下构成一个向量空间, 即满足八条性质
+                \begin{itemize}
+                    \item 
+                    \begin{align*}
+                        ([a]+[b])+[c] &=[a+b]+[c]=[(a+b)+c]\\
+                        &=[a+(b+c)]=[a]+[b+c]\\
+                        &=[a]+([b]+[c])
+                    \end{align*}
+                    \item $[a]+[b]=[a+b]=[b+a]=[b]+[a]$
+                    \item $[a]+[0]=[a+0]=[a]=[0+a]=[0]+[a]$, 因此$[0]$是$L/L\pie$的单位元
+                    \item $[a]+[-a]=[a+(-a)]=[0]=[(-a)+a]=[-a]+[a]$, 因此$[-a]$是$[a]$的逆元
+                    \item $1\cdot [a]=[1\cdot a]=[a]$
+                    \item $k(l[a])=k[la]=[k(la)]=[(kl)a]=(kl)[a]$
+                    \item \begin{align*}
+                        k([a]+[b])=k[a+b]&=[k(a+b)]\\
+                        &=[ka+kb]=[ka]+[kb]\\
+                        &=k[a]+k[b]
+                    \end{align*}
+                    \item $(k+l)[a]=[(k+l)a]=[ka+la]=[ka]+[la]=k[a]+l[a]$\qedhere
+                \end{itemize} 
+        \end{step}
+    \end{proof}
+    \begin{remark}
+        既然$L/L\pie$在赋予运算后构成了向量空间, 那么就有相应的维数概念, 这就是\autoref{def:余维数} 的余维数.
+    \end{remark}
+
+    尽管在泛函分析中我们知道, 一个线性空间$L$它可能是无限维的, 但是只要它的线性子空间$L\pie$具有有限余维数$n$, 那么线性空间的元素就可以被有限地线性表出, 概括出来就是下面的定理: 
+    \begin{theorem}\label{thm:余维数为n_元素有限线性表示}
+        若子空间$L\pie \zj L$具有有限余维数$n$, 则在$L$中可选取元素$x_1,x_2,\cdots, x_n$, \st $ \forall x\in L, \exists y\in L\pie, \alpha_i\in \symbb{K}, i=1,2,\cdots,n$, 有
+        \[
+            x=\alpha_1 x_1 +\alpha_2 x_2 + \cdots + \alpha_n x_n+y\]
+    \end{theorem}
+    \begin{proof}
+        由于$\dim (L/L\pie)=n$, 故不妨设$[x_1],[x_2] \cdots, [x_n]$为$L/L\pie$的基底, 因此$\forall x\in E, \exists \alpha_1, \alpha_2, \cdots, \alpha_n \in \K$, \st 
+        \[
+            [x]=\alpha_1[x_1]+\alpha_2[x_2]+\cdots+\alpha_n[x_n]=[\alpha_1 x_1 +\alpha_2 x_2 + \cdots + \alpha_n x_n]\]
+        因此$x-(\alpha_1 x_1 +\alpha_2 x_2 + \cdots + \alpha_n x_n)\in L\pie$, 故令$y=x-(\alpha_1 x_1 +\alpha_2 x_2 + \cdots + \alpha_n x_n)\in L\pie$, 有\[x=\alpha_1 x_1 +\alpha_2 x_2 + \cdots + \alpha_n x_n+y.\qedhere\] 
+    \end{proof}
+    \begin{remark}
+        $x$的这种有限线性表示具有下面意义下的唯一性: 若
+        \begin{align*}
+            x &= \alpha_1 x_1 +\alpha_2 x_2 + \cdots + \alpha_n x_n+y\\
+            &=\alpha\pie_1 x_1 +\alpha\pie_2 x_2 + \cdots + \alpha\pie_n x_n+ y\pie,
+        \end{align*}
+        则$\alpha_i=\alpha\pie_i,y= y\pie,i=1,2,\cdots,n.$
+
+        \begin{proof}[下证上述的“唯一性”]
+            若
+            \begin{align*}
+                x &= \alpha_1 x_1 +\alpha_2 x_2 + \cdots + \alpha_n x_n+y\\
+                &=\alpha\pie_1 x_1 +\alpha\pie_2 x_2 + \cdots + \alpha\pie_n x_n+ y\pie,
+            \end{align*}
+            则 $(\alpha_1-\alpha\pie_1)x_1+(\alpha_2-\alpha\pie_2)x_2+\cdots+(\alpha_n-\alpha\pie_n)x_n=y\pie -y\in L\pie$, 故$[(\alpha_1-\alpha\pie_1)x_1+(\alpha_2-\alpha\pie_2)x_2+\cdots+(\alpha_n-\alpha\pie_n)x_n]=[y\pie -y]=[0]$, 即有
+            \[
+                (\alpha_1-\alpha\pie_1)[x_1]+\cdots+(\alpha_n-\alpha\pie_n)[x_n]=[0]\]而由$[x_i](i=1,2,\cdots,n)$是基底知$[x_i](i=1,2,\cdots,n)$线性无关, 故$\alpha_i-\alpha\pie_i=0i=1,2,\cdots,n$ \ie $\alpha_i=\alpha\pie_i,i=1,2,\cdots,n$, 进而有$y\pie-y=0$, \ie $y\pie=y$, 故唯一性得证.
+        \end{proof}
+    \end{remark}
+
+    特别地, 当余维数是1的时候, 我们便有下面的推论:
+    \begin{corollary}
+        若子空间$L\pie \zj L$具有有限余维数$1$, 则在$L$中可选取元素$x_0$, \st 
+        \[L= \set{y+tx_0}{y\in L\pie, t\in \K}\]
+    \end{corollary}
+    \begin{proof}
+        \begin{step}
+            \item 由\autoref{thm:余维数为n_元素有限线性表示} 知$\exists x_0 \in L, \st \forall x\in L, \exists t\in \K, y\in L\pie$, 有\[
+                x=y+tx_0,\] 因此 \[L\zj \set{y+tx_0}{y\in L\pie, t\in \K}\]
+            \item 由$L$是一个向量空间知$\set{y+tx_0}{y\in L\pie, t\in \K} \zj L$显然成立 \qedhere
+        \end{step}
+    \end{proof}

@@ -1,0 +1,151 @@
+\chapter{Hilbert空间}
+\section{内积空间}
+\begin{detail}{66}{$\ell_{2}$ 空间:
+    \[
+    \ell_{2}=\set{x=\left(x_{n}\right)_{n \geqslant 1} \subset \mathbb{K}}{\sum_{k=1}^{\infty}\left|x_{k}\right|^{2}<\infty}
+    \]
+    其上的内积为 $\langle x, y\rangle=\sum_{k=1}^{\infty} x_{k} \overline{y_{k}}$.}
+    在证明$\langle x, y\rangle$满足对称性的时候, 需要用到下面的命题: 
+    \begin{proposition}
+        若$\sum_{n=1}^{\infty} z_{n}=S$, 则$\sum_{n=1}^{\infty} \overline{z_{n}}=\overline{S}$.
+    \end{proposition}
+\end{detail}
+
+\begin{detail}{66}{如果 $\mathbb{K}=\mathbb{C}_{;}$对任意 $t \in \mathbb{R}$, 取 $\lambda=t\,\overline{\operatorname{sgn}\langle x, y\rangle}$, 这里
+    \[
+    \operatorname{sgn} z= \begin{cases}\frac{\overline{z}}{|z|}, & z \in \mathbb{C}, z \neq 0 \\ 0, & z=0\end{cases}
+    \]
+    把 $\lambda$ 代人 (4.2) 式, 得
+    \[
+    \langle x, x\rangle+2 t|\langle x, y\rangle|+t^{2}\langle y, y\rangle \geqslant 0
+    \]}
+    \begin{align*}
+        z \operatorname{sgn}z &= \begin{cases}\frac{\overline{z}}{|z|}\cdot z, & z \in \mathbb{C}, z \neq 0 \\ 0\cdot z, & z=0\end{cases}\\
+        &= \begin{cases}\frac{|z|^2}{|z|}, & z \in \mathbb{C}, z \neq 0 \\ 0, & z=0\end{cases}\\
+        &= \begin{cases}|z|, & z \in \mathbb{C}, z \neq 0 \\ 0, & z=0\end{cases}\\
+        &=|z|, z \in \mathbb{C}
+    \end{align*}
+
+    其次要注意$|\lambda|^2$并不是恒等于$t^2$的:
+    \begin{align*}
+        |\operatorname{sgn}z|^2 &=\begin{cases}\left|\frac{\overline{z}}{|z|}\right|^2, & z \in \mathbb{C}, z \neq 0 \\ 0, & z=0\end{cases}\\
+        &=\begin{cases}1, & z \in \mathbb{C}, z \neq 0 \\ 0, & z=0\end{cases}
+    \end{align*}故
+    \begin{align*}
+        | \lambda|^2&=\left|t\,\overline{\operatorname{sgn}\langle x, y\rangle}\right|^2\\
+        &=t^2 \cdot k
+    \end{align*}其中\[
+        k=\begin{cases}
+            1, &\langle x,y \rangle \neq 0\\
+            0, &\langle x,y \rangle =0
+        \end{cases}\]
+    所以严格地写的话, 式子应该是: \[
+        \langle x, x\rangle+2 t|\langle x, y\rangle|+t^{2}k\langle y, y\rangle \geqslant 0
+        \]
+    
+        要把$\langle x,y \rangle =0$的情况单独考虑（因为二次项系数等于0就不能用$\Delta$法, 前面不不失一般性假设$y\neq 0$也是考虑到这个. 尽管此情况下不等式显然成立）, 在$\langle x,y \rangle \neq 0$的情况才得到66页最后一行的式子: \[
+        \langle x, x\rangle+2 t|\langle x, y\rangle|+t^{2}\langle y, y\rangle \geqslant 0
+        \]
+\end{detail}
+\begin{remark}
+    事实上关于复数情形的Cauchy-Schwarz不等式的证明, 其实可以比课本上取$\operatorname{sgn}$的更简单点:
+    \begin{proof}
+        设 $x, y \in H$, 由于$y=0$时结论比较显然地成立, 故下设$y\neq 0$, 进而$\langle y, y\rangle>0$. 任取 $\lambda \in \mathbb{K}=\C$, 由内积的非负性, 可得
+        \[
+            \begin{aligned}
+            0 & \leqslant\langle x+\lambda y, x+\lambda y\rangle=\langle x, x\rangle+\bar{\lambda}\langle x, y\rangle+\lambda\langle x, y\rangle+\lambda \bar{\lambda}\langle y, y\rangle \\
+            &=\langle x, x\rangle+2 \operatorname{Re}(\bar{\lambda}\langle x, y\rangle)+|\lambda|^{2}\langle y, y\rangle .
+            \end{aligned}
+        \]
+        取 $\lambda=\emphasize{-\frac{\langle x, y\rangle}{\langle y, y\rangle}}$ 并代人上面等式右边, 得
+        \[
+            \langle x, x\rangle-\frac{2|\langle x, y\rangle|^{2}}{\langle y, y\rangle}+\frac{|\langle x, y\rangle|^{2}}{\langle y, y\rangle^{2}}\langle y, y\rangle \geqslant 0,
+        \]
+        代简后即得 $|\langle x, y\rangle|^{2} \leqslant\langle x, x\rangle\langle y, y\rangle$.
+
+        若等式成立:
+        \begin{case}
+            \item 如果$x=0$或$y=0$, 那么显然$x$和$y$是线性关系（如$x=0 \so x=0\cdot y$）
+            \item 如果$x\neq 0, y\neq 0$（一个不等于0就行）, 那么取 $\lambda=-\frac{\langle x, y\rangle}{\langle y, y\rangle}$, 就会得到\[\langle x+\lambda y, x+\lambda y\rangle=0,\] \ie $x+\lambda y=0 \so x= -\lambda y.$
+        \end{case}
+    \end{proof}
+\end{remark}
+\begin{detail}{67}{下证定理的另一部分. 如果 $x$ 与 $y$ 成比例, 那么直接计算可得 (4.1) 式中的 等号成立. 反过来, 假设等号成立, 则 (4.3) 左边的二项式的判别式等于零, 因此 它有一个二重根, 记其为 $\lambda$, 则必有
+    \[
+    \langle x+\lambda y, x+\lambda y\rangle=0
+    \]
+    这意味着 $x+\lambda y=0$, 即 $x=-\lambda y$.}
+    这里要注意$\K=\C$的情况: 
+        \begin{equation}\label{eq:67-C情况的实二重根}
+            \langle x, x\rangle+2 t_0|\langle x, y\rangle|+t_0^{2}\langle y, y\rangle = 0
+        \end{equation}
+    的二重根$t_0$并不是我们最终要的, 我们还要往回代, 此时需要注意到原来的式子:
+        \begin{equation}\label{eq:67-C情况的复二重根}
+            \langle x, x\rangle+2 t_0|\langle x, y\rangle|+t_0^{2}k\langle y, y\rangle \geqslant 0
+        \end{equation}
+    和我们得到的式子 \cref{eq:67-C情况的实二重根} 有些细微的差别, 其实只用把\cref{eq:67-C情况的实二重根}和\cref{eq:67-C情况的复二重根}消去公共部分, 然后结合$k$本身要么0, 要么1, 得到$\lambda=1$或$t_0=0$, 进而分类讨论一下即可.
+\end{detail}
+\begin{detail}{68}{\textbf{注 4.1.10} 通过极化恒等式易证: 若 $u: H \rightarrow K$ 是两个内积空间中的线性 等距映射, 则必有 $u$ 保内积, 即
+    \[
+    \langle u(x), u(y)\rangle=\langle x, y\rangle, \forall x, y \in H .
+    \]}
+    \begin{itemize}
+        \item $u$是线性的 \so $u(\mathbf{0})=u(0\cdot \mathbf{0})=0u(\mathbf{0})=0$
+        \item $u$是等距的 \so $\forall x,y \in H$有
+            \[\|u(x)-u(y)\|_k=\|x-y\|_H,\]
+            特别地, 取$y=0$有$\|u(x)\|_k=\|u(x)-u(0)\|_k=\|x-y\|_H=\|x\|_H$
+    \end{itemize}
+    因此, 
+    \begin{align*}
+        \langle u(x), u(y)\rangle&\xlongequal{\mathtext{极化恒等式}}\frac{1}{4} \sum_{k=0}^{3}\left(i^k\left\|u(x)+i^{k} u(y)\right\|_{k}^{2}\right)\\
+        &\xlongequal{\mathtext{$u$的线性性}}\frac{1}{4} \sum_{k=0}^{3}\left(i^k\left\|u(x+i^{k}y)\right\|_{k}^{2}\right)\\
+        &\xlongequal{\mathtext{$u$是等距映射}}\frac{1}{4} \sum_{k=0}^{3}\left(i^k\left\|x+i^{k} y\right\|_{H}^{2}\right)\\
+        &\xlongequal{\mathtext{极化恒等式}}\langle x,y\rangle
+    \end{align*}
+\end{detail}
+
+
+\begin{theorem}[定理 4.1.12]
+    设 $H$ 是赋范空间. 如果范数 $\|\cdot\|$ 满足平行四边形公式, 那么 该范数可由一个内积导出.
+\end{theorem}
+书上给出了这个定理的$\K=\R$的情形证明, 下面给出$\K=\C$的情形证明:
+\begin{proof}（参考：《泛函分析》第三版, 刘炳初, P108-109）
+    \begin{step}
+        \item 对于 $H$ 是复空间的情形, 对任意 $x, y \in X$, 令
+        \[
+        \begin{aligned}
+        (x, y)=& \frac{1}{4}\left(\|x+y\|^{2}-\|x-y\|^{2}\right.\\
+        &\left.+\mathrm{i}\|x+\mathrm{i} y\|^{2}-\mathrm{i}\|x-\mathrm{i} y\|^{2}\right) \\
+        =&(x, y)_{1}+\mathrm{i}(x, \mathrm{i} y)_{1},
+        \end{aligned}
+        \]
+        其中 $(x, y)_{1}$ 是在$\K=\R$的情形下定义的内积$(x, y)_1= \dfrac{1}{4}(\|x+y\|^{2}-\|x-y\|^{2}) $. 
+        \begin{remark}
+            这里之所以这个$(x, y)_{1}$还是内积, 只需要我们注意到复线性空间也是实线性空间, 那么和$\K=\R$的情形完全相同地证明, $(x, y)_{1}$是$H$上的内积, 而且对任意实数 $\alpha$,
+            \[
+            (\alpha x, y)_1=\alpha(x, y)_1,
+            \]
+        \end{remark}
+        由于$(x, y)=\overline{(y, x)}$和$(x, x)=\|x\|^{2}$很容易证明, 故和实情形相似, 我们的重点放在线性性的证明.
+        \item 由以上定义及$(x, y)_1$的线性性立刻得
+        \begin{align*}
+            (x+y, z)&=(x, z)+(y, z)\\
+            (\alpha x, y)_1&=\alpha(x, y)_1, \forall \alpha \in \R
+        \end{align*}
+        
+        \item 由$(x,y)$的定义及平行四边形公式得
+        \[
+        \begin{aligned}
+        (\mathrm{i} x, y)=& \frac{1}{4}\left(\|\mathrm{i} x+y\|^{2}-\|\mathrm{i} x-y\|^{2}\right.\\
+        &\left.+\mathrm{i}\|\mathrm{i} x+\mathrm{i} y\|^{2}-\mathrm{i}\|\mathrm{i} x-\mathrm{i} y\|^{2}\right) \\
+        =& \frac{1}{4}\left(\|\mathrm{i} x+y\|^{2}-\|\mathrm{i} x-y\|^{2}+\mathrm{i}\|x+y\|^{2}-\mathrm{i}\|x-y\|^{2}\right) \\
+        =& \mathrm{i}(x, y),
+        \end{aligned}
+        \]
+        对任意复数 $\alpha=a+bi$,
+        \[
+        (\alpha x, y)=((a+bi)x,y)=(ax+bix,y)=(ax,y)+(bix,y)=a(x,y)+bi(x,y)=\alpha(x, y) .
+        \]
+        故线性性得证.\qedhere
+    \end{step}
+\end{proof}

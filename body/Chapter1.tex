@@ -1,0 +1,38 @@
+\chapter{拓扑空间简介}
+    \section{基本概念}
+    \begin{detail}{2}{
+        \textbf{注 1.1.5} 同一个拓扑能被不同的距离诱导 (甚至是无限个). 例如, 设 $d$ 是 $E$ 上的一个距离, 则 \emphasize{$d, \min \{1, d\}$ 和 $r d(r>0)$ 都诱导出 $E$ 上相同的拓扑}. 
+    }
+        \begin{proof}
+            \begin{step}
+                \item 先证明$d_1=\min \{1,d\}, d_2=rd(r>0)$还是$E$上的距离. 
+                        
+                由于$d_2$是$E$上的距离以及$d_1$的非负、正定性与对称性是显然的,故下面只证明$d_1$的三角不等式性质.
+                        
+                $\forall x,y,z\in E$, 有$d(x,y)\leqslant d(x,z)+d(z,y)$
+            \end{step}
+        \end{proof}
+    \end{detail}
+    \section{紧性}
+    \begin{detail}{16}{设 $\lambda>0, \lambda \in D$. 则有
+        \[
+        \begin{aligned}
+        \{x \in E: f(x)<\lambda\} &=\{x \in E: \beta(x)<\lambda\} \\
+        &=\left\{x \in E: \exists t<\lambda, \text { 使得 } x \in A_{t}\right\}=\bigcup_{t<\lambda} A_{t} .
+        \end{aligned}
+        \]
+        因\emphasize{所有的 $A_{t}$ 是开集}, 故 $\{x \in E: f(x)<\lambda\}$ 是开集. 由于 $D$ 在 $[0,1]$ 中稠密, 则对任意 $\lambda \in(0,1]$,
+        \[
+        \{x \in E: f(x)<\lambda\}=\bigcup_{\mu<\lambda, \mu \in D}\{x \in E: f(x)<\mu\}
+        \]也是开集.}
+        这个地方既是细节补充也是某种意义上的一种勘误, 事实上这里是有问题的: $A_0=A$是紧集, 并没有要求它是开集!（说白了, 就是对$t=0$的时候就不一定是开集, 但这个地方说所有的都是开集.）
+
+        那证明是不是就错了呢? 一个不一定是开集的放在里面作并集, 怎么说明并起来是开集呢? 
+
+        事实上, 关键点是$A_t$的单调性: $\forall s,t\in D , s<t \so A_s \zj A_t$, 特别地有$\forall s\in D, A_0\zj A_s$. 在这个地方, 由于$\lambda>0$及$D$的稠密性, 故$\exists t \in D, \st t\in (0,\lambda)$, 有$x\in A_t$, 也就是除了$A_0$外还有其它的$A_t$, 这样的话, $A_0$就会被其它的$A_t$“吃掉”, 从而对并集不造成影响.
+        \begin{remark}
+            事实上, 这个把干扰项“吃掉”的想法在P131的7.1节的定理7.1.7(5)的证明中也有体现（不过此处就有指出要把0去掉）:
+            \[U=\bigcup_{|\lambda|<\delta} \lambda V^{\prime}=\bigcup_{|\lambda|<\delta, \lambda \neq 0} \lambda V^{\prime}\]
+            因为只有在$\lambda >0$的时候, $\lambda V\pie$才是开集, 那么对于$\lambda_0=0$的情形, $\lambda_0V\pie = \{0\} \zj \lambda V\pie, \forall \lambda >0$（因为$V\pie$包含原点）, 也就是说这个干扰项被其它项“吃掉”了, 从而不影响全局.
+        \end{remark}
+    \end{detail}
