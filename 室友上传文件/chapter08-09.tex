@@ -1,0 +1,395 @@
+%! TeX program = xelatex
+\documentclass[hyperref,UTF8]{ctexart}
+\usepackage{CJKfntef}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{array}
+\usepackage{enumerate}
+\title{需要完成的课后习题(习题八,九)}
+\author{武坤来}
+\newtheorem{ex}{Exercise}[section]
+\newtheorem{pf}{Proof}[section]
+\newcommand{\dif}{\mathop{}\!\mathrm{d}}
+\newcommand{\du}{\mathop{}\!\mathrm{d}\mu}
+\newcommand{\lrangle}[2]{\langle #1, #2 \rangle}
+\renewcommand{\div}{\operatorname{div}}
+\usepackage[a4paper,left=3cm,right=2.6cm,top=3.5cm,bottom=2.9cm]{geometry}
+
+\begin{document}
+
+\section{第八章习题}
+
+\begin{ex}[8.1]
+设 $1 \leqslant p \leqslant \infty$, 考虑 $\mathbb{R}^{2}$ 上的 $p$ 范数:
+$$
+\left\|\left(x_{1}, x_{2}\right)\right\|_{p}=\left(\left|x_{1}\right|^{p}+\left|x_{2}\right|^{p}\right)^{\frac{1}{p}}, \quad p<\infty ; \quad\left\|\left(x_{1}, x_{2}\right)\right\|_{\infty}=\max \left\{\left|x_{1}\right|,\left|x_{2}\right|\right\} .
+$$
+设 $F=\mathbb{R} \times\{0\}$, 即由 $e_{1}=(1,0)$ 生成的向量子空间, 并设 $f: F \rightarrow \mathbb{R}$ 是线性 泛函, 满足 $f\left(e_{1}\right)=1$.
+    \begin{enumerate}[(a)]
+        \item 当 $\mathbb{R}^{2}$ 上赋予 $\|\cdot\|_{1}$ 范数时, 确定 $f$ 从 $F$ 到 $\mathbb{R}^{2}$ 的所有保范延拓.
+        \item 当 $\mathbb{R}^{2}$ 上赋予 $\|\cdot\|_{p}$ 范数时, 考虑同样的问题.
+    \end{enumerate}
+\end{ex}
+
+\begin{pf}
+    \begin{enumerate}
+        \item For any extension $g\in (\mathbb R^2)^*$ of f such that $\|f\|_F = \|g\|$. We have
+        \[
+            |\lrangle{g}{x}| = 
+            |k_1 + k_2\lrangle{g}{e_2}|\leq
+            \|x\|_1\max\{1, |\lrangle{g}{e_2}|\}, \forall x = k_1e_1 + k_2e_2, 
+        \]
+        and
+        \[
+            |\langle g, k_1e_1\rangle| = |k_1| + |k_2|, |\langle g, k_2e_2\rangle| = (|k_1| + |k_2|)|\langle g, e_2\rangle|.
+        \]
+        Thus $\|g\|_1 = \max\{1, |\langle g, e_2\rangle|\}$. Therefore $|\langle g, e_2\rangle| \leq 1$. 
+        \[\{g; \langle g, e_1\rangle = 1, |g(e_2)\langle g, e_2\rangle|\leq 1\}. \]
+        \item This case is almost identical to the first one. We can calculate $\|g\|_p = (1 + |\langle g, e_2\rangle|^q)^{\frac1q}$, where $\frac1p + \frac1q = 1$ if $p < \infty$ and $q = 1$ if $p = \infty$. Since $\|g\|_p = \|f\| = 1$, $|\langle g, e_2\rangle| = 0$.
+        \[\{g; \langle g, e_1\rangle = 1, \langle g, e_2\rangle=0\}. \] 
+    \end{enumerate}
+\end{pf}
+
+\begin{ex}[8.4]
+    设 $E$ 是 Hausdorff 拓扑向量空间, $A$ 是 $E$ 中包含原点的开凸集以及 $x_{0} \in E \backslash A$.
+\begin{enumerate}
+    \item 证明: 存在 $f \in E^{*}$, 使得$\operatorname{Re} f\left(x_{0}\right)=1$, 且在 $A$ 上 $\operatorname{Re} f<1$.
+    \item 假设 $A$ 还是平衡的. 证明: 可以选择 $f \in E^{*}$, 使其满足
+    $$
+    f\left(x_{0}\right)=1 \text {, 且在 } A \text { 上 }|f|<1 \text {. }
+    $$
+\end{enumerate}
+\end{ex}
+
+\begin{pf}
+\begin{enumerate}
+    \item $\exists g\in E^*, \alpha \in \mathbb R$ s.t. $Re \langle g, x\rangle  < \alpha \leq Re \langle g, x_0\rangle, \forall x\in A$. Since $0\in A$, $\alpha >0$. Define $f = \frac1{Re\langle g, x_0\rangle}g$, therefore $Re \langle f, x\rangle  < 1 = Re\langle f, x_0\rangle$.
+    \item Let $h$ denote $\frac{Re \langle f, x_0\rangle}{\langle f, x_0\rangle}f$, and then
+    \[
+        \langle h, x_0\rangle = \frac{Re \langle f, x_0\rangle}{\langle f, x_0\rangle}\langle f, x_0\rangle = Re \langle f, x_0\rangle = 1. 
+    \]
+    And for $x\in A$ s.t. $\langle h, x\rangle \neq 0$, 
+    \[
+        |\langle h, x\rangle| = 
+        \langle h, \frac{|\langle h, x\rangle|}{\langle h, x\rangle}x\rangle = Re\langle h, \frac{|\langle h, x\rangle|}{\langle h, x\rangle}x\rangle = 
+        Re\langle f, \frac{Re \langle f, x_0\rangle}{\langle f, x_0\rangle}\frac{|\langle h, x\rangle|}{\langle h, x\rangle}x\rangle=:Re\langle f, \beta x \rangle.
+    \]
+    $\left|\beta\right|\leq 1$, and $x\in A$, hence $\beta x\in A$. Thus $|\langle h, x\rangle| = Re\langle f,\beta x\rangle < 1$. 
+    
+\end{enumerate}
+\end{pf}\newpage
+
+\begin{ex}[8.5]
+    设 $E$ 是 Hausdorff 局部凸空间, $A$ 是 $E$ 中包含原点的闭凸集以及 $x_{0} \in E \backslash A$.
+    \begin{enumerate}
+        \item 证明: 存在 $f \in E^{*}$, 使得
+        $$
+        \operatorname{Re} f\left(x_{0}\right)>1 \text { 且 } \sup _{x \in A} \operatorname{Re} f(x) \leqslant 1 \text {. }
+        $$
+        \item 假设 $A$ 还是平衡的. 证明: 可以选择 $f$, 使其满足
+        $$
+        f\left(x_{0}\right)=1 \text { 且 } \sup _{x \in A}|f(x)| \leqslant 1 \text {. }
+        $$
+    \end{enumerate}
+\end{ex}
+
+\begin{pf}
+\begin{enumerate}
+    \item There exists $g\in E^*, alpha\in \mathbb R$ s.t. $Re\langle g, x\rangle < \alpha < Re \langle g, x_0\rangle, \forall x\in A$. Since $0 \in A$, $Re\langle g, x_0\rangle > 0$. Define $f = \frac1\alpha g$, 
+    \[Re\langle f, x\rangle = \frac1\alpha Re \langle g, x\rangle \leq \frac\alpha\alpha = 1< \frac{Re\langle g, x_0\rangle}{\alpha} = Re\langle f, x_0\rangle.\]
+    \item Let $h$ denote $\frac1{\langle g, x_0\rangle} g$, and
+    \[\langle h, x_0\rangle = \langle\frac{1}{\langle g, x_0\rangle}g, x_0\rangle = 1.\]
+    Since $\left|\frac{|\langle g, x_0\rangle|}{\langle g, x_0\rangle}\right|\leq 1$, $\frac{|\langle g, x\rangle|}{\langle g, x\rangle}x\in A$. Then
+    \[|\langle h, x\rangle| = \frac1{|\langle g, x_0\rangle|}|\langle g, x\rangle| = \frac1{|\langle g, x_0\rangle|}\langle g, \frac{|\langle g, x\rangle|}{\langle g, x\rangle}x\rangle\leq \frac{|\langle g, x_0\rangle|}{|\langle g, x_0\rangle|} = 1\]
+\end{enumerate}
+\end{pf}
+
+\begin{ex}[8.9]
+    设 $E$ 是数域 $\mathbb{K}$ 上的拓扑向量空间. 称 $E$ 的向量子空间 $H$ 是超平面, 若有某 个 $x_{0} \in E \backslash H$, 使得 $E=H+\mathbb{K} x_{0}$.
+    \begin{enumerate}
+        \item 证明: 若 $H$ 是超平面, 则对任意 $x_{0} \in E \backslash H, E=H+\mathbb{K} x_{0}$ 成立.
+        \item 证明: 一个超平面或者是 $E$ 中的稠密集, 或者是闭集.
+        \item 证明: $H$ 是超平面当且仅当存在 $E$ 上的一个非零线性泛函 $f$, 使得 $H=$ $\operatorname{ker} f$. 因而 $H$ 是闭的等价于 $f$ 是连续的.
+    \end{enumerate}
+称 $H$ 是一个仿射超平面, 若 $H$ 是某个超平面 $H_{0}$ 的平移, 也就是说, 存在某 个 $a \in E$, 使得 $H=H_{0}+a$. 因此, $H$ 是仿射超平面意味着存在一个线性泛 函 $f$, 以及某个常数 $\alpha \in \mathbb{K}$, 使得 $H$ 能被表示为 $H=\{x \in E: f(x)=\alpha\}$. 在 术语的使用上, 我们通常把仿射超平面也简单地称为超平面.
+\end{ex}
+\begin{pf}
+\begin{enumerate}
+    \item Since $x_0\notin H$, $\mathbb K \cap H = 0$ which means the sum $H + \mathbb K x_0$ is direct. Define $f:E\to \mathbb K, y + k x_0\in H+\mathbb K x_0\mapsto k$, and $Ker f = H$. For any $x_1\in E\setminus H$ and $\forall x\in E$, $f(x_1)\neq 0$. We claim that $x - \frac{f(x)}{f(x_1)}x_1\in Ker f$. Indeed $f(x - \frac{f(x)}{f(x_1)}x_1) = f(x) - f(x) = 0$. Therefore, $x \in H + \mathbb K x_1$, which means $E = H + \mathbb K x_1$. 
+    \item If $x_2\in E\setminus \overline H$, then $\exists g\neq 0 \in E^*$ such that $\langle g, y\rangle < \langle g, x_2\rangle, \forall y \in \overline H$. If exist $y_0\in \overline H$ s.t. $\langle g, y_0 \rangle > 0$, then $\langle g, k y_0\rangle\to \infty, k\to\infty$, which is impossible. Then $\overline H \subset Ker g$. If we can find $x$ such that $ x\in Ker g\setminus H$, then $H + \mathbb K x = E$ while $H\subset Ker g$ and $x\in Ker f$, which is impossible. Therefore $H = Ker g$, then $H$ is close. 
+    \item If $H$ is a hyperplane, the function $f$ is the corresponding linear functional of $H$. Conversely, if $H = Ker f$, $\exists x_0\in E\setminus Ker g$. $\forall x \in E$, $x = (x - \frac{f(x)}{f(x_0)}x_0) + \frac{f(x)}{f(x_0)}x_0\in Ker f + \mathbb K x_0$, hence $H$ is a hyperplane. 
+\end{enumerate}
+
+\end{pf}
+
+\begin{ex}[8.11]
+    设 $\left(X,\|\cdot\|_{X}\right)$ 是实赋范空间, $\bar{B}_{X}$ 表示该空间中的闭单位球. 假设 $K \geqslant 1, C$ 是 $X$ 中闭凸对称子集 ( $C$ 对称是指 $x \in C \Longrightarrow-x \in C$ ), 且满足
+$$
+B_{X} \subset C \subset K \bar{B}_{X}
+$$
+定义
+$$
+p(x)=\inf \left\{\lambda>0: \frac{x}{\lambda} \in C\right\}, \forall x \in X .
+$$
+\begin{enumerate}
+    \item 证明: $p$ 是 $X$ 上和 $\|\cdot\|_{X}$ 等价的范数. 更精确地说, 证明:
+    $$
+    \frac{1}{K}\|x\| \leqslant p(x) \leqslant\|x\|, \forall x \in X .
+    $$
+    \item 设 $x \in X$. 证明:\begin{enumerate}
+        \item $x \in X \backslash C \Longleftrightarrow p(x)>1$.
+        \item $x \in \stackrel{\circ}{C} \Longleftrightarrow p(x)<1$.
+        \item $x \in \partial C \Longleftrightarrow p(x)=1$.
+    \end{enumerate}
+    \item 任取 $x \in \partial C$. 证明: 存在 $X$ 上的连续线性泛函 $f$, 使得 $f(x)=1$ 且在集 合 $C$ 上, $|f| \leqslant 1$.
+\end{enumerate}
+\end{ex}
+
+\begin{pf}
+\begin{enumerate}
+    \item $\forall x, y\in X$, $\frac{x}{p(x) + \varepsilon}, \frac{y}{p(y) + \varepsilon}\in C$ for all $\varepsilon > 0$, it follows that 
+    \[\frac{x + y}{p(x) + p(y) + 2\varepsilon} = \frac{p(x) + \varepsilon}{p(x) + p(y) + 2\varepsilon}\frac{x}{p(x) + \varepsilon} + \frac{p(x) + \varepsilon}{p(x) + p(y) + 2\varepsilon}\frac{y}{p(y) + \varepsilon}\in C, \]
+    and therefore $p(x+y) \leq p(x) + p(y) + 2\varepsilon$. Thus $p(x + y) \leq p(x) + p(y)$. 
+
+    For all $ x \in X, \lambda\in \mathbb R\setminus \{0\}, \frac{\lambda x}{p(\lambda x) + \varepsilon} = \frac{x}{\frac{1}{|\lambda|}(p(\lambda x) + \varepsilon}\in C$ and thus $|\lambda|p(x)\leq p(\lambda x) + \varepsilon$. Conversely, $\frac{x}{p(x) + \varepsilon} = \frac{\lambda x}{|\lambda|(p(x) + \varepsilon)}\in C$, we find that $p(\lambda x)\leq |\lambda|p(x)$. Therefore, $p(\lambda x) = |\lambda|p(x)$. 
+
+    For all $x\in X$, $\frac{x}{\|x\|}\in \overline{B_X}\subset C$, it follows that $p(\frac{x}{\|x\|})\leq 1$ which means $p(x)\leq \|x\|$. Also $\frac{x}{p(x) + \varepsilon}\in C$ for small enough $\varepsilon > 0$, then $\|\frac{x}{p(x) + \varepsilon}\|\leq K$, which means $\frac1K\|x\|\leq p(x)$. 
+
+    We see that $p(x)$ is a norm and $\frac1K\|x\|\leq p(x)\leq \|x\|$. 
+    \item \begin{enumerate}
+        \item If $x\notin C$, we obtain $\exists \lambda > 0$ such that $(1-\lambda) x\notin C$ ($C$ is closed). Assume $p(x)<\frac1{\lambda-1}$, then exists $\mu : 1-\lambda < \mu <1$ such that $\frac x \mu\in C$. Therefore $x = (1-\mu)\times0 + \mu\times\frac{x}{\mu}\in C$ which contradicts the assumption that $x\notin C$. Hence $p(x) \geq \frac1{1-\lambda}>1$. Conversely, we can immediately obtain that $x\notin C$ if $p(x) > 1$. 
+        
+        \item For all $x\in Int C$, we can find $\lambda > 0$ such that $(1+\lambda)x\in C$. It follows that $p(x) \leq \frac1{1+\lambda} < 1$. Conversely, if $x\in p^{-1}((-\infty, 1))$, then $p(x) < 1$ and $x\in C$ ($x\notin C\iff p(x) > 1$). Since $p^{-1}((-\infty, 1))$ is open, $x\in Int C$. Therefore we can see that $Int C = p^{-1}((-\infty, 1))$. 
+        
+        \item \[\partial C = C\setminus (Int C) = (X\setminus \{x; p(x)>1\})\setminus\{x; p(x) < 1\} = \{x; p(x) = 1\}. \]
+    \end{enumerate}
+    \item Since $x\notin Int C$, there exist $g\in X^*$ s.t.
+    \[ \langle g, y\rangle < \langle g, x\rangle, \forall y \in Int C. \]
+    By $0\in Int C, \langle g, x\rangle > 0$. Denote $f = \frac1{\langle g, x\rangle g}$, then $f\in X^*$ and $f < 1$ on $Int C$. Since $C$ is convex, $\overline{Int C} = \overline C$ and thus $f(C) = f(\overline{Int C})\subset \overline{f(Int C)}\subset(-\infty, 1]$. And $C$ is symmetric, $f(C)\subset [-1, 1]$. Therefore
+    \[ |f| \leq 1\ on\ C\ and \ \langle f, x\rangle = 1. \]
+\end{enumerate}
+    
+\end{pf}
+
+\begin{ex}[8.16]
+    考虑空间 $\ell_{\infty}$ 和它的向量子空间 $F$ :
+$$
+F=\left\{x \in \ell_{\infty}: \lim _{n \rightarrow \infty} m_{n}(x) \text { 存在 }\right\} \text {, 其中 } m_{n}(x)=\frac{1}{n} \sum_{k=1}^{n} x_{k} \text {. }
+$$
+\begin{enumerate}
+    \item 定义 $f: F \rightarrow \mathbb{R}$ 为 $f(x)=\lim _{n \rightarrow \infty} m_{n}(x)$. 证明: $f \in F^{*}$.
+    \item 证明: 存在 $\ell_{\infty}$ 上连续线性泛函 $m$ 满足下面的性质:\begin{enumerate}
+        \item $\liminf _{n \rightarrow \infty} x_{n} \leqslant \langle m, x\rangle  \leqslant \limsup _{n \rightarrow \infty} x_{n}, \forall x \in \ell_{\infty}$.
+        \item $m \circ \tau=m$, 这里 $\tau: \ell_{\infty} \rightarrow \ell_{\infty}$ 是右移算子, 即 $\tau(x)_{n}=x_{n+1}$. ( $m$ 被称为 Banach 平均或 $\ell_{\infty}$-极限.)
+    \end{enumerate}
+\end{enumerate}
+\end{ex}
+
+\begin{pf}
+    \begin{enumerate}
+        \item We can obtain it from definition easily that 
+        \[ |m_n(x)| \leq \frac1n\sum_{k=1}^n |x_k|\leq \|x\|_\infty. \]
+        Then $|f(x)| = |\lim m_n(x)|\leq \|x_\infty\|.$
+        \item Define $p: l^\infty\to \mathbb R, (x_n)\mapsto \lim \frac1n|\sum_{k = 1}^nx_k|$, and we can obtain $p(x) \geq 0, p(x + y)\leq p(x) + p(y)$ and $|\lambda|p(x) = p(\lambda x)$. Since $p(x) \leq \|x\|_\infty$, $p$ is a continous seminorm. Therefore, $\exists m\in (l^\infty)^*$ s.t. $m = f$ on $F$ and $|m|\leq p$ on $l^\infty$. 
+        
+        Let $x^*$ denote $\overline\lim x_n$ and $x_*$ denote $\underline \lim x_n$. We obtain that 
+        \[ \langle m, x\rangle  = \langle m, x-x_*\rangle + x_* \leq p(x-x_*) + x_*.\]
+        We claim that $p(x-x_*)\leq \overline\lim |x_n - x_*| = x^*-x_*$. Indeed, there exist $N>0$ such that $\forall n > N$, $|x_n - x_*| \leq \overline\lim |x_n - x_*| + \varepsilon$ for any $\varepsilon>0$. Thus 
+        \[ \frac1n|\sum_{k=1}^n x_k - x_*|\leq \frac1n \sum_{k=1}^N |x_k - x_*| + \frac{n-N}{n}\overline\lim|x_n - x_*| + \varepsilon. \]
+        Then we have $\langle m, x\rangle \leq p(x-x_*) + x_*\leq x^*$. Conversely, we have $\langle m, -x\rangle \leq -x_*$, and it follows that $x_*\leq \langle m, x\rangle \leq x^*$.
+
+        Since
+        \[ p(\tau x - x) = \overline\lim \frac1n |\sum_{k = 1}^nx_k - x_{k+1}| = \overline\lim\frac1n(|x_{n+1}-x_1|)\leq \overline\lim \frac{2\|x\|_\infty}{n} = 0, \]
+        and then $|\langle m, \tau x - x\rangle|\leq p(\tau x - x) = 0$, $\langle m, \tau x\rangle = \langle m, x\rangle$. 
+    \end{enumerate}
+\end{pf}
+
+\section{第九章习题}
+
+\begin{ex}[9.1]
+    设$E$是赋范空间, 并设$E^*$是可分的
+    \begin{enumerate}
+        \item 令$(f_n)$是$E^*$中的稠密子集. 选出$E$中的序列$(x_n)$使得$f_n(x_n)\geq \|f_n\|/2$.
+        \item 任取$f\in E^*$. 证明:若对每个$x_n$有$f(x_n)=0$, 则$f=0$.
+        \item 由此导出$\text{span}\{x_1, x_2, \cdots\}$在$E$中稠密且$E$是可分的. 
+        \item 证明: 一个Banach空间是可分且自反的当且仅当它的对偶空间是可分且自反的. 
+        \item 举一个可分赋范空间但其对偶空间不可分的例子.
+    \end{enumerate}
+\end{ex}
+
+\begin{pf}
+    \begin{enumerate}
+        \item Fix n. Since $\|f_n\| = \sup_{\|x\leq 1|}\langle f_n, x \rangle$,  $\exists x_n\in B_E$ s.t.  $\langle f_n, x_n\rangle \geq \|f_n\|/2$.
+        \item For all $\varepsilon > 0$, $\exists n$ s.t. $\|f - f_n\|\leq \varepsilon$. Then
+        \[
+            \frac{\|f_n\|}{2}\leq\langle f_n, x_n\rangle = \langle f_n - f, x_n\rangle \leq \|f_n - f\|\|x_n\|\leq \varepsilon.
+        \]
+        Therefore, 
+        \[
+            \|f\|\leq \|f - f_n\| + \|f_n\|\leq 3\varepsilon \Rightarrow \|f\| = 0.
+        \]
+        \item Let $L_0$ denote the vector space over $Q$ by the $(x_n)$, and $L=\text{span}_{n\geq1}\{x_n\}$ denote the vector space over $R$ by the $(x_n)$. $L_0$ is a countable subset and a dense subset of $L$.  We have proved that $\forall f \in E^*$ such that $f$ vanishes on $(x_n)\subset L$, $f = 0$. Then $L$ dense in $E$, which means $L_0$, a countable set, dense in $E$. 
+        \item Assume that $E^*$ is reflexive and separable. We have proved above that $E$ is separable. Let $J^*$ denote the canonical injection from $E^*$ to $(E^*)^{**}$, and $J$ denote the cannonical injection from $E$ to $E^{**}$. We want to prove that $J(E)$ is a dense subset in $E^{**}$. Indeed forall $\xi = J^*(f)\in E^{***}$ vanishes on $J(E)$, 
+        \[
+            \langle J^*(f), J(x)\rangle_{E^{***},E^{**}} = 
+            \langle J(x), f\rangle_{E^{**}, E^*} = 
+            \langle f, x\rangle_{E^*, E} = 0, \forall x \in E
+            \Rightarrow f = 0. 
+        \]
+        Since $J(E)\simeq E$ which means $J(E)$ is a close subset in $E^{**}$, then $J(E) = E^{**}$. Therefore $E$ is reflexive and separable. 
+        
+        Conversely, if $E$ is reflexive, $E^{***} = (E^{**})^*\simeq E^{*}$. Thus $E^*$ is reflexive. Since $E\simeq E^{**} = (E^*)^*$ is separable, $E^*$ is separable. Thus $E^*$ is reflexive and separable. 
+        \item $l^1$ is separable but its dual space $l^{\infty}=(l^1)^*$ is not separable. Indeed
+        \[A = \{a = (a_i)\in l^\infty;a_i\in \mathbb Z\}\]
+        is an uncountable subset of $l^\infty$, and denote $Q$ is a dense subset of $l^\infty$. For any distinct element $a,b$ in $A$, $\|a - b\|\geq1$, there exists element $q_a, q_b\in Q$ such that $\|q_a - a\|<\frac12, \|q_b - b\|<\frac12$. Since $\|q_a - q_b\|\geq \|a - b\| -\|q_a - a\| - \|q_b - b\| > 0$, the map $a\in A\mapsto q_a\in Q$ is injective. Then $Q$ should not be countable while $A$ is uncountable. 
+    \end{enumerate}    
+\end{pf}
+
+\begin{ex}[9.2]
+    设$E$是Banach空间, $B\subset E^*$.
+    \begin{enumerate}
+        \item 证明$B$是相对$w^*-$紧的当且仅当$B$是有界的.
+        \item 假设$B$是有界的且$E$是可分的. 证明$(B, \sigma(E^*, E))$可度量化. (提示, 对于$E$的闭单位球中稠密序列$(q_n)$, 考虑距离$d(f, g) = \sum 2^{-n}|\langle f-g, q_n\rangle_{E^*, E}|$.)
+    \end{enumerate}
+\end{ex}
+
+\begin{pf}
+    \begin{enumerate}
+        \item Let $B_{E^*}$ denote the unit close ball of $E^*$. 
+        
+        If $\overline B$ is compact in the weak$^*$ topology, $\sup_{f\in \overline B}\lrangle{f}{x} = \max_{f\in \overline B} \lrangle{f}{x}<+\infty$. Using the Uniform Boundedness Principle, we find that $\sup_{f\in\overline B}\|f\|<+\infty$, which means $B$ is bounded in $E^*$. 
+
+        Conversely, assume that $B$ is bounded in $E^*$, then there exists $r>0$ s.t. $\overline B\subset B_{E^*}$. Since $B_{E^*}$ is compact in the weak$^*$ topology, the close subset $\overline B$ is also $w^*$-compact. 
+
+        \item Let $\{q_n\}_{n \leq 1}$ denote the countable dense subset of the unit close ball of $E$. Clearly, \[d(f, g) = \sum 2^{-n}|\lrangle{f-g}{q_n}|\leq \sum 2^{-n} \|f - g\|\leq \|f - g\|<+\infty\] is a metric on $B$. 
+        
+        To prove the topology of $(B, d)$ is the same topology as the one in $(E^*, \sigma(E^*, E))$ restricted in $B$, we should prove that for any open neighbourhood $V$ of $\sigma(E^*, E)$ is open in $(B, d)$, and vise versa. 
+
+        \begin{enumerate}
+            \item Let $f_0\in B$, denote $V = \{f\in B; |\lrangle{f - f_0}{x_i}|<\varepsilon, i = 1, \cdots, N\}$. Denote $m = \max_{1\leq i\leq N} \|x_i\|$. Since $\{q_n\}$ is dense in the unit close ball of $E$, $\forall i$, exists $q_{n_i}$ s.t. \[\|q_{n_i} - \frac{1}{m} x_i\|\leq \frac{\varepsilon}{4m\sup\|f\|}. \]
+            Denote $M = \max{n_1, \cdots, n_N}$, $r = \frac{\varepsilon}{m2^{M+1}}$. For all $g\in U = \{g\in B; d(g, f_0) < r\}$, 
+            \[ \begin{aligned}
+                \frac1m|\lrangle{g - f_0}{x_i}| 
+                &\leq |\lrangle{g - f_0}{q_{n_i}}| + |\lrangle{g - f_0}{q_{n_i}-x_i}| \\
+                &< 2^{M} r + \|g - f_0\|\|q_{n_i} - x_i\| \\
+                &\leq \frac{\varepsilon}{2m} + 2\sup\|f\|\frac{\varepsilon}{4m\sup\|f\|} = \frac\varepsilon m
+            \end{aligned} \]
+            and therefore $U\subset V$. It follows that every open set of $\sigma(E^*, E)$ is open in $(B, d)$. 
+
+            \item Conversely, let $f_0\in B$, and denote $U = \{ f\in B; d(f, f_0) < \varepsilon\}$. $\exists N > 0$, s.t. $\varepsilon > 2^N\sup\|f\|$ and then denote $\varepsilon_0 = \varepsilon - 2^N\sup\|f\|$. For all $f\in V = \{f\in B; |\lrangle{f-f_0}{q_n}|\leq \frac{\varepsilon_0}{2N}, i = 1, \cdots N\}$, 
+            \[ \begin{aligned}
+                d(f, f_0) &= \sum2^{-n} |\lrangle{f-f_0}{q_n}| \leq \sum_{n \leq N+1} |\lrangle{f-f_0}{q_n}| +  \sum_{n > N+1}|\lrangle{f-f_0}{q_n}|\\
+                &< (N+1) \frac{\varepsilon_0}{2N} + \|f - f_0\| 2^{N-1}\leq \varepsilon_0 + 2^N\sum\|f\|=\varepsilon  
+            \end{aligned}\]
+            Thus $V\subset U$, and therefore any open subset of $(B, d)$ is open in $\sigma(E^*, E)$.  
+        \end{enumerate}
+    \end{enumerate}
+\end{pf}\newpage
+
+\begin{ex}[9.3]
+    设$E$是赋范空间, $A\subset E$. \begin{enumerate}
+        \item 假设$A$是弱紧的. 证明: 若对任意$f\in E^*, \{\lrangle{f}{x}; x\in A\}$是有界的, 则$A$是有界的. 
+        \item 假设$A$有界且$E^*$可分. 证明: $(A, \sigma(E, E^*))$可度量化. 
+    \end{enumerate}
+\end{ex}
+\begin{pf}
+    \begin{enumerate}
+        \item Let $\varphi_x : E^*\to \mathbb R,f\mapsto \lrangle{f}{x}$, and we obtain $\|\varphi_x\| = \|x\| < +\infty$ which means $\varphi_x\in E^{**}$. Since $A$ is compact in weak topology, then $f(A)$ is compact in $\mathbb R$ and 
+        \[ \sup_{x\in A}|\lrangle{\varphi_x}{f}| = \sup_{x\in A} |\lrangle{f}{x}| < +\infty, \forall f \in E^* \]
+        By Uniform Boundedness Principle, we have $\sup_{x\in A}\|x\| = \sup_{x\in A} \|\varphi_x\| < +\infty$. 
+        \item Denote $J$ as the canonical projection from $E$ to $E^{**}$. Then $A$'s boundedness means $J(A)$'s boundedness. By the conclution of Ex 9.2, we find that $(J(A), \sigma(E^{**}, E^{*}))$ is metrizable. And then $(A, \sigma(E, E^*))$ is metrizable. 
+    \end{enumerate}
+\end{pf}
+
+\begin{ex}[9.7]
+    设 $E$ 和 $F$ 是两个 Banach 空间, $u: E^{*} \rightarrow F^{*}$ 是线性映射. 证明: 映射
+$$
+u:\left(E^{*}, \sigma\left(E^{*}, E\right)\right) \rightarrow\left(F^{*}, \sigma\left(F^{*}, F\right)\right)
+$$
+连续的充分必要条件是存在 $v \in \mathcal{B}(F, E)$, 使得 $u=v^{*}$. 
+\end{ex}
+
+\begin{pf}
+    If $\exists v\in B(F, E)$ s.t. $u = v^*$, we immediately find $u = v^*\in B(E^*, F^*)$. It suffices to check that $\forall x\in F, g_x: f\in E^*\mapsto \lrangle{u(f)}{x}$ is continous from $E$ weak$^*$ to $\mathbb R$. We obtain  
+    \[ \begin{aligned}
+        g_x(f) = \lrangle{u(f)}{x}=\lrangle{f}{v(x)}
+    \end{aligned} \]
+    and $v(x)\in E$, hence $g_x = J(v(x))$ is continous on $\sigma(E^*, E)$. Therefore $u$ is continous from $(E, \sigma(E^*, E))$ to $(F, \sigma(F^*, F))$. 
+
+    Conversely, $\forall x \in F$, denote $g_x: E^*\to \mathbb R, f\mapsto \lrangle{u(f)}{x}$. We obtain that $g_x\in E^{**}$ is w$^*$ continous on $E^*$. Then exists $x_1, \cdots, x_n\in E, \varepsilon > 0$ such that 
+    \[ |g_x(f)| < 1 , \forall f\in V = \{ f\in E^*; |\lrangle{f}{x_i}| < \varepsilon , i = 1,\cdots, n \}.  \]
+    Hence for any $h\in K = \cap_i \{h; \lrangle{h}{x_i} = 0\}$, $\lrangle{g_x}{h}= 0$. Indeed if $\lrangle{g_x}{h} \neq 0$, $|\lrangle{g_x}{kh}|\to \infty(k\to\infty)$. But $kh\in K\subset V$ and then $|g_x(kh)|<1$ which is impossible. Therefore exists $\lambda_1, \cdots, \lambda_n\in \mathbb R$ s.t. 
+    \[\lrangle{g_x}{f^*}_{E^{**}, E^*} = \lrangle{f^*}{\sum_{i=1}^n\lambda_i x_i}_{E^*, E}:= \lrangle{f^*}{x^*}, \forall f^*\in E^*. \]
+    Let $v: x\in F\mapsto x^*\in E$. We obtain $\lrangle{f}{v(x)} = \lrangle{g_x}{f} = \lrangle{u(f)}{x}$, then
+    \[ \begin{aligned} 
+        &\lrangle{f}{v(k_1x_1 + k_2x_2)} = \lrangle{u(f)}{k_1x_1 +k_2x_2}\\
+        =&k_1\lrangle{u(f)}{x_1} + k_2\lrangle{u(f)}{x_2}
+        =\lrangle{f}{k_1v(x_1) + k_2v(x_2)}, \forall f\in E^*,
+    \end{aligned}\]
+    and
+    \[ |\lrangle{f}{v(x)}| = |\lrangle{u(f)}{x}|\leq \|u\|\|f\|\|x\|\Rightarrow \|v(x)\|\leq \|u\|\|x\|. \]
+    Therefore, $v\in B(F, E)$. 
+\end{pf}\newpage
+
+\begin{ex}[9.9]
+    构造空间 $\ell_{\infty}^{*}$ 的单位球面上的一个序列, 使其没有 $w^{*}-$收敛的子序列. 这是否与 Banach-Alaoglu 定理矛盾? 如果在 $\ell_{\infty}$ 上有什么结论?
+\end{ex}
+
+\begin{pf}
+    It can be happened that $B$ is compact but $(f_n)\subset B$ has no converge subsequence if $B$ is not metrizable. However, if $B\subset \ell_\infty = \ell_1^*$, $\ell_1$ is separable which means every bounded subsets of $\ell_1^*$ are metrizable. Therefore for any bounded subset $B$ of $\ell_\infty$, any sequence $(x_n)\subset B$ has a converge subsequence in $(\ell_1^*, \sigma(\ell_1^*, \ell_1))$.  
+
+    Denote $e_n = (0, \cdots, 0, 1, 0, \cdots)$, and $\{e_n\}\subset \ell_1\subset \ell_\infty^*$. $\|e_n\|_{\ell_1} = 1$, and then $e_n\in S(\ell_\infty^*)$. Assume that exists $n_k$ such that $e_{n_k}\to f\in \ell_\infty^*$ in $\sigma(\ell_\infty^*, \ell_1)$. Then $\forall (x_n)\in \ell^\infty$ such that $x_n$ is not converged, $\lrangle{e_{n_k}}{x} = x_{n_k}\to \lrangle{f}{x}$ but $x_n$ is not converged. Therefore $(e_{n})$ has not any $w^*$-converge subsequence. 
+\end{pf}
+
+\begin{ex}[9.10]
+刻画 $\ell_{p}$ 的对偶空间比刻画 $L_{p}$ 的对偶要容易. 试不用课程中的结论, 直接导 出
+$$
+\ell_{p}^{*} \cong \ell_{q}, 1 \leqslant p<\infty, \quad \frac{1}{p}+\frac{1}{q}=1 .
+$$
+并且证明
+$$
+c_{0}^{*} \cong \ell_{1} .
+$$
+由此导出 $c_{0}, \ell_{1}$ 和 $\ell_{\infty}$ 都不是自反的.
+\end{ex}
+
+\begin{pf}
+    Omitted. 
+\end{pf}
+
+\begin{ex}[9.12]
+    \begin{enumerate}
+        \item 设 $E$ 是自反 Banach 空间. 证明: 每个 $\varphi \in E^{*}$ 可以达到范数, 即存在 $x_{0} \in E$, 使得 $\left|\varphi\left(x_{0}\right)\right|=\|\varphi\|$.
+        \item 由此导出已知的事实: $\ell_{1}, L_{1}(0,1)$ 和 $C([0,1])$ 都不是自反的. (提示: 对空间 $C([0,1])$ 考察泛函 $\varphi=\int_{0}^{\frac{1}{2}}-\int_{\frac{1}{2}}^{1}$.)
+        \item 证明: $C^{1}([0,1])$ 不是自反的, 这里 $C^{1}([0,1])$ 上赋予的范数是 $\|f\|=$ $\|f\|_{\infty}+\left\|f^{\prime}\right\|_{\infty}$ .(提示: 可以考虑 $C^{1}([0,1])$ 中由在原点处取零值的函数构成的子空间.)
+    \end{enumerate}
+\end{ex}
+
+\begin{pf}
+    \begin{enumerate}
+        \item $\forall \varphi\in E^*$, exists $\xi\in E^{**}$ such that $\lrangle{\xi}{\varphi} = \|\varphi\|^2$(by corollary of Hahn-Banach theorem). Since $E$ is reflexive, $\xi\in E$. Thus $x_0 = \frac1{\|\varphi\|}\xi\in E$ and than $\lrangle{\varphi}{x_0} = \|\varphi\|$. 
+        \item Let $\varphi_1=(1-\frac1n)_{n > 0}\in \ell_\infty=\ell_1^*$. $\|\varphi_1\| = 1$, but  $|\varphi_1(x)| = \sum (1 - \frac1n)|x_i| < \|x\|_1, \forall x\in \ell_1$. 
+        
+        Let $\varphi_2(x) = x \in L_1^*$, and $\|\varphi_2\|=1$. But $|\varphi_2(f)| = \int_0^1 xf dx < \int_0^1 |f|dx = \|f\|_1, \forall f\in L^1$. 
+
+        Let $\varphi = \int_0^{1/2} - \int_{1/2}^1$, and 
+        \[ |\varphi(f)| = |\int_0^{\frac12}f - \int_{\frac{1}{2}}^1f |\leq \int_0^1|f|\leq\|f\|_\infty. \]
+
+        Set 
+        \[ f_n(x) = \left\{\begin{aligned}
+            &1\quad &x < \frac12 - \frac1n\\
+            &-n(x-\frac12)\quad&\frac12 - \frac1n < x < \frac12 + \frac1n\\
+            &-1\quad &x > \frac12 + \frac1n
+        \end{aligned}\right. ,\]
+        and $\varphi(f_n) = 1 - \frac1n\to 1(n\to\infty)$ which means $\|\varphi\|_{C([0,1])} = 1$. However, if $f\in C([0, 1])$ such that $\varphi(f) = 1$ and $\|f\| = 1$, we obtain that 
+        \[
+            \int_0^1|f| = \|f\|_\infty \ and \ \|f\|=1 \iff f = \pm 1,
+        \]
+        but $|\varphi(\pm1)| = 0$ which contradicts. Therefore $|\varphi(f)|/\|f\| < 1, \forall f\in C([0, 1])$. 
+        \item 垃圾题目没思路. 
+    \end{enumerate}
+\end{pf}\newpage
+
+\end{document}
