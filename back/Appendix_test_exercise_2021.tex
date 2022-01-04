@@ -2449,21 +2449,24 @@
     \end{enumerate}
     \begin{answer}
       \begin{enumerate}
-        \item We can obtain it from definition easily that
+        \item We can obtain it from definition easily that 
         \[ |m_n(x)| \leq \frac1n\sum_{k=1}^n |x_k|\leq \|x\|_\infty. \]
         Then $|f(x)| = |\lim m_n(x)|\leq \|x_\infty\|.$
-        \item Define $p: l^\infty\to \mathbb R, (x_n)\mapsto \lim \frac1n|\sum_{k = 1}^nx_k|$, and we can obtain $p(x) \geq 0, p(x + y)\leq p(x) + p(y)$ and $|\lambda|p(x) = p(\lambda x)$. Since $p(x) \leq \|x\|_\infty$, $p$ is a continous seminorm. Therefore, $\exists m\in (l^\infty)^*$ s.t. $m = f$ on $F$ and $|m|\leq p$ on $l^\infty$.
-
-        Let $x^*$ denote $\overline\lim x_n$ and $x_*$ denote $\underline \lim x_n$. We obtain that
-        \[ \langle m, x\rangle  = \langle m, x-x_*\rangle + x_* \leq p(x-x_*) + x_*.\]
-        We claim that $p(x-x_*)\leq \overline\lim |x_n - x_*| = x^*-x_*$. Indeed, there exist $N>0$ such that $\forall n > N$, $|x_n - x_*| \leq \overline\lim |x_n - x_*| + \varepsilon$ for any $\varepsilon>0$. Thus
+        \item Define $p: l^\infty\to \mathbb R, (x_n)\mapsto \overline\lim \frac1n|\sum_{k = 1}^nx_k|$, and we can obtain $p(x) \geq 0, p(x + y)\leq p(x) + p(y)$ and $|\lambda|p(x) = p(\lambda x)$. Since $p(x) \leq \|x\|_\infty$, $p$ is a continous seminorm. Therefore, $\exists m\in (l^\infty)^*$ s.t. $m = f$ on $F$ and $|m|\leq p$ on $l^\infty$. 
+        
+        Let $x^*$ denote $\overline\lim x_n$, and $x_*$ denote $\underline \lim x_n$. Set $e = (1, \cdots)\in F$, and then $\lrangle{m}{e} = 1$. We obtain that 
+        \[ \langle m, x\rangle  = \langle m, x-x_*e\rangle + x_* \leq p(x-x_*e) + x_*.\]
+        We claim that $p(x-x_*)\leq \overline\lim |x_n - x_*|$. Indeed, there exist $N>0$ such that $\forall n > N$, $|x_n - x_*| \leq \overline\lim |x_n - x_*| + \varepsilon$ for any $\varepsilon>0$. Thus 
         \[ \frac1n|\sum_{k=1}^n x_k - x_*|\leq \frac1n \sum_{k=1}^N |x_k - x_*| + \frac{n-N}{n}\overline\lim|x_n - x_*| + \varepsilon. \]
-        Then we have $\langle m, x\rangle \leq p(x-x_*) + x_*\leq x^*$. Conversely, we have $\langle m, -x\rangle \leq -x_*$, and it follows that $x_*\leq \langle m, x\rangle \leq x^*$.
+        Since $\exists n_k$ such that $\overline\lim |x_n - x_*|=\lim |x_{n_k} - x_*| = |\lim x_{n_k} - x_*| \leq x^*-x_*$,  we have 
+        \[ \lrangle{m}{x}\leq p(x - x_*e) + x_*\leq x^* - x_* + x_* = x^*. \]
+        
+        Conversely, we have $\langle m, -x\rangle \leq -x_*$, and it follows that $x_*\leq \langle m, x\rangle \leq x^*$.
 
         Since
         \[ p(\tau x - x) = \overline\lim \frac1n |\sum_{k = 1}^nx_k - x_{k+1}| = \overline\lim\frac1n(|x_{n+1}-x_1|)\leq \overline\lim \frac{2\|x\|_\infty}{n} = 0, \]
-        and then $|\langle m, \tau x - x\rangle|\leq p(\tau x - x) = 0$, $\langle m, \tau x\rangle = \langle m, x\rangle$.
-      \end{enumerate}
+        and then $|\langle m, \tau x - x\rangle|\leq p(\tau x - x) = 0$, $\langle m, \tau x\rangle = \langle m, x\rangle$. 
+    \end{enumerate}
     \end{answer}
 \end{enumerate}
 
@@ -2561,25 +2564,20 @@
     $$
     连续的充分必要条件是存在 $v \in \mathcal{B}(F, E)$, 使得 $u=v^{*}$.
     \begin{answer}
-      If $\exists v\in B(F, E)$ s.t. $u = v^*$, we immediately find $u = v^*\in B(E^*, F^*)$. It suffices to check that $\forall x\in F, g_x: f\in E^*\mapsto \lrangle{u(f)}{x}$ is continous from $E$ weak$^*$ to $\mathbb R$. We obtain
-      \[ \begin{aligned}
-          g_x(f) = \lrangle{u(f)}{x}=\lrangle{f}{v(x)}
-      \end{aligned} \]
-      and $v(x)\in E$, hence $g_x = J(v(x))$ is continous on $\sigma(E^*, E)$. Therefore $u$ is continous from $(E, \sigma(E^*, E))$ to $(F, \sigma(F^*, F))$.
+      Let $J_X$ denote the canonial injection from $X$ to $X^{**}$. 
+    
+    If $\exists v\in B(F, E)$ s.t. $u = v^*$, we immediately find $u = v^*\in B(E^*, F^*)$. It suffices to check that $\forall x\in F$, $J_F(x)\circ u$ is continous from $E$ weak$^*$ to $\mathbb R$. We obtain  
+    \[ \begin{aligned}
+        J_F(x)\circ u(f) = \lrangle{uf}{x}_{F^*, F}=\lrangle{f}{vx}_{E^*, E}
+    \end{aligned} \]
+    and $vx\in E$, hence $J_F(x)\circ u = J_E(vx)$ is continous on $\sigma(E^*, E)$. Therefore $u$ is continous from $(E, \sigma(E^*, E))$ to $(F, \sigma(F^*, F))$. 
 
-      Conversely, $\forall x \in F$, denote $g_x: E^*\to \mathbb R, f\mapsto \lrangle{u(f)}{x}$. We obtain that $g_x\in E^{**}$ is w$^*$ continous on $E^*$. Then exists $x_1, \cdots, x_n\in E, \varepsilon > 0$ such that
-      \[ |g_x(f)| < 1 , \forall f\in V = \{ f\in E^*; |\lrangle{f}{x_i}| < \varepsilon , i = 1,\cdots, n \}.  \]
-      Hence for any $h\in K = \cap_i \{h; \lrangle{h}{x_i} = 0\}$, $\lrangle{g_x}{h}= 0$. Indeed if $\lrangle{g_x}{h} \neq  0$, $|\lrangle{g_x}{kh}|\to \infty(k\to\infty)$. But $kh\in K\subset V$ and then $|g_x(kh)|<1$ which is impossible. Therefore exists $\lambda_1, \cdots, \lambda_n\in \mathbb R$ s.t.
-      \[\lrangle{g_x}{f^*}_{E^{**}, E^*} = \lrangle{f^*}{\sum_{i=1}^n\lambda_i x_i}_{E^*, E}:= \lrangle{f^*}{x^*}, \forall f^*\in E^*. \]
-      Let $v: x\in F\mapsto x^*\in E$. We obtain $\lrangle{f}{v(x)} = \lrangle{g_x}{f} = \lrangle{u(f)}{x}$, then
-      \[ \begin{aligned}
-          &\lrangle{f}{v(k_1x_1 + k_2x_2)} = \lrangle{u(f)}{k_1x_1 +k_2x_2}\\
-          =&k_1\lrangle{u(f)}{x_1} + k_2\lrangle{u(f)}{x_2}
-          =\lrangle{f}{k_1v(x_1) + k_2v(x_2)}, \forall f\in E^*,
-      \end{aligned}\]
-      and
-      \[ |\lrangle{f}{v(x)}| = |\lrangle{u(f)}{x}|\leq \|u\|\|f\|\|x\|\Rightarrow \|v(x)\|\leq \|u\|\|x\|. \]
-      Therefore, $v\in B(F, E)$.
+    Conversely, $\forall x \in F$, denote $g_x: E^*\to \mathbb R, f\mapsto \lrangle{u(f)}{x}$. We obtain that $g_x\in E^{**}$ is w$^*$ continous on $E^*$. Then exists $x^*\in E$ s.t. 
+    \[\lrangle{g_x}{f^*}_{E^{**}, E^*} = \lrangle{f^*}{x^*}, \forall f^*\in E^*. \]
+    Let $v: x\in F\mapsto x^*\in E$. 
+    It remains to prove that $v\in B(F, E)$. $\forall (x_n, y_n)\in G(v)\to (x_0, y_0)\in F\times E$, where $x_n\in F, y_n = v(x_n)\in E$, we obtain
+    \[ \lrangle{f}{y_0} = \lim\lrangle{f}{y_n} = \lim\lrangle{uf}{x_n} = \lrangle{uf}{x_0} = \lrangle{f}{vx_0}, \forall f\in E^*. \]
+    Then $y_0 = vx_0$, $G(v)$ is close which means $v\in B(F, E)$. 
     \end{answer}
   \item （习题9 T9）构造空间 $\ell_{\infty}^{*}$ 的单位球面上的一个序列, 使其没有 $w^{*}-$收敛的子序列. 这是否与 Banach-Alaoglu 定理矛盾? 如果在 $\ell_{\infty}$ 上有什么结论?
     \begin{answer}
